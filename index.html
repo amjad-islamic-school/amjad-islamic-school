@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amjad Islamic School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-950:#1F0E17;
+    --indigo-900:#341527;
+    --indigo-800:#4F1F38;
+    --azure-600:#6B2A45;
+    --turq-500:#A8456B;
+    --turq-100:#F6E3EC;
+    --gold-600:#A8752A;
+    --gold-500:#E3B049;
+    --gold-100:#FCEFD3;
+    --paper-50:#FDFBF5;
+    --stone-100:#F5EED9;
+    --ink-900:#231320;
+    --ink-600:#6E4C5E;
+    --line:#E6D6DE;
+    --radius-md:14px;
+    --shadow-1: 0 8px 26px rgba(31,14,23,0.14);
+    --shadow-2: 0 16px 40px rgba(31,14,23,0.26);
+    --ease: cubic-bezier(.22,.9,.32,1.1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink-900);
+    background:var(--paper-50);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    line-height:1.18;
+    margin:0;
+    color:var(--indigo-900);
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px;}
+  .test-badge{
+    display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;
+    background:var(--gold-100);color:var(--gold-600);border:1px solid var(--gold-500);
+    font-weight:600;margin-left:8px;vertical-align:middle;
+  }
+  .preview-strip{background:var(--indigo-950);color:var(--gold-100);font-size:12.5px;text-align:center;padding:6px 12px;}
+
+  /* ---------- Scroll progress bar ---------- */
+  .scroll-progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--turq-500),var(--gold-500));width:0%;z-index:999;transition:width .1s linear;}
+
+  /* ---------- Utility bar ---------- */
+  .utility-bar{background:var(--indigo-950);border-top:1px solid rgba(255,255,255,.08);}
+  .utility-bar .container{display:flex;justify-content:flex-end;align-items:center;gap:26px;height:42px;font-size:13.5px;}
+  .utility-bar a{color:#E3C9CE;display:flex;align-items:center;gap:6px;position:relative;}
+  .utility-bar a:not(.search-btn)::after{
+    content:"";position:absolute;left:0;bottom:-4px;width:0%;height:1.5px;background:var(--gold-500);
+    transition:width .25s var(--ease);
+  }
+  .utility-bar a:not(.search-btn):hover::after{width:100%;}
+  .utility-bar a:hover{color:var(--gold-500);}
+  .utility-bar .search-btn{background:var(--gold-500);color:var(--indigo-950);padding:6px 18px;border-radius:20px;font-weight:600;transition:transform .2s var(--ease), background .2s ease;}
+  .utility-bar .search-btn:hover{background:#fff;transform:scale(1.06);}
+
+  .donate-btn{
+    display:flex;align-items:center;gap:7px;background:linear-gradient(120deg,#C43C5A,var(--turq-500));
+    color:#fff !important;padding:6px 18px;border-radius:20px;font-weight:700;
+    box-shadow:0 0 0 0 rgba(196,60,90,.55);animation:donate-pulse 2.4s ease-in-out infinite;
+    transition:transform .2s var(--ease), box-shadow .2s ease;
+  }
+  .donate-btn:hover{transform:scale(1.06);animation-play-state:paused;box-shadow:0 0 0 8px rgba(196,60,90,0);}
+  .donate-btn svg{flex:none;}
+  @keyframes donate-pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(196,60,90,.55);}
+    50%{box-shadow:0 0 0 7px rgba(196,60,90,0);}
+  }
+
+  /* ---------- Header / nav ---------- */
+  header{background:var(--indigo-900);position:relative;z-index:60;}
+  .brand-row{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
+  .brand{display:flex;align-items:center;gap:15px;}
+  .logo-frame{
+    width:130px;height:130px;flex:none;overflow:hidden;
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .logo-frame .logo-inner{
+    width:100%;height:100%;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .logo-frame img{width:100%;height:100%;object-fit:contain;display:block;transform:scale(1.45);}
+  @keyframes spin{ to{transform:rotate(360deg);} }
+  .brand-name{color:#fff;font-size:27px;letter-spacing:.005em;}
+  .brand-name span{
+    display:block;font-family:'Work Sans',sans-serif;font-weight:400;
+    font-size:12px;letter-spacing:.12em;color:var(--gold-500);margin-top:3px;
+  }
+
+  /* ---------- Hamburger (mobile menu toggle) ---------- */
+  .hamburger{
+    display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:42px;height:42px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;cursor:pointer;padding:0;flex:none;transition:background .2s ease;
+  }
+  .hamburger:hover{background:rgba(255,255,255,.12);}
+  .hamburger span{display:block;width:19px;height:2px;background:#fff;border-radius:2px;transition:transform .3s var(--ease), opacity .25s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  nav.mainnav{background:var(--indigo-800);border-top:1px solid rgba(255,255,255,.08);}
+  .mainnav .container{display:flex;}
+  .navitem{position:relative;}
+  .navtrigger{
+    display:flex;align-items:center;gap:6px;padding:16px 22px;color:#F0E2DE;
+    font-weight:600;font-size:15px;cursor:pointer;border:none;background:none;font-family:inherit;
+    position:relative;overflow:hidden;transition:color .2s ease;
+  }
+  .navtrigger::before{
+    content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--gold-500);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
+  }
+  .navtrigger:hover::before,.navitem.open .navtrigger::before{transform:scaleX(1);}
+  .navtrigger svg{transition:transform .3s var(--ease);}
+  .navitem.open .navtrigger, .navtrigger:hover{color:var(--gold-500);}
+  .navitem.open .navtrigger svg{transform:rotate(180deg);}
+
+  .megamenu{
+    position:absolute;top:100%;left:0;min-width:270px;background:var(--paper-50);
+    box-shadow:var(--shadow-2);border-top:3px solid var(--gold-500);padding:26px 30px;
+    display:grid;grid-template-columns:1fr;gap:34px;
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .28s var(--ease), transform .28s var(--ease), visibility .28s;
+  }
+  .navitem.open .megamenu{opacity:1;visibility:visible;transform:translateY(0);}
+  .megamenu > div{opacity:0;transform:translateY(8px);transition:opacity .35s ease, transform .35s ease;}
+  .navitem.open .megamenu > div{opacity:1;transform:translateY(0);}
+  .navitem.open .megamenu > div:nth-child(1){transition-delay:.03s;}
+  .navitem.open .megamenu > div:nth-child(2){transition-delay:.08s;}
+  .navitem.open .megamenu > div:nth-child(3){transition-delay:.13s;}
+  .megamenu h4{font-family:'Work Sans',sans-serif;font-size:12.5px;letter-spacing:.04em;color:var(--gold-600);margin:0 0 13px;font-weight:700;}
+  .megamenu li{margin-bottom:10px;}
+  .megamenu li a{color:var(--indigo-900);font-size:15px;transition:color .2s ease, padding-left .2s ease;display:inline-block;}
+  .megamenu li a:hover{color:var(--gold-600);padding-left:5px;}
+  .megamenu .feature{background:var(--indigo-950);border-radius:var(--radius-md);padding:20px;color:#fff;}
+  .megamenu .feature h4{color:var(--gold-500);}
+  .megamenu .feature p{font-size:13.5px;color:#E6CBD1;margin:0 0 15px;}
+
+  .btn-gold{
+    display:inline-flex;align-items:center;gap:8px;background:var(--gold-500);color:var(--indigo-950);
+    font-weight:700;font-size:14px;padding:10px 20px;border-radius:26px;border:none;cursor:pointer;
+    transition:transform .2s var(--ease), box-shadow .2s ease, background .2s ease;
+  }
+  .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:var(--shadow-2);background:#fff;}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--gold-500);color:var(--gold-600);
+    font-weight:600;font-size:14px;padding:9px 20px;border-radius:26px;transition:all .2s var(--ease);
+  }
+  .btn-outline:hover{background:var(--gold-500);color:var(--indigo-950);transform:translateY(-3px);}
+  .btn-ghost{
+    background:none;border:none;color:var(--ink-600);font-weight:600;font-size:14px;
+    padding:9px 14px;cursor:pointer;transition:color .2s ease;
+  }
+  .btn-ghost:hover{color:var(--indigo-900);}
+
+  /* ---------- HERO SLIDER (banner) ---------- */
+  .hero-slider{position:relative;height:400px;overflow:hidden;background:var(--indigo-950);}
+  .hero-motif{position:absolute;inset:0;pointer-events:none;opacity:.16;z-index:1;}
+  .hero-motif svg{width:100%;height:100%;}
+  .hero-motif .drift-a{animation:drift-a 22s ease-in-out infinite;}
+  .hero-motif .drift-b{animation:drift-b 28s ease-in-out infinite;}
+  .hero-motif .drift-c{animation:spin 60s linear infinite;transform-origin:center;}
+  @keyframes drift-a{0%,100%{transform:translate(0,0);}50%{transform:translate(18px,-14px);}}
+  @keyframes drift-b{0%,100%{transform:translate(0,0);}50%{transform:translate(-22px,16px);}}
+
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;background-size:cover;background-position:center;}
+  .slide.active{opacity:1;}
+  .slide.active .slide-bg{animation:kenburns 7s ease forwards;}
+  @keyframes kenburns{ from{transform:scale(1);} to{transform:scale(1.09);} }
+  .slide-bg{position:absolute;inset:0;background:inherit;background-size:cover;}
+  .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(13,21,51,.86) 0%, rgba(13,21,51,.4) 42%, rgba(13,21,51,.1) 65%);z-index:2;}
+  .slide .slide-inner{position:relative;z-index:3;height:100%;max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;padding-bottom:64px;}
+  .slide-copy{max-width:560px;color:#fff;}
+  .slide-copy .tag{
+    display:inline-block;background:var(--gold-500);color:var(--indigo-950);
+    font-size:12.5px;font-weight:700;letter-spacing:.03em;padding:5px 14px;border-radius:20px;margin-bottom:16px;
+    opacity:0;transform:translateY(10px);
+  }
+  .slide-copy h2{color:#fff;font-size:38px;margin-bottom:20px;opacity:0;transform:translateY(16px);}
+  .slide-copy .cta{
+    display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:600;font-size:15.5px;
+    border-bottom:1.5px solid var(--gold-500);padding-bottom:4px;opacity:0;transform:translateY(16px);
+    transition:gap .2s ease;
+  }
+  .slide-copy .cta:hover{gap:16px;color:var(--gold-500);}
+  .slide.active .slide-copy .tag{animation:rise .7s var(--ease) forwards .25s;}
+  .slide.active .slide-copy h2{animation:rise .7s var(--ease) forwards .4s;}
+  .slide.active .slide-copy .cta{animation:rise .7s var(--ease) forwards .58s;}
+  @keyframes rise{ to{opacity:1;transform:translateY(0);} }
+
+  .slide-nav-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:#fff;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;
+    transition:background .2s ease, transform .2s var(--ease);font-size:20px;
+  }
+  .slide-nav-arrow:hover{background:var(--gold-500);color:var(--indigo-950);transform:translateY(-50%) scale(1.1);}
+  .slide-nav-arrow.prev{left:24px;}
+  .slide-nav-arrow.next{right:24px;}
+
+  .slide-dots{position:absolute;bottom:20px;right:32px;display:flex;gap:9px;z-index:5;}
+  .slide-dots button{width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;background:transparent;cursor:pointer;padding:0;transition:all .3s var(--ease);}
+  .slide-dots button.active{background:var(--gold-500);border-color:var(--gold-500);width:22px;border-radius:5px;}
+
+  /* ---------- Donation campaign banner ---------- */
+  .donate-strip{background:linear-gradient(100deg,#C43C5A,var(--turq-500) 60%,var(--azure-600));color:#fff;padding:20px 0;position:relative;overflow:hidden;}
+  .donate-strip .container{display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:space-between;}
+  .donate-strip-copy{display:flex;align-items:center;gap:16px;flex:1;min-width:260px;}
+  .donate-strip-copy .heart{font-size:26px;flex:none;animation:heartbeat 1.6s ease-in-out infinite;}
+  @keyframes heartbeat{0%,100%{transform:scale(1);}25%{transform:scale(1.18);}40%{transform:scale(1);}}
+  .donate-strip h3{color:#fff;font-size:18.5px;margin-bottom:4px;}
+  .donate-strip p{margin:0;font-size:13.5px;color:rgba(255,255,255,.9);}
+  .donate-progress-wrap{flex:none;width:260px;}
+  .donate-progress-wrap .figures{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:6px;}
+  .donate-progress-track{height:8px;border-radius:6px;background:rgba(255,255,255,.28);overflow:hidden;}
+  .donate-progress-fill{height:100%;width:64%;border-radius:6px;background:var(--gold-500);}
+  .donate-strip .btn-gold{flex:none;}
+  .donate-strip-close{
+    position:absolute;top:8px;right:14px;background:none;border:none;color:rgba(255,255,255,.75);
+    font-size:18px;cursor:pointer;line-height:1;padding:4px;
+  }
+  .donate-strip-close:hover{color:#fff;}
+
+  /* ---------- Tagline bar ---------- */
+  .tagline-bar{background:var(--indigo-950);color:#fff;padding:28px 0;}
+  .tagline-bar .container{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+  .tagline-bar p{max-width:680px;font-size:16.5px;color:#E8D2D6;margin:0;}
+  .tagline-bar p a{color:var(--gold-500);}
+  .tagline-bar .btn-gold{white-space:nowrap;padding:12px 26px;}
+
+  /* ---------- Sections ---------- */
+  section{padding:84px 0;}
+  .section-alt{background:var(--turq-100);}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head .eyebrow{color:var(--gold-600);font-weight:600;font-size:13.5px;margin-bottom:10px;display:block;}
+  .section-head h2{font-size:32px;margin-bottom:14px;}
+  .section-head p{color:var(--ink-600);font-size:16px;}
+
+  .fade-in{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .fade-in.in-view{opacity:1;transform:translateY(0);}
+  .stagger.in-view > *{opacity:1;transform:translateY(0) scale(1);}
+  .stagger > *{opacity:0;transform:translateY(20px) scale(.97);transition:opacity .55s var(--ease), transform .55s var(--ease);}
+  .stagger > *:nth-child(1){transition-delay:.03s;}
+  .stagger > *:nth-child(2){transition-delay:.1s;}
+  .stagger > *:nth-child(3){transition-delay:.17s;}
+  .stagger > *:nth-child(4){transition-delay:.24s;}
+  .stagger > *:nth-child(5){transition-delay:.31s;}
+  .stagger > *:nth-child(6){transition-delay:.38s;}
+  .stagger > *:nth-child(7){transition-delay:.45s;}
+  .stagger > *:nth-child(8){transition-delay:.52s;}
+
+  /* Stat strip */
+  .stat-strip{background:var(--gold-100);border-bottom:1px solid var(--line);}
+  .stat-strip .container{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:32px;}
+  .stat{text-align:center;transition:transform .3s var(--ease);}
+  .stat:hover{transform:translateY(-4px);}
+  .stat .num{font-family:'Amiri',serif;font-weight:700;font-size:34px;color:var(--indigo-900);}
+  .stat .lbl{font-size:13.5px;color:var(--ink-600);margin-top:4px;}
+
+  /* News & Events */
+  .news-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:52px;}
+  .news-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .news-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .news-card .photo{height:220px;background:linear-gradient(135deg, var(--azure-600), var(--indigo-950));position:relative;overflow:hidden;}
+  .news-card .photo::after{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg, transparent, rgba(227,176,73,.18), transparent 30%);animation:spin 12s linear infinite;}
+  .news-card .body{padding:24px 26px 28px;}
+  .news-card .date{color:var(--gold-600);font-weight:600;font-size:13px;margin-bottom:8px;display:block;}
+  .news-card h3{font-size:21px;margin-bottom:10px;}
+  .news-card p{color:var(--ink-600);font-size:15px;margin:0 0 16px;}
+
+  .event-list{display:flex;flex-direction:column;gap:14px;}
+  .event-item{display:flex;gap:16px;background:#fff;border-radius:var(--radius-md);padding:16px;box-shadow:var(--shadow-1);align-items:center;transition:transform .3s var(--ease), box-shadow .3s ease;}
+  .event-item:hover{transform:translateX(8px);box-shadow:var(--shadow-2);}
+  .event-date{flex:none;width:58px;text-align:center;background:var(--indigo-950);color:#fff;border-radius:8px;padding:8px 0;transition:transform .3s var(--ease);}
+  .event-item:hover .event-date{transform:rotate(-4deg) scale(1.05);}
+  .event-date .d{font-family:'Amiri',serif;font-size:20px;font-weight:700;color:var(--gold-500);}
+  .event-date .m{font-size:10.5px;letter-spacing:.06em;}
+  .event-item h4{font-size:15.5px;margin:0 0 4px;color:var(--indigo-900);}
+  .event-item span{font-size:12.5px;color:var(--ink-600);}
+
+  /* Programs pills */
+  .pill-wrap{display:flex;flex-wrap:wrap;gap:13px;}
+  .pill{
+    background:#fff;border:1.5px solid var(--line);padding:13px 22px;border-radius:30px;
+    font-weight:600;font-size:15px;color:var(--indigo-900);display:inline-flex;align-items:center;gap:10px;
+    transition:transform .25s var(--ease), border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .pill:hover{border-color:var(--gold-500);background:var(--gold-100);transform:translateY(-4px) scale(1.04);box-shadow:var(--shadow-1);}
+
+  /* Values */
+  .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .value-card{background:#fff;border-radius:var(--radius-md);padding:28px 26px;box-shadow:var(--shadow-1);border-top:3px solid var(--gold-500);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .value-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-2);}
+  .value-card .icon{width:42px;height:42px;border-radius:50%;background:var(--turq-100);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:19px;color:var(--turq-500);transition:transform .4s var(--ease);}
+  .value-card:hover .icon{transform:rotate(18deg) scale(1.15);}
+  .value-card h3{font-size:18px;margin-bottom:9px;}
+  .value-card p{color:var(--ink-600);font-size:14.5px;margin:0;}
+
+  /* CTA band */
+  .cta-band{background:var(--indigo-950);color:#fff;padding:64px 0;position:relative;overflow:hidden;}
+  .cta-band .container{display:flex;align-items:center;gap:40px;position:relative;z-index:2;}
+  .cta-circle{
+    flex:none;width:140px;height:140px;border-radius:50%;background:var(--gold-500);color:var(--indigo-950);
+    display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Amiri',serif;
+    font-weight:700;font-size:19px;line-height:1.25;padding:8px;animation:pulse-ring 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse-ring{
+    0%,100%{box-shadow:0 0 0 0 rgba(227,176,73,.5);}
+    50%{box-shadow:0 0 0 16px rgba(227,176,73,0);}
+  }
+  .cta-band h2{color:#fff;font-size:26px;margin-bottom:12px;}
+  .cta-band p{color:#E8D2D6;font-size:15.5px;margin-bottom:20px;max-width:560px;}
+  .cta-band a.link{color:var(--gold-500);text-decoration:underline;}
+
+  /* ---------- Extra news cards row ---------- */
+  .news-more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px;}
+
+  /* ---------- Photo gallery (same "photo" treatment as news cards) ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .gallery-tile{
+    position:relative;border-radius:var(--radius-md);overflow:hidden;height:230px;
+    box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;cursor:pointer;
+  }
+  .gallery-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .gallery-tile .photo{position:absolute;inset:0;height:100%;}
+  .gallery-tile .tile-caption{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;padding:16px 18px;color:#fff;
+    background:linear-gradient(to top, rgba(13,21,51,.88), rgba(13,21,51,0));
+  }
+  .gallery-tile .tile-caption span{display:block;font-size:11.5px;letter-spacing:.05em;color:var(--gold-500);font-weight:700;margin-bottom:3px;}
+  .gallery-tile .tile-caption strong{font-family:'Amiri',serif;font-size:17px;font-weight:700;}
+  .gallery-tile.tall{height:478px;}
+  .gallery-col-span-2{grid-column:span 2;}
+
+  /* ---------- Testimonials ---------- */
+  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .testimonial-card{background:#fff;border-radius:var(--radius-md);padding:30px 26px;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .testimonial-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .testimonial-card .quote-mark{font-family:'Amiri',serif;font-size:44px;color:var(--gold-500);line-height:1;margin-bottom:6px;}
+  .testimonial-card p.quote{color:var(--ink-900);font-size:15.5px;margin:0 0 22px;}
+  .testimonial-person{display:flex;align-items:center;gap:12px;}
+  .testimonial-avatar{
+    width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+    background:var(--indigo-950);color:var(--gold-500);font-family:'Amiri',serif;font-weight:700;font-size:16px;
+  }
+  .testimonial-person h4{font-size:14.5px;margin:0;color:var(--indigo-900);}
+  .testimonial-person span{font-size:12.5px;color:var(--ink-600);}
+
+  /* ---------- Faculty spotlight ---------- */
+  .faculty-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .faculty-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .faculty-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .faculty-card .photo{height:170px;position:relative;overflow:hidden;background:linear-gradient(135deg, var(--turq-500), var(--indigo-950));}
+  .faculty-card .photo::after{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg, transparent, rgba(227,176,73,.18), transparent 30%);animation:spin 12s linear infinite;}
+  .faculty-card .body{padding:18px 18px 22px;}
+  .faculty-card h4{font-size:16px;margin:0 0 3px;color:var(--indigo-900);}
+  .faculty-card .role{font-size:12.5px;color:var(--gold-600);font-weight:600;margin-bottom:9px;display:block;}
+  .faculty-card p{font-size:13.5px;color:var(--ink-600);margin:0;}
+
+  /* ---------- FAQ accordion ---------- */
+  .faq-list{max-width:820px;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    padding:22px 4px;background:none;border:none;text-align:left;cursor:pointer;font-family:inherit;
+  }
+  .faq-q h4{font-size:17px;color:var(--indigo-900);font-weight:600;font-family:'Work Sans',sans-serif;}
+  .faq-q svg{flex:none;transition:transform .3s var(--ease);color:var(--gold-600);}
+  .faq-item.open .faq-q svg{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .38s var(--ease), padding .38s var(--ease);}
+  .faq-item.open .faq-a{max-height:260px;padding-bottom:22px;}
+  .faq-a p{color:var(--ink-600);font-size:15px;max-width:680px;margin:0;}
+
+  /* ---------- Quick-info band (calendar / prayer times) ---------- */
+  .info-band{background:var(--indigo-950);}
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);}
+  .info-cell{background:var(--indigo-950);padding:34px 30px;color:#fff;}
+  .info-cell .info-icon{font-size:22px;color:var(--gold-500);margin-bottom:12px;}
+  .info-cell h4{color:#fff;font-family:'Amiri',serif;font-size:19px;margin-bottom:10px;}
+  .info-cell ul{display:flex;flex-direction:column;gap:7px;}
+  .info-cell li{display:flex;justify-content:space-between;font-size:13.5px;color:#D8B9C0;border-bottom:1px dashed rgba(255,255,255,.1);padding-bottom:6px;}
+  .info-cell li b{color:#fff;font-weight:600;}
+
+  /* ---------- Newsletter band ---------- */
+  .newsletter-band{background:var(--gold-100);padding:56px 0;}
+  .newsletter-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+  .newsletter-inner h3{font-size:24px;margin-bottom:6px;}
+  .newsletter-inner p{color:var(--ink-600);font-size:15px;margin:0;max-width:440px;}
+  .newsletter-form{display:flex;gap:10px;flex:none;}
+  .newsletter-form input{
+    border:1.5px solid var(--line);border-radius:26px;padding:12px 20px;font-size:14.5px;
+    font-family:inherit;width:260px;background:#fff;color:var(--ink-900);transition:border-color .2s ease;
+  }
+  .newsletter-form input:focus{outline:none;border-color:var(--gold-500);}
+
+  /* Footer */
+  footer{background:var(--indigo-950);color:#DCC3C8;padding-top:60px;}
+  .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .footer-col h4{color:#fff;font-family:'Amiri',serif;font-size:17px;margin-bottom:14px;}
+  .footer-col p, .footer-col a{font-size:14px;color:#C9A8AE;}
+  .footer-col a{display:block;margin-bottom:8px;transition:color .2s ease, padding-left .2s ease;}
+  .footer-col a:hover{color:var(--gold-500);padding-left:4px;}
+  .foot-icons{display:flex;gap:11px;margin-top:12px;}
+  .foot-icons a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;margin:0;transition:all .25s var(--ease);}
+  .foot-icons a:hover{border-color:var(--gold-500);background:var(--gold-500);color:var(--indigo-950);transform:translateY(-4px) rotate(8deg);}
+  .mission-strip{padding:30px 0;font-size:13.5px;color:#9C7680;line-height:1.7;}
+  .legal-row{display:flex;justify-content:space-between;align-items:center;padding:20px 0 28px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#9C7680;flex-wrap:wrap;gap:12px;}
+  .legal-row .links a{margin-left:16px;}
+  .legal-row .links a:first-child{margin-left:0;}
+  .legal-row .links a:hover{color:var(--gold-500);}
+
+  /* Back to top */
+  .back-to-top{
+    position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;
+    background:var(--gold-500);color:var(--indigo-950);border:none;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;z-index:80;box-shadow:var(--shadow-2);
+    opacity:0;pointer-events:none;transform:translateY(16px) scale(.8);
+    transition:opacity .3s var(--ease), transform .3s var(--ease);
+  }
+  .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+  .back-to-top:hover{transform:translateY(-4px) scale(1.08);}
+
+  /* ---------- Cookie consent (blooms in) ---------- */
+  .cookie-consent{
+    position:fixed;left:24px;bottom:24px;max-width:400px;background:var(--indigo-950);color:#fff;
+    border-radius:var(--radius-md);padding:26px 26px 22px;box-shadow:var(--shadow-2);z-index:200;
+    border:1px solid rgba(255,255,255,.08);
+    opacity:0;transform:scale(.85) translateY(24px);
+    transition:opacity .55s cubic-bezier(.2,1.4,.4,1), transform .55s cubic-bezier(.2,1.4,.4,1);
+  }
+  .cookie-consent.show{opacity:1;transform:scale(1) translateY(0);}
+  .cookie-consent h3{color:#fff;font-size:19px;margin-bottom:10px;}
+  .cookie-consent p{font-size:13.5px;color:#D9C0C5;margin:0 0 20px;line-height:1.6;}
+  .cookie-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .cookie-actions .btn-outline, .cookie-actions .btn-gold, .cookie-actions .btn-ghost{padding:9px 16px;font-size:13.5px;}
+  .cookie-actions .btn-outline{border-color:rgba(255,255,255,.35);color:#fff;}
+  .cookie-actions .btn-outline:hover{background:#fff;color:var(--indigo-950);}
+  .cookie-actions .btn-ghost{color:#DCC3C8;}
+  .cookie-actions .btn-ghost:hover{color:#fff;}
+
+  @media (max-width: 980px){
+    .hero-slider{height:340px;}
+    .slide-copy h2{font-size:28px;}
+    .news-grid{grid-template-columns:1fr;}
+    .value-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hamburger{display:flex;}
+    nav.mainnav{
+      max-height:0;overflow:hidden;
+      transition:max-height .45s var(--ease);
+    }
+    nav.mainnav.nav-open{max-height:2000px;}
+    .megamenu{
+      position:static;min-width:100%;grid-template-columns:1fr;
+      max-height:0;overflow:hidden;padding:0 22px;border-top:none;
+      opacity:1;visibility:visible;transform:none;box-shadow:none;
+      transition:max-height .38s var(--ease), padding .38s var(--ease);
+    }
+    .navitem.open .megamenu{max-height:900px;padding:22px 22px 26px;border-top:2px solid var(--gold-500);}
+    .megamenu .feature{margin-top:6px;}
+    .mainnav .container{flex-wrap:wrap;flex-direction:column;padding-top:6px;padding-bottom:10px;}
+    .navitem{width:100%;border-top:1px solid rgba(255,255,255,.08);}
+    .navitem:first-child{border-top:none;}
+    .navtrigger{width:100%;justify-content:space-between;}
+    .tagline-bar .container{flex-direction:column;align-items:flex-start;}
+    .cookie-consent{left:12px;right:12px;max-width:none;}
+    .stat-strip .container{grid-template-columns:repeat(2,1fr);padding:24px;}
+    .cta-band .container{flex-direction:column;text-align:center;gap:24px;}
+    .cta-band p{margin-left:auto;margin-right:auto;}
+    .news-more-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .gallery-tile.tall{height:230px;}
+    .gallery-col-span-2{grid-column:span 1;}
+    .testimonial-grid{grid-template-columns:1fr 1fr;}
+    .faculty-grid{grid-template-columns:1fr 1fr;}
+    .info-grid{grid-template-columns:1fr;}
+    .newsletter-inner{flex-direction:column;align-items:flex-start;}
+    .newsletter-form{width:100%;}
+    .newsletter-form input{width:100%;}
+  }
+
+  @media (max-width: 640px){
+    .container{padding:0 18px;}
+    .preview-strip{font-size:11px;padding:6px 10px;}
+    .utility-bar .container{justify-content:center;gap:14px;height:auto;padding:8px 0;flex-wrap:wrap;font-size:12px;}
+    .utility-bar a{gap:4px;}
+    .utility-bar .search-btn{padding:5px 14px;}
+    .brand-row{padding:16px 0;}
+    .logo-frame{width:96px;height:96px;}
+    .brand-name{font-size:19px;}
+    .brand-name span{font-size:10px;letter-spacing:.09em;}
+    .mainnav .container{flex-wrap:wrap;}
+    .navtrigger{padding:13px 16px;font-size:14px;}
+    .hero-slider{height:300px;}
+    .slide .slide-inner{padding-bottom:40px;}
+    .slide-copy{max-width:100%;}
+    .slide-copy .tag{font-size:11px;padding:4px 12px;}
+    .slide-copy h2{font-size:23px;margin-bottom:14px;}
+    .slide-copy .cta{font-size:14px;}
+    .slide-nav-arrow{width:38px;height:38px;font-size:17px;}
+    .slide-nav-arrow.prev{left:12px;}
+    .slide-nav-arrow.next{right:12px;}
+    .slide-dots{right:16px;bottom:14px;}
+    .tagline-bar{padding:22px 0;}
+    .tagline-bar p{font-size:15px;}
+    .tagline-bar .btn-gold{width:100%;justify-content:center;}
+    section{padding:56px 0;}
+    .section-head h2{font-size:25px;}
+    .section-head p{font-size:14.5px;}
+    .stat-strip .container{grid-template-columns:repeat(2,1fr);gap:16px;padding:20px;}
+    .stat .num{font-size:26px;}
+    .stat .lbl{font-size:12px;}
+    .news-card .photo{height:170px;}
+    .news-card h3{font-size:18px;}
+    .event-item{padding:13px;gap:12px;}
+    .pill{padding:11px 18px;font-size:14px;}
+    .value-card{padding:22px 20px;}
+    .cta-band{padding:44px 0;}
+    .cta-circle{width:108px;height:108px;font-size:16px;}
+    .cta-band h2{font-size:21px;}
+    .footer-grid{gap:30px;}
+    .legal-row{flex-direction:column;align-items:flex-start;}
+    .legal-row .links a{margin-left:0;margin-right:14px;}
+    .cookie-consent{left:10px;right:10px;bottom:10px;padding:20px 20px 18px;}
+    .back-to-top{width:42px;height:42px;bottom:18px;right:18px;font-size:16px;}
+    .news-more-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-tile{height:220px;}
+    .gallery-tile.tall{height:220px;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .faculty-grid{grid-template-columns:1fr 1fr;}
+    .faculty-card .photo{height:140px;}
+    .info-cell{padding:26px 22px;}
+    .newsletter-band{padding:40px 0;}
+    .faq-q h4{font-size:15.5px;}
+    .donate-strip .container{flex-direction:column;align-items:stretch;text-align:center;}
+    .donate-strip-copy{flex-direction:column;text-align:center;}
+    .donate-progress-wrap{width:100%;}
+    .donate-strip .btn-gold{width:100%;justify-content:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
+</style>
+
+<style>
+  body{opacity:0;}
+  body.page-loaded{opacity:1;transition:opacity .38s ease;}
+  body.page-leaving{opacity:0;transition:opacity .28s ease;}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<a id="top"></a>
+
+<div class="preview-strip">Preview build — sample content shown for design review only, not a live school website.</div>
+
+<div class="utility-bar">
+  <div class="container">
+    <a href="#">Parent Portal</a>
+    <a href="#">Careers</a>
+    <a class="donate-btn" href="pages/donate.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10.2-9.3C-0.1 7.7 1.7 3.8 5.6 3.1c2.2-.4 4.3.6 5.4 2.4 1.1-1.8 3.2-2.8 5.4-2.4 3.9.7 5.7 4.6 3.8 8.6C19.5 16.4 12 21 12 21z"/></svg>
+      Donate
+    </a>
+    <a class="search-btn" href="#">Search</a>
+  </div>
+</div>
+
+<header>
+  <div class="container brand-row">
+    <a href="#" class="brand">
+      <span class="logo-frame">
+        <span class="logo-inner">
+          <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="Amjad Islamic School logo">
+        </span>
+      </span>
+      <span class="brand-name">Amjad Islamic School<span>FAITH &nbsp;·&nbsp; KNOWLEDGE &nbsp;·&nbsp; CHARACTER</span></span>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mainnav" id="mainNav">
+    <div class="container">
+
+      <div class="navitem">
+        <button class="navtrigger">Academics <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="pages/our-curriculum.html">Our Curriculum</a></li>
+              <li><a href="pages/arabic-language-program.html">Arabic Language Program</a></li>
+              <li><a href="pages/islamic-studies-program.html">Islamic Studies Program</a></li>
+              <li><a href="pages/quran-memorization.html">Qur'an Memorization</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger">Admissions <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="pages/enrollment-and-admission.html">Enrollment &amp; Admission</a></li>
+              <li><a href="pages/parent-partnership.html">Parent Partnership</a></li>
+              <li><a href="pages/what-parents-say.html">What Parents Say</a></li>
+              <li><a href="pages/future-plans.html">Future Plans</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger">About Us <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="pages/welcome.html">Welcome</a></li>
+              <li><a href="pages/about-us.html">About Us</a></li>
+              <li><a href="pages/mission-and-vision.html">Our Mission &amp; Vision</a></li>
+              <li><a href="pages/our-unique-approach.html">Our Unique Approach</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger">Student Life <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="pages/competitions-and-challenges.html">Competitions &amp; Challenges</a></li>
+              <li><a href="pages/our-teachers.html">Our Teachers</a></li>
+              <li><a href="pages/student-development.html">Student Development</a></li>
+              <li><a href="pages/our-achievements.html">Our Achievements</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger">Visit <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="pages/activities-and-events.html">Activities &amp; Events</a></li>
+              <li><a href="pages/community-impact.html">Community Impact</a></li>
+              <li><a href="pages/our-gallery.html">Our Gallery</a></li>
+              <li><a href="pages/contact-us.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<!-- HERO BANNER SLIDER -->
+<div class="hero-slider" id="heroSlider">
+  <div class="hero-motif">
+    <svg viewBox="0 0 1240 580" preserveAspectRatio="xMidYMid slice">
+      <polygon class="drift-a" points="1080,60 1100,100 1145,105 1112,135 1122,178 1080,157 1038,178 1048,135 1015,105 1060,100" fill="none" stroke="#E3B049" stroke-width="1.4"/>
+      <polygon class="drift-b" points="150,380 168,415 207,419 178,445 187,483 150,464 113,483 122,445 93,419 132,415" fill="none" stroke="#A8456B" stroke-width="1.4"/>
+      <circle class="drift-c" cx="620" cy="290" r="230" fill="none" stroke="#E3B049" stroke-width="0.6" stroke-dasharray="2 10"/>
+    </svg>
+  </div>
+
+  <div class="slide active" style="background:url('https://cdn.phototourl.com/free/2026-09-05-21f99640-719d-443d-914c-6bd7c0d45947.jpg') center/cover no-repeat;">
+    <div class="slide-bg" style="background:url('https://cdn.phototourl.com/free/2026-09-05-21f99640-719d-443d-914c-6bd7c0d45947.jpg') center/cover no-repeat;"></div>
+    <div class="slide-inner">
+      <div class="slide-copy">
+        <span class="tag">ENROLLING NOW</span>
+        <h2>Apply now for the 2026–27 school year.</h2>
+        <a class="cta" href="#">Start Your Application →</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="background:url('https://cdn.phototourl.com/free/2026-09-05-b66f05d9-a7b8-4e05-88ce-f63c2f0a7fcc.jpg') center/cover no-repeat;">
+    <div class="slide-bg" style="background:url('https://cdn.phototourl.com/free/2026-09-05-b66f05d9-a7b8-4e05-88ce-f63c2f0a7fcc.jpg') center/cover no-repeat;"></div>
+    <div class="slide-inner">
+      <div class="slide-copy">
+        <span class="tag">FINANCIAL AID</span>
+        <h2>Tuition assistance is available for qualifying families.</h2>
+        <a class="cta" href="#">Explore Financial Aid →</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="background:url('https://images.pexels.com/photos/6646871/pexels-photo-6646871.jpeg?auto=compress&cs=tinysrgb&h=900&fit=crop&w=1600') center/cover no-repeat;">
+    <div class="slide-bg" style="background:url('https://images.pexels.com/photos/6646871/pexels-photo-6646871.jpeg?auto=compress&cs=tinysrgb&h=900&fit=crop&w=1600') center/cover no-repeat;"></div>
+    <div class="slide-inner">
+      <div class="slide-copy">
+        <span class="tag">COMMUNITY</span>
+        <h2>Join our Parent Association and stay close to school life.</h2>
+        <a class="cta" href="#">Get Involved →</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide" style="background:url('https://cdn.phototourl.com/free/2026-09-05-8937f891-2c27-446c-9836-8e3ac67968b7.jpg') center/cover no-repeat;">
+    <div class="slide-bg" style="background:url('https://teachbeyond.org/Files/Article/images/School%20Friends%20-%20shutterstock_1095830483%20-%20RESIZED.jpg') center/cover no-repeat;"></div>
+    <div class="slide-inner">
+      <div class="slide-copy">
+        <span class="tag">ATHLETICS</span>
+        <h2>Cheer on the Amjad Falcons this season.</h2>
+        <a class="cta" href="#">See the Schedule →</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="slide-nav-arrow prev" aria-label="Previous slide">&#8249;</button>
+  <button class="slide-nav-arrow next" aria-label="Next slide">&#8250;</button>
+  <div class="slide-dots"></div>
+</div>
+
+<div class="donate-strip" id="donateStrip">
+  <button class="donate-strip-close" id="donateStripClose" aria-label="Dismiss">×</button>
+  <div class="container">
+    <div class="donate-strip-copy">
+      <span class="heart">❤</span>
+      <div>
+        <h3>Our Annual Giving campaign is live</h3>
+        <p>Help fund new classroom resources, scholarships, and campus upgrades this school year.</p>
+      </div>
+    </div>
+    <div class="donate-progress-wrap">
+      <div class="figures"><span>$96,000 raised</span><span>of $150,000</span></div>
+      <div class="donate-progress-track"><div class="donate-progress-fill"></div></div>
+    </div>
+    <a class="btn-gold" href="pages/donate.html">Give Now →</a>
+  </div>
+</div>
+
+<div class="tagline-bar">
+  <div class="container">
+    <p>Amjad Islamic School is a K–12 community in Riverside, Ontario. We offer <a href="#">Qur'an-integrated academics</a> across three divisions, welcoming families from every background.</p>
+    <a class="btn-gold" href="#">Book a Tour</a>
+  </div>
+</div>
+
+<div class="stat-strip">
+  <div class="container">
+    <div class="stat"><div class="num" data-count="480">0</div><div class="lbl">Students enrolled <span class="test-badge">Test</span></div></div>
+    <div class="stat"><div class="num" data-count="36">0</div><div class="lbl">Countries of family heritage</div></div>
+    <div class="stat"><div class="num" data-count="14">0</div><div class="lbl">Average class size</div></div>
+    <div class="stat"><div class="num" data-count="19">0</div><div class="lbl">Years serving the community</div></div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="news-grid">
+      <div class="fade-in">
+        <div class="section-head" style="margin-bottom:26px;">
+          <span class="eyebrow">SCHOOL NEWS</span>
+          <h2 style="font-size:27px;">From around campus</h2>
+        </div>
+        <div class="news-card">
+          <div class="photo" style="background:url('https://nafezly-production.fra1.cdn.digitaloceanspaces.com/uploads/services/14340_60cb609a4ffd3-1623941274.jpg') center/cover no-repeat;"></div>
+          <div class="body">
+            <span class="date">August 24, 2026 <span class="test-badge">Test</span></span>
+            <h3>Meet Amjad in our Digital Viewbook</h3>
+            <p>Flip through a short interactive prospectus — admissions, academics, and campus life, just like a printed book.</p>
+            <a class="btn-outline" href="viewbook.html">Read Book</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <div class="section-head" style="margin-bottom:26px;">
+          <span class="eyebrow">UPCOMING EVENTS</span>
+          <h2 style="font-size:27px;">Mark your calendar</h2>
+        </div>
+        <div class="event-list stagger">
+          <div class="event-item">
+            <div class="event-date"><div class="d">02</div><div class="m">SEP</div></div>
+            <div><h4>New Family Orientation</h4><span>9:00 AM – 11:00 AM · Main Hall</span></div>
+          </div>
+          <div class="event-item">
+            <div class="event-date"><div class="d">07</div><div class="m">SEP</div></div>
+            <div><h4>First Day of School</h4><span>All Day · All Campuses</span></div>
+          </div>
+          <div class="event-item">
+            <div class="event-date"><div class="d">18</div><div class="m">SEP</div></div>
+            <div><h4>Parent–Teacher Meet &amp; Greet</h4><span>5:30 PM – 7:30 PM · Gymnasium</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-more-grid stagger">
+      <div class="news-card">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/7750751/pexels-photo-7750751.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200') center/cover no-repeat;"></div>
+        <div class="body">
+          <span class="date">August 19, 2026 <span class="test-badge">Test</span></span>
+          <h3>STEM Lab unveils new robotics kits</h3>
+          <p>Sample story: Grade 5–8 students will build and program their first robots this term using the new kits donated by the Parent Association.</p>
+          <a class="btn-outline" href="#">Read More</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="photo" style="background:url('https://png.pngtree.com/png-clipart/20250623/original/pngtree-masjid-al-haram-with-kaaba-in-center-holy-islamic-site-mecca-png-image_21230268.png') center/cover no-repeat;"></div>
+        <div class="body">
+          <span class="date">August 12, 2026 <span class="test-badge">Test</span></span>
+          <h3>Welcome, new teachers!</h3>
+          <p>Sample story: five new faculty members joined the Amjad family this summer across Arabic, science, and elementary homeroom teams.</p>
+          <a class="btn-outline" href="#">Read More</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/10638213/pexels-photo-10638213.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200') center/cover no-repeat;"></div>
+        <div class="body">
+          <span class="date">August 5, 2026 <span class="test-badge">Test</span></span>
+          <h3>Summer reading challenge wraps up</h3>
+          <p>Sample story: over 300 students logged more than 4,000 books read together this summer as part of the library's annual challenge.</p>
+          <a class="btn-outline" href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">PROGRAMS</span>
+      <h2>A well-rounded path for every student</h2>
+      <p>From daily Qur'an study to robotics club, students build knowledge, skill, and character side by side.</p>
+    </div>
+    <div class="pill-wrap stagger">
+      <span class="pill">Qur'an Memorization</span>
+      <span class="pill">STEM Lab</span>
+      <span class="pill">Arabic Language</span>
+      <span class="pill">Sports Academy</span>
+      <span class="pill">Robotics Club</span>
+      <span class="pill">Arts Studio</span>
+      <span class="pill">Debate &amp; Public Speaking</span>
+      <span class="pill">Community Service</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">LIFE AT AMJAD</span>
+      <h2>A glimpse into everyday campus life</h2>
+      <p>From morning assembly to science fair afternoons, here's a sample of the moments that fill an Amjad school year.</p>
+    </div>
+    <div class="gallery-grid stagger">
+      <div class="gallery-tile tall">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/11842681/pexels-photo-11842681.jpeg?auto=compress&cs=tinysrgb&h=1000&fit=crop&w=800') center/cover no-repeat;"></div>
+        <div class="tile-caption"><span>QUR'AN &amp; ISLAMIC STUDIES</span><strong>Morning halaqa circle</strong></div>
+      </div>
+      <div class="gallery-tile">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/7750751/pexels-photo-7750751.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200') center/cover no-repeat;"></div>
+        <div class="tile-caption"><span>STEM &amp; ROBOTICS</span><strong>Building the term project</strong></div>
+      </div>
+      <div class="gallery-tile">
+        <div class="photo" style="background:url('https://cdn.phototourl.com/free/2026-09-05-70b3e5f3-d14d-420c-ab45-32d3afe65065.png') center/cover no-repeat;"></div>
+        <div class="tile-caption"><span>ATHLETICS</span><strong>Falcons at practice</strong></div>
+      </div>
+      <div class="gallery-tile gallery-col-span-2">
+        <div class="photo" style="background:url('https://cdn.phototourl.com/free/2026-09-05-b66f05d9-a7b8-4e05-88ce-f63c2f0a7fcc.jpg') center/cover no-repeat;"></div>
+        <div class="tile-caption"><span>COMMUNITY SERVICE</span><strong>Annual food-drive volunteers</strong></div>
+      </div>
+      <div class="gallery-tile">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/18840610/pexels-photo-18840610/free-photo-of-ball-pen-over-paper-sheet-with-arabic-writing.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200') center/cover no-repeat;"></div>
+        <div class="tile-caption"><span>ARTS STUDIO</span><strong>Calligraphy workshop</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">WHY FAMILIES CHOOSE AMJAD</span>
+      <h2>Built on six commitments</h2>
+      <p>These are the values our teachers, staff, and families return to every single day.</p>
+    </div>
+    <div class="value-grid stagger">
+      <div class="value-card">
+        <div class="icon">✦</div>
+        <h3>Faith-Centered Learning</h3>
+        <p>Daily Qur'an, Islamic studies, and prayer are woven into the rhythm of every school day, not treated as an add-on.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">✦</div>
+        <h3>Academic Rigor</h3>
+        <p>A provincially aligned curriculum taught by certified teachers, with small class sizes and individual attention.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">✦</div>
+        <h3>Community &amp; Character</h3>
+        <p>Students graduate with strong character, service habits, and a lasting sense of belonging to their community.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">◆</div>
+        <h3>Bilingual Foundation</h3>
+        <p>Arabic language study begins in Pre-K, building fluency and confidence alongside a strong English program.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">◆</div>
+        <h3>Modern Facilities</h3>
+        <p>Renovated science labs, a dedicated STEM &amp; robotics room, and a full-size gymnasium support hands-on learning.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">◆</div>
+        <h3>Family Partnership</h3>
+        <p>Regular parent–teacher touchpoints, a family handbook, and an active Parent Association keep families close to school life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">FAMILY VOICES</span>
+      <h2>What Amjad families are saying</h2>
+      <p>Sample quotes shared for this preview — real testimonials would appear here on the live site.</p>
+    </div>
+    <div class="testimonial-grid stagger">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="quote">Our daughter looks forward to school every morning. The Qur'an circle has become the highlight of her week, and her Arabic has improved so much.</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">SH</div>
+          <div><h4>Sarah H.</h4><span>Parent, Grade 3</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="quote">The class sizes make a real difference. Every teacher knows my son by name and checks in with me regularly, not just at report card time.</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">OM</div>
+          <div><h4>Omar M.</h4><span>Parent, Grade 7</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="quote">I transferred here in Grade 9 and was nervous about fitting in. The Student Life team and my classmates made it easy — I found my community fast.</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">LR</div>
+          <div><h4>Layla R.</h4><span>Grade 11 Student</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">MEET THE TEAM</span>
+      <h2>A few faces from our faculty</h2>
+      <p>Sample staff profiles — meet the full team on the Faculty &amp; Staff Directory page.</p>
+    </div>
+    <div class="faculty-grid stagger">
+      <div class="faculty-card">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/8070478/pexels-photo-8070478.jpeg?auto=compress&cs=tinysrgb&h=340&fit=crop&w=400') center/cover no-repeat;"></div>
+        <div class="body">
+          <h4>Dr. Imani Salah</h4>
+          <span class="role">Principal</span>
+          <p>Leads school-wide strategy and academics, with a background in curriculum design.</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/15361048/pexels-photo-15361048/free-photo-of-portrait-of-smiling-bearded-man.jpeg?auto=compress&cs=tinysrgb&h=340&fit=crop&w=400') center/cover no-repeat;"></div>
+        <div class="body">
+          <h4>Ustadh Bilal Faruq</h4>
+          <span class="role">Head of Islamic Studies</span>
+          <p>Oversees Qur'an memorization and Islamic studies across all three divisions.</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/29852895/pexels-photo-29852895/free-photo-of-professional-corporate-headshot-of-smiling-woman.jpeg?auto=compress&cs=tinysrgb&h=340&fit=crop&w=400') center/cover no-repeat;"></div>
+        <div class="body">
+          <h4>Ms. Farah Idris</h4>
+          <span class="role">STEM &amp; Robotics Lead</span>
+          <p>Runs the robotics club and coordinates the middle school science fair.</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <div class="photo" style="background:url('https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&h=340&fit=crop&w=400') center/cover no-repeat;"></div>
+        <div class="body">
+          <h4>Mr. Karim Aziz</h4>
+          <span class="role">Director of Admissions</span>
+          <p>Guides new families through applications, tours, and placement assessments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="info-band">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-cell">
+        <div class="info-icon">🕌</div>
+        <h4>Daily Prayer Times</h4>
+        <ul>
+          <li>Dhuhr <b>1:05 PM</b></li>
+          <li>Asr <b>4:20 PM</b></li>
+          <li>Jumu'ah <b>1:15 PM</b></li>
+        </ul>
+      </div>
+      <div class="info-cell">
+        <div class="info-icon">🕐</div>
+        <h4>School Hours</h4>
+        <ul>
+          <li>Elementary <b>8:00 AM – 3:00 PM</b></li>
+          <li>Middle &amp; High School <b>7:50 AM – 3:15 PM</b></li>
+          <li>Office <b>7:30 AM – 4:30 PM</b></li>
+        </ul>
+      </div>
+      <div class="info-cell">
+        <div class="info-icon">📅</div>
+        <h4>Key Dates</h4>
+        <ul>
+          <li>First Day of School <b>Sep 7</b></li>
+          <li>Fall Break <b>Oct 12–16</b></li>
+          <li>Winter Concert <b>Dec 11</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions families often ask</h2>
+    </div>
+    <div class="faq-list fade-in" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q">
+          <h4>What grades does Amjad Islamic School serve?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p>We serve Pre-K through Grade 12 across three divisions: Early Childhood, Elementary, and Middle/High School, all on one campus.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4>Is financial aid available?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p>Yes. Sibling discounts, need-based financial assistance, and flexible payment plans are available — see the Tuition &amp; Aid section under Admissions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4>Do you accept transfer students mid-year?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p>We do, space permitting, following a placement assessment. Reach out to Admissions any time during the school year to check current availability.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4>Is transportation provided?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p>Bus routes are offered across several neighborhoods in Riverside. Contact the office to confirm whether your address falls on an existing route.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4>Can I schedule a campus tour before applying?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p>Absolutely — tours run most weekday mornings. Use the "Book a Tour" button anywhere on this site or visit the Visit section to plan your visit.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container fade-in">
+    <div class="cta-circle">Visit<br>Amjad</div>
+    <div>
+      <h2>Come see a classroom in session</h2>
+      <p>Our admissions team is happy to answer your questions, walk you through the campus, and talk through the right grade placement for your child.</p>
+      <a class="btn-gold" href="#">Book a Tour</a>
+      &nbsp; &nbsp;
+      <a class="link" href="#">or chat with our admissions team</a>
+    </div>
+  </div>
+</div>
+
+<div class="newsletter-band">
+  <div class="container newsletter-inner fade-in">
+    <div>
+      <h3>Stay in the loop</h3>
+      <p>Sign up for our monthly newsletter — school news, event dates, and admissions updates, straight to your inbox.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="Your email address" aria-label="Email address">
+      <button class="btn-gold" type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid fade-in">
+      <div class="footer-col">
+        <h4>Admissions</h4>
+        <a href="#">(555) 019-2244</a>
+        <a href="#">admissions@amjadislamic.example</a>
+        <a href="#">Book a Tour</a>
+      </div>
+      <div class="footer-col">
+        <h4>Campus</h4>
+        <p style="margin:0 0 14px;">240 Willowbrook Avenue<br>Riverside, ON L2G 4K1<br>(sample address)</p>
+        <a href="#">Campus Map &amp; Directions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Stay Connected</h4>
+        <p style="margin-bottom:14px;">Get news, event dates, and updates from Amjad Islamic School.</p>
+        <div class="foot-icons">
+          <a href="#">f</a><a href="#">◎</a><a href="#">𝕏</a><a href="#">in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-strip">
+      Amjad Islamic School exists to raise a generation grounded in faith, curious about the world, and committed to serving others — every student known by name, every family welcomed as part of our community.
+    </div>
+
+    <div class="legal-row">
+      <span>© 2026 Amjad Islamic School. Preview site — all content is sample data.</span>
+      <span class="links">
+        <a href="#">Privacy</a><a href="#">Accessibility</a><a href="#">Careers</a><a href="#">Contact</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<div class="cookie-consent" id="cookieConsent">
+  <h3>We value your privacy</h3>
+  <p>We use cookies to enhance your browsing experience and understand how families use our site. By clicking "Accept All," you consent to our use of cookies.</p>
+  <div class="cookie-actions">
+    <button class="btn-outline" id="cookieSettings">Cookie Settings</button>
+    <button class="btn-ghost" id="cookieReject">Reject All</button>
+    <button class="btn-gold" id="cookieAccept">Accept All</button>
+  </div>
+</div>
+
+<script>
+  // Dropdown menus
+  document.querySelectorAll('.navitem').forEach(item=>{
+    const trigger = item.querySelector('.navtrigger');
+    trigger.addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.navitem')){
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+
+  // Hamburger menu (mobile)
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  hamburgerBtn.addEventListener('click', ()=>{
+    const isOpen = mainNav.classList.toggle('nav-open');
+    hamburgerBtn.classList.toggle('open', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    if(!isOpen){
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('nav.mainnav') && !e.target.closest('.hamburger') && mainNav.classList.contains('nav-open')){
+      mainNav.classList.remove('nav-open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', false);
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+
+  // Hero banner slider (only present on the homepage)
+  const slider = document.getElementById('heroSlider');
+  if (slider) {
+    const slides = Array.from(slider.querySelectorAll('.slide'));
+    const dotsWrap = slider.querySelector('.slide-dots');
+    let current = 0;
+    let timer;
+
+    slides.forEach((_, i)=>{
+      const b = document.createElement('button');
+      if(i===0) b.classList.add('active');
+      b.addEventListener('click', ()=>{ goTo(i); restart(); });
+      dotsWrap.appendChild(b);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function goTo(i){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function next(){ goTo(current+1); }
+    function prev(){ goTo(current-1); }
+
+    slider.querySelector('.next').addEventListener('click', ()=>{ next(); restart(); });
+    slider.querySelector('.prev').addEventListener('click', ()=>{ prev(); restart(); });
+
+    function restart(){ clearInterval(timer); timer = setInterval(next, 6000); }
+    restart();
+  }
+
+  // Donation campaign banner dismiss
+  const donateStrip = document.getElementById('donateStrip');
+  const donateStripClose = document.getElementById('donateStripClose');
+  if(donateStrip && donateStripClose){
+    donateStripClose.addEventListener('click', ()=>{
+      donateStrip.style.transition = 'max-height .3s ease, opacity .3s ease, padding .3s ease';
+      donateStrip.style.maxHeight = donateStrip.offsetHeight + 'px';
+      requestAnimationFrame(()=>{
+        donateStrip.style.maxHeight = '0px';
+        donateStrip.style.opacity = '0';
+        donateStrip.style.paddingTop = '0px';
+        donateStrip.style.paddingBottom = '0px';
+        donateStrip.style.overflow = 'hidden';
+      });
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.fade-in, .stagger');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('in-view'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Animated stat counters
+  const counters = document.querySelectorAll('.stat .num');
+  const cio = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        const el = en.target;
+        const target = parseInt(el.dataset.count, 10);
+        const duration = 1200;
+        const start = performance.now();
+        function step(now){
+          const progress = Math.min((now-start)/duration, 1);
+          el.textContent = Math.floor(progress * target);
+          if(progress < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+        cio.unobserve(el);
+      }
+    });
+  }, {threshold:0.4});
+  counters.forEach(el=>cio.observe(el));
+
+  // Scroll progress bar + back to top
+  const progressBar = document.getElementById('scrollProgress');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+    if(h.scrollTop > 420){ backToTop.classList.add('show'); } else { backToTop.classList.remove('show'); }
+  });
+  backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Cookie consent — blooms in shortly after load
+  const cookieBox = document.getElementById('cookieConsent');
+  setTimeout(()=> cookieBox.classList.add('show'), 900);
+  function dismissCookie(){ cookieBox.classList.remove('show'); }
+  document.getElementById('cookieAccept').addEventListener('click', dismissCookie);
+  document.getElementById('cookieReject').addEventListener('click', dismissCookie);
+  document.getElementById('cookieSettings').addEventListener('click', dismissCookie);
+  // ---------- Page fade transition ----------
+  window.addEventListener('DOMContentLoaded', ()=>{
+    requestAnimationFrame(()=> document.body.classList.add('page-loaded'));
+  });
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || a.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.remove('page-loaded');
+    document.body.classList.add('page-leaving');
+    setTimeout(()=>{ window.location.href = href; }, 260);
+  });
+</script>
+
+</body>
+</html>
