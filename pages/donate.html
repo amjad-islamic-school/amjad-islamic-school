@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate — Amjad Islamic School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-950:#1F0E17;
+    --indigo-900:#341527;
+    --indigo-800:#4F1F38;
+    --azure-600:#6B2A45;
+    --turq-500:#A8456B;
+    --turq-100:#F6E3EC;
+    --gold-600:#A8752A;
+    --gold-500:#E3B049;
+    --gold-100:#FCEFD3;
+    --paper-50:#FDFBF5;
+    --stone-100:#F5EED9;
+    --ink-900:#231320;
+    --ink-600:#6E4C5E;
+    --line:#E6D6DE;
+    --radius-md:14px;
+    --shadow-1: 0 1px 2px rgba(31,14,23,0.06), 0 10px 24px rgba(31,14,23,0.10), 0 2px 10px rgba(168,117,42,0.08);
+    --shadow-2: 0 2px 6px rgba(31,14,23,0.10), 0 22px 48px rgba(31,14,23,0.22), 0 6px 20px rgba(168,117,42,0.12);
+    --ease: cubic-bezier(.22,.9,.32,1.1);
+    --gold-foil: linear-gradient(100deg, var(--gold-600) 0%, var(--gold-500) 22%, #FFEFC2 45%, var(--gold-500) 68%, var(--gold-600) 100%);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink-900);
+    background:var(--paper-50);
+    line-height:1.55;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* Subtle paper-grain, gives the whole page a printed / letterpress quality */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:998;opacity:.035;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .gold-foil{
+    background:var(--gold-foil);background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:foil-sheen 7s ease-in-out infinite;
+  }
+  @keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+  /* ---------- Ornamental section divider ---------- */
+  .ornament-divider{display:flex;align-items:center;justify-content:center;gap:18px;padding:0;background:inherit;}
+  .ornament-divider svg{flex:none;}
+  .ornament-divider .rule{height:1px;flex:1;max-width:220px;background:linear-gradient(90deg, transparent, var(--gold-500) 50%, transparent);}
+  h1,h2,h3,.display{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    line-height:1.18;
+    margin:0;
+    color:var(--indigo-900);
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px;}
+  .test-badge{
+    display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;
+    background:var(--gold-100);color:var(--gold-600);border:1px solid var(--gold-500);
+    font-weight:600;margin-left:8px;vertical-align:middle;
+  }
+  .preview-strip{background:var(--indigo-950);color:var(--gold-100);font-size:12.5px;text-align:center;padding:6px 12px;}
+
+  /* ---------- Scroll progress bar ---------- */
+  .scroll-progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--turq-500),var(--gold-500));width:0%;z-index:999;transition:width .1s linear;}
+
+  /* ---------- Utility bar ---------- */
+  .utility-bar{background:var(--indigo-950);border-top:1px solid rgba(255,255,255,.08);}
+  .utility-bar .container{display:flex;justify-content:flex-end;align-items:center;gap:26px;height:42px;font-size:13.5px;}
+  .utility-bar a{color:#E3C9CE;display:flex;align-items:center;gap:6px;position:relative;}
+  .utility-bar a:not(.search-btn)::after{
+    content:"";position:absolute;left:0;bottom:-4px;width:0%;height:1.5px;background:var(--gold-500);
+    transition:width .25s var(--ease);
+  }
+  .utility-bar a:not(.search-btn):hover::after{width:100%;}
+  .utility-bar a:hover{color:var(--gold-500);}
+  .utility-bar .search-btn{background:var(--gold-500);color:var(--indigo-950);padding:6px 18px;border-radius:20px;font-weight:600;transition:transform .2s var(--ease), background .2s ease;}
+  .utility-bar .search-btn:hover{background:#fff;transform:scale(1.06);}
+
+  .lang-switch{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:2px;gap:2px;}
+  .lang-btn{border:none;background:none;color:#D9BEC5;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.03em;padding:5px 12px;border-radius:16px;cursor:pointer;transition:background .2s ease, color .2s ease;}
+  .lang-btn.active{background:var(--gold-500);color:var(--indigo-950);}
+  .lang-btn:not(.active):hover{color:#fff;}
+
+  html[dir="rtl"] body{font-family:'Cairo', 'Work Sans', sans-serif;}
+  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] .display{font-family:'Amiri', serif;}
+  html[dir="rtl"] .brand-name span{font-family:'Cairo', sans-serif;}
+  html[dir="rtl"] .navtrigger, html[dir="rtl"] .lang-btn, html[dir="rtl"] .btn-gold, html[dir="rtl"] .btn-outline, html[dir="rtl"] .btn-ghost{font-family:'Cairo', sans-serif;}
+
+  .donate-btn{
+    display:flex;align-items:center;gap:7px;background:linear-gradient(120deg,#C43C5A,var(--turq-500));
+    color:#fff !important;padding:6px 18px;border-radius:20px;font-weight:700;
+    box-shadow:0 0 0 0 rgba(196,60,90,.55);animation:donate-pulse 2.4s ease-in-out infinite;
+    transition:transform .2s var(--ease), box-shadow .2s ease;
+  }
+  .donate-btn:hover{transform:scale(1.06);animation-play-state:paused;box-shadow:0 0 0 8px rgba(196,60,90,0);}
+  .donate-btn svg{flex:none;}
+  @keyframes donate-pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(196,60,90,.55);}
+    50%{box-shadow:0 0 0 7px rgba(196,60,90,0);}
+  }
+
+  /* ---------- Header / nav ---------- */
+  header{background:var(--indigo-900);position:relative;z-index:60;}
+  .brand-row{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
+  .brand{display:flex;align-items:center;gap:15px;}
+  .logo-frame{
+    width:130px;height:130px;flex:none;overflow:hidden;
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .logo-frame .logo-inner{
+    width:100%;height:100%;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .logo-frame img{width:100%;height:100%;object-fit:contain;display:block;transform:scale(1.45);}
+  @keyframes spin{ to{transform:rotate(360deg);} }
+  .brand-name{color:#fff;font-size:27px;letter-spacing:.005em;}
+  .brand-name span{
+    display:block;font-family:'Work Sans',sans-serif;font-weight:400;
+    font-size:12px;letter-spacing:.12em;color:var(--gold-500);margin-top:3px;
+  }
+
+  /* ---------- Hamburger (mobile menu toggle) ---------- */
+  .hamburger{
+    display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:42px;height:42px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;cursor:pointer;padding:0;flex:none;transition:background .2s ease;
+  }
+  .hamburger:hover{background:rgba(255,255,255,.12);}
+  .hamburger span{display:block;width:19px;height:2px;background:#fff;border-radius:2px;transition:transform .3s var(--ease), opacity .25s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  nav.mainnav{background:var(--indigo-800);border-top:1px solid rgba(255,255,255,.08);}
+  .mainnav .container{display:flex;}
+  .navitem{position:relative;}
+  .navtrigger{
+    display:flex;align-items:center;gap:6px;padding:16px 22px;color:#F0E2DE;
+    font-weight:600;font-size:15px;cursor:pointer;border:none;background:none;font-family:inherit;
+    position:relative;overflow:hidden;transition:color .2s ease;
+  }
+  .navtrigger::before{
+    content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--gold-500);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
+  }
+  .navtrigger:hover::before,.navitem.open .navtrigger::before{transform:scaleX(1);}
+  .navtrigger svg{transition:transform .3s var(--ease);}
+  .navitem.open .navtrigger, .navtrigger:hover{color:var(--gold-500);}
+  .navitem.open .navtrigger svg{transform:rotate(180deg);}
+
+  .megamenu{
+    position:absolute;top:100%;left:0;min-width:270px;background:var(--paper-50);
+    box-shadow:var(--shadow-2);border-top:3px solid var(--gold-500);padding:26px 30px;
+    display:grid;grid-template-columns:1fr;gap:34px;
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .28s var(--ease), transform .28s var(--ease), visibility .28s;
+  }
+  .navitem.open .megamenu{opacity:1;visibility:visible;transform:translateY(0);}
+  .megamenu > div{opacity:0;transform:translateY(8px);transition:opacity .35s ease, transform .35s ease;}
+  .navitem.open .megamenu > div{opacity:1;transform:translateY(0);}
+  .navitem.open .megamenu > div:nth-child(1){transition-delay:.03s;}
+  .navitem.open .megamenu > div:nth-child(2){transition-delay:.08s;}
+  .navitem.open .megamenu > div:nth-child(3){transition-delay:.13s;}
+  .megamenu h4{font-family:'Work Sans',sans-serif;font-size:12.5px;letter-spacing:.04em;color:var(--gold-600);margin:0 0 13px;font-weight:700;}
+  .megamenu li{margin-bottom:10px;}
+  .megamenu li a{color:var(--indigo-900);font-size:15px;transition:color .2s ease, padding-left .2s ease;display:inline-block;}
+  .megamenu li a:hover{color:var(--gold-600);padding-left:5px;}
+  .megamenu .feature{background:var(--indigo-950);border-radius:var(--radius-md);padding:20px;color:#fff;}
+  .megamenu .feature h4{color:var(--gold-500);}
+  .megamenu .feature p{font-size:13.5px;color:#E6CBD1;margin:0 0 15px;}
+
+  .btn-gold{
+    display:inline-flex;align-items:center;gap:8px;background:var(--gold-500);color:var(--indigo-950);
+    font-weight:700;font-size:14px;padding:10px 20px;border-radius:26px;border:none;cursor:pointer;
+    transition:transform .2s var(--ease), box-shadow .2s ease, background .2s ease;
+  }
+  .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:var(--shadow-2);background:#fff;}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--gold-500);color:var(--gold-600);
+    font-weight:600;font-size:14px;padding:9px 20px;border-radius:26px;transition:all .2s var(--ease);
+  }
+  .btn-outline:hover{background:var(--gold-500);color:var(--indigo-950);transform:translateY(-3px);}
+  .btn-ghost{
+    background:none;border:none;color:var(--ink-600);font-weight:600;font-size:14px;
+    padding:9px 14px;cursor:pointer;transition:color .2s ease;
+  }
+  .btn-ghost:hover{color:var(--indigo-900);}
+
+  /* ---------- HERO SLIDER (banner) ---------- */
+  .hero-slider{position:relative;height:400px;overflow:hidden;background:var(--indigo-950);}
+  .hero-motif{position:absolute;inset:0;pointer-events:none;opacity:.16;z-index:1;}
+  .hero-motif svg{width:100%;height:100%;}
+  .hero-motif .drift-a{animation:drift-a 22s ease-in-out infinite;}
+  .hero-motif .drift-b{animation:drift-b 28s ease-in-out infinite;}
+  .hero-motif .drift-c{animation:spin 60s linear infinite;transform-origin:center;}
+  @keyframes drift-a{0%,100%{transform:translate(0,0);}50%{transform:translate(18px,-14px);}}
+  @keyframes drift-b{0%,100%{transform:translate(0,0);}50%{transform:translate(-22px,16px);}}
+
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;background-size:cover;background-position:center;}
+  .slide.active{opacity:1;}
+  .slide.active .slide-bg{animation:kenburns 7s ease forwards;}
+  @keyframes kenburns{ from{transform:scale(1);} to{transform:scale(1.09);} }
+  .slide-bg{position:absolute;inset:0;background:inherit;background-size:cover;}
+  .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(13,21,51,.86) 0%, rgba(13,21,51,.4) 42%, rgba(13,21,51,.1) 65%);z-index:2;}
+  .slide .slide-inner{position:relative;z-index:3;height:100%;max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;padding-bottom:64px;}
+  .slide-copy{max-width:560px;color:#fff;}
+  .slide-copy .tag{
+    display:inline-block;background:var(--gold-500);color:var(--indigo-950);
+    font-size:12.5px;font-weight:700;letter-spacing:.03em;padding:5px 14px;border-radius:20px;margin-bottom:16px;
+    opacity:0;transform:translateY(10px);
+  }
+  .slide-copy h2{color:#fff;font-size:44px;letter-spacing:-.01em;margin-bottom:22px;opacity:0;transform:translateY(16px);text-shadow:0 2px 24px rgba(0,0,0,.35);}
+  .slide-copy .cta{
+    display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:600;font-size:15.5px;
+    border-bottom:1.5px solid var(--gold-500);padding-bottom:4px;opacity:0;transform:translateY(16px);
+    transition:gap .2s ease;
+  }
+  .slide-copy .cta:hover{gap:16px;color:var(--gold-500);}
+  .slide.active .slide-copy .tag{animation:rise .7s var(--ease) forwards .25s;}
+  .slide.active .slide-copy h2{animation:rise .7s var(--ease) forwards .4s;}
+  .slide.active .slide-copy .cta{animation:rise .7s var(--ease) forwards .58s;}
+  @keyframes rise{ to{opacity:1;transform:translateY(0);} }
+
+  .slide-nav-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:#fff;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;
+    transition:background .2s ease, transform .2s var(--ease);font-size:20px;
+  }
+  .slide-nav-arrow:hover{background:var(--gold-500);color:var(--indigo-950);transform:translateY(-50%) scale(1.1);}
+  .slide-nav-arrow.prev{left:24px;}
+  .slide-nav-arrow.next{right:24px;}
+
+  .slide-dots{position:absolute;bottom:20px;right:32px;display:flex;gap:9px;z-index:5;}
+  .slide-dots button{width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;background:transparent;cursor:pointer;padding:0;transition:all .3s var(--ease);}
+  .slide-dots button.active{background:var(--gold-500);border-color:var(--gold-500);width:22px;border-radius:5px;}
+
+  /* ---------- Donation campaign banner ---------- */
+  .donate-strip{background:linear-gradient(100deg,#C43C5A,var(--turq-500) 60%,var(--azure-600));color:#fff;padding:20px 0;position:relative;overflow:hidden;}
+  .donate-strip .container{display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:space-between;}
+  .donate-strip-copy{display:flex;align-items:center;gap:16px;flex:1;min-width:260px;}
+  .donate-strip-copy .heart{font-size:26px;flex:none;animation:heartbeat 1.6s ease-in-out infinite;}
+  @keyframes heartbeat{0%,100%{transform:scale(1);}25%{transform:scale(1.18);}40%{transform:scale(1);}}
+  .donate-strip h3{color:#fff;font-size:18.5px;margin-bottom:4px;}
+  .donate-strip p{margin:0;font-size:13.5px;color:rgba(255,255,255,.9);}
+  .donate-progress-wrap{flex:none;width:260px;}
+  .donate-progress-wrap .figures{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:6px;}
+  .donate-progress-track{height:8px;border-radius:6px;background:rgba(255,255,255,.28);overflow:hidden;}
+  .donate-progress-fill{height:100%;width:64%;border-radius:6px;background:var(--gold-500);}
+  .donate-strip .btn-gold{flex:none;}
+  .donate-strip-close{
+    position:absolute;top:8px;right:14px;background:none;border:none;color:rgba(255,255,255,.75);
+    font-size:18px;cursor:pointer;line-height:1;padding:4px;
+  }
+  .donate-strip-close:hover{color:#fff;}
+
+  /* ---------- Tagline bar ---------- */
+  .tagline-bar{background:var(--indigo-950);color:#fff;padding:28px 0;}
+  .tagline-bar .container{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+  .tagline-bar p{max-width:680px;font-size:16.5px;color:#E8D2D6;margin:0;}
+  .tagline-bar p a{color:var(--gold-500);}
+  .tagline-bar .btn-gold{white-space:nowrap;padding:12px 26px;}
+
+  /* ---------- Sections ---------- */
+  section{padding:84px 0;}
+  .section-alt{
+    background-color:var(--turq-100);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cg fill='none' stroke='%23A8752A' stroke-width='0.7' opacity='0.14'%3E%3Cpath d='M42 4l19 19-19 19-19-19z'/%3E%3Ccircle cx='42' cy='42' r='27'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .section-head .eyebrow{color:var(--gold-600);font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;align-items:center;gap:9px;}
+  .section-head .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-500);}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:32px;margin-bottom:14px;}
+  .section-head p{color:var(--ink-600);font-size:16px;}
+
+  .fade-in{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .fade-in.in-view{opacity:1;transform:translateY(0);}
+  .stagger.in-view > *{opacity:1;transform:translateY(0) scale(1);}
+  .stagger > *{opacity:0;transform:translateY(20px) scale(.97);transition:opacity .55s var(--ease), transform .55s var(--ease);}
+  .stagger > *:nth-child(1){transition-delay:.03s;}
+  .stagger > *:nth-child(2){transition-delay:.1s;}
+  .stagger > *:nth-child(3){transition-delay:.17s;}
+  .stagger > *:nth-child(4){transition-delay:.24s;}
+  .stagger > *:nth-child(5){transition-delay:.31s;}
+  .stagger > *:nth-child(6){transition-delay:.38s;}
+  .stagger > *:nth-child(7){transition-delay:.45s;}
+  .stagger > *:nth-child(8){transition-delay:.52s;}
+
+  /* Stat strip */
+  .stat-strip{background:var(--gold-100);border-bottom:1px solid var(--line);}
+  .stat-strip .container{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:32px;}
+  .stat{text-align:center;padding:22px 14px;background:rgba(255,255,255,.55);border:1px solid rgba(168,117,42,.18);border-radius:12px;transition:transform .3s var(--ease), background .3s ease, box-shadow .3s ease;}
+  .stat:hover{transform:translateY(-4px);background:#fff;box-shadow:var(--shadow-1);}
+  .stat .num{font-family:'Amiri',serif;font-weight:700;font-size:34px;color:var(--indigo-900);}
+  .stat .lbl{font-size:13.5px;color:var(--ink-600);margin-top:4px;}
+
+  /* News & Events */
+  .news-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:52px;}
+  .news-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .news-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .news-card .photo{height:220px;background:linear-gradient(135deg, var(--azure-600), var(--indigo-950));position:relative;overflow:hidden;}
+  .news-card .photo::after{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg, transparent, rgba(227,176,73,.18), transparent 30%);animation:spin 12s linear infinite;}
+  .news-card .body{padding:24px 26px 28px;}
+  .news-card .date{color:var(--gold-600);font-weight:600;font-size:13px;margin-bottom:8px;display:block;}
+  .news-card h3{font-size:21px;margin-bottom:10px;}
+  .news-card p{color:var(--ink-600);font-size:15px;margin:0 0 16px;}
+
+  .event-list{display:flex;flex-direction:column;gap:14px;}
+  .event-item{display:flex;gap:16px;background:#fff;border-radius:var(--radius-md);padding:16px;box-shadow:var(--shadow-1);align-items:center;transition:transform .3s var(--ease), box-shadow .3s ease;}
+  .event-item:hover{transform:translateX(8px);box-shadow:var(--shadow-2);}
+  .event-date{flex:none;width:58px;text-align:center;background:var(--indigo-950);color:#fff;border-radius:8px;padding:8px 0;transition:transform .3s var(--ease);}
+  .event-item:hover .event-date{transform:rotate(-4deg) scale(1.05);}
+  .event-date .d{font-family:'Amiri',serif;font-size:20px;font-weight:700;color:var(--gold-500);}
+  .event-date .m{font-size:10.5px;letter-spacing:.06em;}
+  .event-item h4{font-size:15.5px;margin:0 0 4px;color:var(--indigo-900);}
+  .event-item span{font-size:12.5px;color:var(--ink-600);}
+
+  /* Programs pills */
+  .pill-wrap{display:flex;flex-wrap:wrap;gap:13px;}
+  .pill{
+    background:#fff;border:1.5px solid var(--line);padding:13px 22px;border-radius:30px;
+    font-weight:600;font-size:15px;color:var(--indigo-900);display:inline-flex;align-items:center;gap:10px;
+    transition:transform .25s var(--ease), border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .pill:hover{border-color:var(--gold-500);background:var(--gold-100);transform:translateY(-4px) scale(1.04);box-shadow:var(--shadow-1);}
+
+  /* Values */
+  .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .value-card{background:#fff;border-radius:var(--radius-md);padding:28px 26px;box-shadow:var(--shadow-1);border-top:3px solid var(--gold-500);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .value-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-2);}
+  .value-card .icon{width:52px;height:52px;border-radius:50%;background:var(--paper-50);border:1.5px solid var(--gold-500);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:21px;color:var(--gold-600);transition:transform .4s var(--ease), background .3s ease, color .3s ease;}
+  .value-card:hover .icon{transform:rotate(18deg) scale(1.15);background:var(--gold-500);color:var(--indigo-950);}
+  .value-card h3{font-size:18px;margin-bottom:9px;}
+  .value-card p{color:var(--ink-600);font-size:14.5px;margin:0;}
+
+  /* CTA band */
+  .cta-band{background:var(--indigo-950);color:#fff;padding:64px 0;position:relative;overflow:hidden;}
+  .cta-band .container{display:flex;align-items:center;gap:40px;position:relative;z-index:2;}
+  .cta-circle{
+    flex:none;width:140px;height:140px;border-radius:50%;background:var(--gold-500);color:var(--indigo-950);
+    display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Amiri',serif;
+    font-weight:700;font-size:19px;line-height:1.25;padding:8px;animation:pulse-ring 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse-ring{
+    0%,100%{box-shadow:0 0 0 0 rgba(227,176,73,.5);}
+    50%{box-shadow:0 0 0 16px rgba(227,176,73,0);}
+  }
+  .cta-band h2{color:#fff;font-size:26px;margin-bottom:12px;}
+  .cta-band p{color:#E8D2D6;font-size:15.5px;margin-bottom:20px;max-width:560px;}
+  .cta-band a.link{color:var(--gold-500);text-decoration:underline;}
+
+  /* ---------- Extra news cards row ---------- */
+  .news-more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px;}
+
+  /* ---------- Photo gallery (same "photo" treatment as news cards) ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .gallery-tile{
+    position:relative;border-radius:var(--radius-md);overflow:hidden;height:230px;
+    box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;cursor:pointer;
+  }
+  .gallery-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .gallery-tile .photo{position:absolute;inset:0;height:100%;}
+  .gallery-tile .tile-caption{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;padding:16px 18px;color:#fff;
+    background:linear-gradient(to top, rgba(13,21,51,.88), rgba(13,21,51,0));
+  }
+  .gallery-tile .tile-caption span{display:block;font-size:11.5px;letter-spacing:.05em;color:var(--gold-500);font-weight:700;margin-bottom:3px;}
+  .gallery-tile .tile-caption strong{font-family:'Amiri',serif;font-size:17px;font-weight:700;}
+  .gallery-tile.tall{height:478px;}
+  .gallery-col-span-2{grid-column:span 2;}
+
+  /* ---------- Testimonials ---------- */
+  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .testimonial-card{background:#fff;border-radius:var(--radius-md);padding:34px 28px 30px;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;position:relative;overflow:hidden;}
+  .testimonial-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .testimonial-card .quote-mark{position:absolute;top:-18px;right:18px;font-family:'Amiri',serif;font-size:110px;color:var(--gold-100);line-height:1;z-index:0;user-select:none;}
+  .testimonial-card p.quote{color:var(--ink-900);font-size:15.5px;margin:0 0 22px;position:relative;z-index:1;}
+  .testimonial-person{display:flex;align-items:center;gap:12px;}
+  .testimonial-avatar{
+    width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+    background:var(--indigo-950);color:var(--gold-500);font-family:'Amiri',serif;font-weight:700;font-size:16px;
+  }
+  .testimonial-person h4{font-size:14.5px;margin:0;color:var(--indigo-900);}
+  .testimonial-person span{font-size:12.5px;color:var(--ink-600);}
+
+  /* ---------- Faculty spotlight ---------- */
+  .faculty-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .faculty-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .faculty-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .faculty-card .photo{height:170px;position:relative;overflow:hidden;background:linear-gradient(135deg, var(--turq-500), var(--indigo-950));}
+  .faculty-card .photo::after{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg, transparent, rgba(227,176,73,.18), transparent 30%);animation:spin 12s linear infinite;}
+  .faculty-card .body{padding:18px 18px 22px;}
+  .faculty-card h4{font-size:16px;margin:0 0 3px;color:var(--indigo-900);}
+  .faculty-card .role{font-size:12.5px;color:var(--gold-600);font-weight:600;margin-bottom:9px;display:block;}
+  .faculty-card p{font-size:13.5px;color:var(--ink-600);margin:0;}
+
+  /* ---------- FAQ accordion ---------- */
+  .faq-list{max-width:820px;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    padding:22px 4px;background:none;border:none;text-align:left;cursor:pointer;font-family:inherit;
+  }
+  .faq-q h4{font-size:17px;color:var(--indigo-900);font-weight:600;font-family:'Work Sans',sans-serif;}
+  .faq-q svg{flex:none;transition:transform .3s var(--ease);color:var(--gold-600);}
+  .faq-item.open .faq-q svg{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .38s var(--ease), padding .38s var(--ease);}
+  .faq-item.open .faq-a{max-height:260px;padding-bottom:22px;}
+  .faq-a p{color:var(--ink-600);font-size:15px;max-width:680px;margin:0;}
+
+  /* ---------- Quick-info band (calendar / prayer times) ---------- */
+  .info-band{background:var(--indigo-950);}
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);}
+  .info-cell{background:var(--indigo-950);padding:34px 30px;color:#fff;}
+  .info-cell .info-icon{font-size:22px;color:var(--gold-500);margin-bottom:12px;}
+  .info-cell h4{color:#fff;font-family:'Amiri',serif;font-size:19px;margin-bottom:10px;}
+  .info-cell ul{display:flex;flex-direction:column;gap:7px;}
+  .info-cell li{display:flex;justify-content:space-between;font-size:13.5px;color:#D8B9C0;border-bottom:1px dashed rgba(255,255,255,.1);padding-bottom:6px;}
+  .info-cell li b{color:#fff;font-weight:600;}
+
+  /* ---------- Newsletter band ---------- */
+  .newsletter-band{background:var(--gold-100);padding:56px 0;}
+  .newsletter-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+  .newsletter-inner h3{font-size:24px;margin-bottom:6px;}
+  .newsletter-inner p{color:var(--ink-600);font-size:15px;margin:0;max-width:440px;}
+  .newsletter-form{display:flex;gap:10px;flex:none;}
+  .newsletter-form input{
+    border:1.5px solid var(--line);border-radius:26px;padding:12px 20px;font-size:14.5px;
+    font-family:inherit;width:260px;background:#fff;color:var(--ink-900);transition:border-color .2s ease;
+  }
+  .newsletter-form input:focus{outline:none;border-color:var(--gold-500);}
+
+  /* Footer */
+  footer{background:var(--indigo-950);color:#DCC3C8;padding-top:60px;}
+  .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .footer-col h4{color:#fff;font-family:'Amiri',serif;font-size:17px;margin-bottom:14px;}
+  .footer-col p, .footer-col a{font-size:14px;color:#C9A8AE;}
+  .footer-col a{display:block;margin-bottom:8px;transition:color .2s ease, padding-left .2s ease;}
+  .footer-col a:hover{color:var(--gold-500);padding-left:4px;}
+  .foot-icons{display:flex;gap:11px;margin-top:12px;}
+  .foot-icons a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;margin:0;transition:all .25s var(--ease);}
+  .foot-icons a:hover{border-color:var(--gold-500);background:var(--gold-500);color:var(--indigo-950);transform:translateY(-4px) rotate(8deg);}
+  .mission-strip{padding:30px 0;font-size:13.5px;color:#9C7680;line-height:1.7;}
+  .legal-row{display:flex;justify-content:space-between;align-items:center;padding:20px 0 28px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#9C7680;flex-wrap:wrap;gap:12px;}
+  .legal-row .links a{margin-left:16px;}
+  .legal-row .links a:first-child{margin-left:0;}
+  .legal-row .links a:hover{color:var(--gold-500);}
+
+  /* Back to top */
+  .back-to-top{
+    position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;
+    background:var(--gold-500);color:var(--indigo-950);border:none;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;z-index:80;box-shadow:var(--shadow-2);
+    opacity:0;pointer-events:none;transform:translateY(16px) scale(.8);
+    transition:opacity .3s var(--ease), transform .3s var(--ease);
+  }
+  .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+  .back-to-top:hover{transform:translateY(-4px) scale(1.08);}
+
+  /* ---------- Cookie consent (blooms in) ---------- */
+  .cookie-consent{
+    position:fixed;left:24px;bottom:24px;max-width:400px;background:var(--indigo-950);color:#fff;
+    border-radius:var(--radius-md);padding:26px 26px 22px;box-shadow:var(--shadow-2);z-index:200;
+    border:1px solid rgba(255,255,255,.08);
+    opacity:0;transform:scale(.85) translateY(24px);
+    transition:opacity .55s cubic-bezier(.2,1.4,.4,1), transform .55s cubic-bezier(.2,1.4,.4,1);
+  }
+  .cookie-consent.show{opacity:1;transform:scale(1) translateY(0);}
+  .cookie-consent h3{color:#fff;font-size:19px;margin-bottom:10px;}
+  .cookie-consent p{font-size:13.5px;color:#D9C0C5;margin:0 0 20px;line-height:1.6;}
+  .cookie-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .cookie-actions .btn-outline, .cookie-actions .btn-gold, .cookie-actions .btn-ghost{padding:9px 16px;font-size:13.5px;}
+  .cookie-actions .btn-outline{border-color:rgba(255,255,255,.35);color:#fff;}
+  .cookie-actions .btn-outline:hover{background:#fff;color:var(--indigo-950);}
+  .cookie-actions .btn-ghost{color:#DCC3C8;}
+  .cookie-actions .btn-ghost:hover{color:#fff;}
+
+  @media (max-width: 980px){
+    .hero-slider{height:340px;}
+    .slide-copy h2{font-size:28px;}
+    .news-grid{grid-template-columns:1fr;}
+    .value-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hamburger{display:flex;}
+    nav.mainnav{
+      max-height:0;overflow:hidden;
+      transition:max-height .45s var(--ease);
+    }
+    nav.mainnav.nav-open{max-height:2000px;}
+    .megamenu{
+      position:static;min-width:100%;grid-template-columns:1fr;
+      max-height:0;overflow:hidden;padding:0 22px;border-top:none;
+      opacity:1;visibility:visible;transform:none;box-shadow:none;
+      transition:max-height .38s var(--ease), padding .38s var(--ease);
+    }
+    .navitem.open .megamenu{max-height:900px;padding:22px 22px 26px;border-top:2px solid var(--gold-500);}
+    .megamenu .feature{margin-top:6px;}
+    .mainnav .container{flex-wrap:wrap;flex-direction:column;padding-top:6px;padding-bottom:10px;}
+    .navitem{width:100%;border-top:1px solid rgba(255,255,255,.08);}
+    .navitem:first-child{border-top:none;}
+    .navtrigger{width:100%;justify-content:space-between;}
+    .tagline-bar .container{flex-direction:column;align-items:flex-start;}
+    .cookie-consent{left:12px;right:12px;max-width:none;}
+    .stat-strip .container{grid-template-columns:repeat(2,1fr);padding:24px;}
+    .cta-band .container{flex-direction:column;text-align:center;gap:24px;}
+    .cta-band p{margin-left:auto;margin-right:auto;}
+    .news-more-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .gallery-tile.tall{height:230px;}
+    .gallery-col-span-2{grid-column:span 1;}
+    .testimonial-grid{grid-template-columns:1fr 1fr;}
+    .faculty-grid{grid-template-columns:1fr 1fr;}
+    .info-grid{grid-template-columns:1fr;}
+    .newsletter-inner{flex-direction:column;align-items:flex-start;}
+    .newsletter-form{width:100%;}
+    .newsletter-form input{width:100%;}
+    .give-grid{grid-template-columns:1fr 1fr;}
+    .donate-form-wrap{grid-template-columns:1fr;}
+    .ways-grid{grid-template-columns:1fr 1fr;}
+    .donate-hero-inner h1{font-size:31px;}
+  }
+
+  @media (max-width: 640px){
+    .container{padding:0 18px;}
+    .preview-strip{font-size:11px;padding:6px 10px;}
+    .utility-bar .container{justify-content:center;gap:14px;height:auto;padding:8px 0;flex-wrap:wrap;font-size:12px;}
+    .utility-bar a{gap:4px;}
+    .utility-bar .search-btn{padding:5px 14px;}
+    .brand-row{padding:16px 0;}
+    .logo-frame{width:96px;height:96px;}
+    .brand-name{font-size:19px;}
+    .brand-name span{font-size:10px;letter-spacing:.09em;}
+    .mainnav .container{flex-wrap:wrap;}
+    .navtrigger{padding:13px 16px;font-size:14px;}
+    .hero-slider{height:300px;}
+    .slide .slide-inner{padding-bottom:40px;}
+    .slide-copy{max-width:100%;}
+    .slide-copy .tag{font-size:11px;padding:4px 12px;}
+    .slide-copy h2{font-size:23px;margin-bottom:14px;}
+    .slide-copy .cta{font-size:14px;}
+    .slide-nav-arrow{width:38px;height:38px;font-size:17px;}
+    .slide-nav-arrow.prev{left:12px;}
+    .slide-nav-arrow.next{right:12px;}
+    .slide-dots{right:16px;bottom:14px;}
+    .tagline-bar{padding:22px 0;}
+    .tagline-bar p{font-size:15px;}
+    .tagline-bar .btn-gold{width:100%;justify-content:center;}
+    section{padding:56px 0;}
+    .section-head h2{font-size:25px;}
+    .section-head p{font-size:14.5px;}
+    .stat-strip .container{grid-template-columns:repeat(2,1fr);gap:16px;padding:20px;}
+    .stat .num{font-size:26px;}
+    .stat .lbl{font-size:12px;}
+    .news-card .photo{height:170px;}
+    .news-card h3{font-size:18px;}
+    .event-item{padding:13px;gap:12px;}
+    .pill{padding:11px 18px;font-size:14px;}
+    .value-card{padding:22px 20px;}
+    .cta-band{padding:44px 0;}
+    .cta-circle{width:108px;height:108px;font-size:16px;}
+    .cta-band h2{font-size:21px;}
+    .footer-grid{gap:30px;}
+    .legal-row{flex-direction:column;align-items:flex-start;}
+    .legal-row .links a{margin-left:0;margin-right:14px;}
+    .cookie-consent{left:10px;right:10px;bottom:10px;padding:20px 20px 18px;}
+    .back-to-top{width:42px;height:42px;bottom:18px;right:18px;font-size:16px;}
+    .news-more-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-tile{height:220px;}
+    .gallery-tile.tall{height:220px;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .faculty-grid{grid-template-columns:1fr 1fr;}
+    .faculty-card .photo{height:140px;}
+    .info-cell{padding:26px 22px;}
+    .newsletter-band{padding:40px 0;}
+    .faq-q h4{font-size:15.5px;}
+    .donate-strip .container{flex-direction:column;align-items:stretch;text-align:center;}
+    .donate-strip-copy{flex-direction:column;text-align:center;}
+    .donate-progress-wrap{width:100%;}
+    .donate-strip .btn-gold{width:100%;justify-content:center;}
+    .give-grid{grid-template-columns:1fr;}
+    .donate-field-grid{grid-template-columns:1fr;}
+    .donate-amounts{grid-template-columns:repeat(3,1fr);}
+    .ways-grid{grid-template-columns:1fr;}
+    .donate-hero{padding:56px 0 44px;}
+    .donate-hero-inner h1{font-size:26px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
+
+/* ---------- Donation page hero ---------- */
+  .donate-hero{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--indigo-950),#5C1E33 55%,#C43C5A);padding:76px 0 64px;color:#fff;}
+  .donate-hero-motif{position:absolute;inset:0;opacity:.18;pointer-events:none;}
+  .donate-hero-motif svg{width:100%;height:100%;}
+  .donate-hero-inner{position:relative;z-index:2;max-width:680px;}
+  .donate-hero-inner .tag{
+    display:inline-block;background:var(--gold-500);color:var(--indigo-950);font-size:12.5px;font-weight:700;
+    letter-spacing:.03em;padding:5px 14px;border-radius:20px;margin-bottom:18px;
+  }
+  .donate-hero-inner h1{color:#fff;font-size:38px;margin-bottom:16px;}
+  .donate-hero-inner p{color:#EFDBDF;font-size:16.5px;margin-bottom:26px;}
+
+  /* ---------- Give cards (blank photo slot for any image URL) ---------- */
+  .give-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .give-card{background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-1);transition:transform .35s var(--ease), box-shadow .35s ease;}
+  .give-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);}
+  .give-card .photo{height:180px;position:relative;overflow:hidden;}
+  .give-card .photo::after{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg, transparent, rgba(227,176,73,.18), transparent 30%);animation:spin 12s linear infinite;}
+  .give-card .body{padding:22px 22px 26px;}
+  .give-card h3{font-size:19px;margin-bottom:9px;}
+  .give-card p{color:var(--ink-600);font-size:14.5px;margin:0 0 16px;}
+
+  /* ---------- Donation form ---------- */
+  .donate-form-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:start;}
+  .donate-form-intro p{color:var(--ink-600);font-size:15px;margin-bottom:20px;}
+  .donate-trust-list{display:flex;flex-direction:column;gap:10px;}
+  .donate-trust-list li{font-size:14px;color:var(--indigo-900);font-weight:500;}
+  .donate-form-card{background:#fff;border-radius:var(--radius-md);box-shadow:var(--shadow-1);padding:30px 30px 34px;}
+  .donate-toggle{display:flex;background:var(--turq-100);border-radius:30px;padding:4px;margin-bottom:22px;}
+  .donate-toggle button{
+    flex:1;border:none;background:none;padding:10px 0;border-radius:26px;font-weight:600;font-size:14.5px;
+    color:var(--ink-600);cursor:pointer;font-family:inherit;transition:background .25s ease, color .25s ease;
+  }
+  .donate-toggle button.active{background:var(--indigo-950);color:#fff;}
+  .donate-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .amount-btn{
+    border:1.5px solid var(--line);background:#fff;padding:12px 0;border-radius:10px;font-weight:700;font-size:15px;
+    color:var(--indigo-900);cursor:pointer;transition:all .2s var(--ease);
+  }
+  .amount-btn:hover{border-color:var(--gold-500);}
+  .amount-btn.active{background:var(--gold-500);border-color:var(--gold-500);color:var(--indigo-950);}
+  .field-label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-600);letter-spacing:.03em;margin:0 0 6px;text-transform:uppercase;}
+  .donate-select, .donate-field-grid input, #dedicationField input{
+    width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14.5px;
+    font-family:inherit;color:var(--ink-900);background:#fff;margin-bottom:18px;transition:border-color .2s ease;
+  }
+  .donate-select:focus, .donate-field-grid input:focus, #dedicationField input:focus{outline:none;border-color:var(--gold-500);}
+  .donate-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .donate-checkbox{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink-600);margin-bottom:14px;cursor:pointer;}
+  .donate-checkbox input{margin-top:2px;}
+  .donate-submit{width:100%;justify-content:center;margin-top:6px;font-size:16px;padding:14px 0;}
+  .donate-disclaimer{font-size:12px;color:var(--ink-600);text-align:center;margin:12px 0 0;}
+
+  .ways-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+
+  .field-label .req{color:#C43C5A;margin-left:3px;}
+  .donate-select.field-invalid, .donate-field-grid input.field-invalid, #dedicationField input.field-invalid{
+    border-color:#C43C5A !important;background:#FCEEF0;
+  }
+  .field-error{display:none;color:#C43C5A;font-size:12.5px;margin:-12px 0 14px;font-weight:600;}
+  .field-error.show{display:block;}
+  .form-alert{
+    display:none;align-items:flex-start;gap:10px;background:#FCEEF0;border:1.5px solid #C43C5A;
+    color:#8A2036;border-radius:10px;padding:12px 16px;font-size:13.5px;font-weight:600;margin-bottom:18px;
+  }
+  .form-alert.show{display:flex;}
+</style>
+
+<style>
+  body{opacity:0;}
+  body.page-loaded{opacity:1;transition:opacity .38s ease;}
+  body.page-leaving{opacity:0;transition:opacity .28s ease;}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<a id="top"></a>
+
+<div class="preview-strip" data-i18n="preview_strip">Preview build — sample content shown for design review only, not a live school website.</div>
+
+<div class="utility-bar">
+  <div class="container">
+    <a href="#" data-i18n="util_portal">Parent Portal</a>
+    <a href="#" data-i18n="link_careers">Careers</a>
+    <a class="donate-btn" href="donate.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10.2-9.3C-0.1 7.7 1.7 3.8 5.6 3.1c2.2-.4 4.3.6 5.4 2.4 1.1-1.8 3.2-2.8 5.4-2.4 3.9.7 5.7 4.6 3.8 8.6C19.5 16.4 12 21 12 21z"/></svg>
+      <span data-i18n="util_donate">Donate</span>
+    </a>
+    <a class="search-btn" href="#" data-i18n="util_search">Search</a>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="en" type="button">EN</button>
+      <button class="lang-btn" data-lang="ar" type="button">AR</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="container brand-row">
+    <a href="../index.html" class="brand">
+      <span class="logo-frame">
+        <span class="logo-inner">
+          <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="Amjad Islamic School logo">
+        </span>
+      </span>
+      <span class="brand-name"><span class="gold-foil" style="display:inline;" data-i18n="brand_name">Amjad Islamic School</span><span data-i18n="brand_tagline">FAITH &nbsp;·&nbsp; KNOWLEDGE &nbsp;·&nbsp; CHARACTER</span></span>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mainnav" id="mainNav">
+    <div class="container">
+
+      <div class="navitem">
+        <button class="navtrigger"><span data-i18n="nav_academics">Academics</span> <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="our-curriculum.html"><span data-i18n="mega_curriculum">Our Curriculum</span></a></li>
+              <li><a href="arabic-language-program.html"><span data-i18n="mega_arabic">Arabic Language Program</span></a></li>
+              <li><a href="islamic-studies-program.html"><span data-i18n="mega_islamic">Islamic Studies Program</span></a></li>
+              <li><a href="quran-memorization.html"><span data-i18n="mega_quran">Qur'an Memorization</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger"><span data-i18n="nav_admissions">Admissions</span> <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="enrollment-and-admission.html"><span data-i18n="mega_enrollment">Enrollment &amp; Admission</span></a></li>
+              <li><a href="parent-partnership.html"><span data-i18n="mega_partnership">Parent Partnership</span></a></li>
+              <li><a href="what-parents-say.html"><span data-i18n="mega_whatsay">What Parents Say</span></a></li>
+              <li><a href="future-plans.html"><span data-i18n="mega_future">Future Plans</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger"><span data-i18n="nav_about">About Us</span> <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="welcome.html"><span data-i18n="mega_welcome">Welcome</span></a></li>
+              <li><a href="about-us.html"><span data-i18n="mega_aboutus">About Us</span></a></li>
+              <li><a href="mission-and-vision.html"><span data-i18n="mega_mission">Our Mission &amp; Vision</span></a></li>
+              <li><a href="our-unique-approach.html"><span data-i18n="mega_unique">Our Unique Approach</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger"><span data-i18n="nav_studentlife">Student Life</span> <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="competitions-and-challenges.html"><span data-i18n="mega_competitions">Competitions &amp; Challenges</span></a></li>
+              <li><a href="our-teachers.html"><span data-i18n="mega_teachers">Our Teachers</span></a></li>
+              <li><a href="student-development.html"><span data-i18n="mega_studentdev">Student Development</span></a></li>
+              <li><a href="our-achievements.html"><span data-i18n="mega_achievements">Our Achievements</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="navtrigger"><span data-i18n="nav_visit">Visit</span> <svg width="11" height="7"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+        <div class="megamenu">
+          <div>
+            <ul>
+              <li><a href="activities-and-events.html"><span data-i18n="mega_activities">Activities &amp; Events</span></a></li>
+              <li><a href="community-impact.html"><span data-i18n="mega_community">Community Impact</span></a></li>
+              <li><a href="our-gallery.html"><span data-i18n="mega_gallery">Our Gallery</span></a></li>
+              <li><a href="contact-us.html"><span data-i18n="mega_contact">Contact Us</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<!-- DONATION PAGE HERO -->
+<div class="donate-hero">
+  <div class="donate-hero-motif">
+    <svg viewBox="0 0 1240 420" preserveAspectRatio="xMidYMid slice">
+      <polygon class="drift-a" points="1080,60 1100,100 1145,105 1112,135 1122,178 1080,157 1038,178 1048,135 1015,105 1060,100" fill="none" stroke="#E3B049" stroke-width="1.4"/>
+      <circle class="drift-c" cx="300" cy="220" r="200" fill="none" stroke="#E3B049" stroke-width="0.6" stroke-dasharray="2 10"/>
+    </svg>
+  </div>
+  <div class="container donate-hero-inner">
+    <span class="tag" data-i18n="don_tag">GIVE TO AMJAD <span class="test-badge" data-i18n="badge_test">Test</span></span>
+    <h1 data-i18n="don_h1">Every gift builds a stronger community.</h1>
+    <p data-i18n="don_p">Your donation funds scholarships, classroom resources, and campus improvements so every child at Amjad Islamic School can thrive — in faith, in knowledge, and in character.</p>
+    <a class="btn-gold" href="#donate-form" data-i18n="don_cta">Give Now &darr;</a>
+  </div>
+</div>
+
+<!-- CAMPAIGN PROGRESS -->
+<div class="stat-strip">
+  <div class="container">
+    <div class="stat"><div class="num" data-count="96">0</div><div class="lbl"><span data-i18n="don_stat1">$K raised of $150K goal</span> <span class="test-badge" data-i18n="badge_test">Test</span></div></div>
+    <div class="stat"><div class="num" data-count="312">0</div><div class="lbl" data-i18n="don_stat2">Donors this year</div></div>
+    <div class="stat"><div class="num" data-count="48">0</div><div class="lbl" data-i18n="don_stat3">Scholarships funded</div></div>
+    <div class="stat"><div class="num" data-count="19">0</div><div class="lbl" data-i18n="don_stat4">Years of community giving</div></div>
+  </div>
+</div>
+
+<div class="ornament-divider" style="background:var(--paper-50);padding:20px 0 6px;">
+  <span class="rule"></span>
+  <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 1l2.2 6.8H19l-5.6 4.2 2.2 6.8L10 14.6l-5.6 4.2 2.2-6.8L1 7.8h6.8z" fill="none" stroke="var(--gold-600)" stroke-width="1"/></svg>
+  <span class="rule"></span>
+</div>
+
+<!-- WHERE YOUR GIFT GOES -->
+<section>
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow" data-i18n="don_eyebrow1">WHERE YOUR GIFT GOES</span>
+      <h2 data-i18n="don_h2_1">Choose a program to support</h2>
+      <p data-i18n="don_p_1">Every fund below directly supports a different part of campus life. Pick one when you fill in the form, or leave it as "Where Needed Most."</p>
+    </div>
+    <div class="give-grid stagger">
+
+      <div class="give-card">
+        <div class="photo" style="background:url('https://static.vecteezy.com/system/resources/previews/013/766/012/non_2x/donation-box-and-charity-concept-human-hands-putting-money-cash-love-and-heart-to-donation-box-together-helping-doing-charity-illustration-free-vector.jpg') center/cover no-repeat, linear-gradient(135deg, var(--turq-500), var(--indigo-950));"></div>
+        <div class="body">
+          <h3 data-i18n="fund1_h3">Scholarship Fund</h3>
+          <p data-i18n="fund1_p">Covers full and partial tuition for qualifying families so no child is turned away for financial reasons.</p>
+          <a class="btn-outline" href="#donate-form" data-fund="Scholarship Fund" data-i18n="don_give_btn">Give to this fund</a>
+        </div>
+      </div>
+
+      <div class="give-card">
+        <div class="photo" style="background:url('https://thumbs.dreamstime.com/b/donation-concept-kids-hands-holding-donate-box-clothes-books-toys-130831477.jpg') center/cover no-repeat, linear-gradient(135deg, var(--gold-600), var(--indigo-900));"></div>
+        <div class="body">
+          <h3 data-i18n="fund2_h3">Classroom &amp; STEM Resources</h3>
+          <p data-i18n="fund2_p">Funds robotics kits, science lab equipment, and books for the library and resource room.</p>
+          <a class="btn-outline" href="#donate-form" data-fund="Classroom &amp; STEM Resources" data-i18n="don_give_btn">Give to this fund</a>
+        </div>
+      </div>
+
+      <div class="give-card">
+        <div class="photo" style="background:url('https://www.harekrishnacharities.org/assets/img/blogs/2023/03/donate-food-for-student-education.jpeg') center/cover no-repeat, linear-gradient(135deg, var(--azure-600), var(--turq-500));"></div>
+        <div class="body">
+          <h3 data-i18n="fund3_h3">Campus Improvements</h3>
+          <p data-i18n="fund3_p">Supports upgrades to the gymnasium, musalla, and outdoor play areas used by every division.</p>
+          <a class="btn-outline" href="#donate-form" data-fund="Campus Improvements" data-i18n="don_give_btn">Give to this fund</a>
+        </div>
+      </div>
+
+      <div class="give-card">
+        <div class="photo" style="background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrHk_t5SFHTXp1Gep8lEbAU7dB8G2pQyHYWSdfuY7U1w&s=10') center/cover no-repeat, linear-gradient(135deg, var(--indigo-800), var(--gold-600));"></div>
+        <div class="body">
+          <h3 data-i18n="fund4_h3">Qur'an &amp; Islamic Studies</h3>
+          <p data-i18n="fund4_p">Provides mushafs, memorization materials, and guest scholar visits across all three divisions.</p>
+          <a class="btn-outline" href="#donate-form" data-fund="Qur'an &amp; Islamic Studies" data-i18n="don_give_btn">Give to this fund</a>
+        </div>
+      </div>
+
+      <div class="give-card">
+        <div class="photo" style="background:url('https://www.thesmithfamily.com.au/-/media/images/appeals/winter/2026/2026-winter-max-classroom-with-students.jpg') center/cover no-repeat, linear-gradient(135deg, var(--gold-500), var(--indigo-950));"></div>
+        <div class="body">
+          <h3 data-i18n="fund5_h3">Athletics &amp; Wellness</h3>
+          <p data-i18n="fund5_p">Funds team uniforms, sports equipment, and the counseling &amp; wellness program for students.</p>
+          <a class="btn-outline" href="#donate-form" data-fund="Athletics &amp; Wellness" data-i18n="don_give_btn">Give to this fund</a>
+        </div>
+      </div>
+
+      <div class="give-card">
+        <div class="photo" style="background:url('https://static.vecteezy.com/system/resources/previews/002/778/129/non_2x/orphanage-donation-flat-illustration-volunteers-community-isolated-cartoon-characters-on-purple-background-young-people-donating-school-supplies-for-poor-children-philanthropy-concept-vector.jpg') center/cover no-repeat, linear-gradient(135deg, #C43C5A, var(--indigo-950));"></div>
+        <div class="body">
+          <h3 data-i18n="fund6_h3">Where Needed Most</h3>
+          <p data-i18n="fund6_p">Lets the school direct your gift to the area of greatest need at the time it's received.</p>
+          <a class="btn-outline" href="#donate-form" data-fund="Where Needed Most" data-i18n="don_give_btn">Give to this fund</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DONATION FORM -->
+<section class="section-alt" id="donate-form">
+  <div class="container">
+    <div class="donate-form-wrap fade-in">
+      <div class="donate-form-intro">
+        <span class="eyebrow" data-i18n="don_eyebrow2">MAKE YOUR GIFT</span>
+        <h2 data-i18n="don_h2_2">Complete your donation</h2>
+        <p data-i18n="don_p_2">Fill in every field below, then you'll be securely redirected to PayPal to finish your donation — nothing is charged on this page.</p>
+        <ul class="donate-trust-list">
+          <li data-i18n="don_trust1">&#10003; Tax receipts issued for all gifts</li>
+          <li data-i18n="don_trust2">&#10003; Secure checkout on PayPal</li>
+          <li data-i18n="don_trust3">&#10003; Cancel or change a recurring gift anytime</li>
+        </ul>
+      </div>
+
+      <!--
+        ============================================================
+        PAYPAL SETUP — READ ME
+        ============================================================
+        This form submits straight to PayPal's own checkout using
+        PayPal's classic hosted "Donate" flow. No API keys, no
+        developer account, and no server code are required — it
+        works as soon as you put in a real PayPal email address.
+
+        STEP 1: Log in to (or create) a PayPal account for the
+                school at https://www.paypal.com
+                A "PayPal Nonprofit" account gives you the lowest
+                transaction fees, but any Business or Personal
+                PayPal account will work.
+
+        STEP 2: Find the line below that says:
+                <input type="hidden" name="business" value="PASTE-YOUR-PAYPAL-EMAIL-HERE@example.com">
+                Replace the email with the school's real PayPal
+                account email address. That's the only required change.
+
+        STEP 3 (optional, more polished): Instead of a plain email,
+                go to PayPal.com -> Pay & Get Paid -> "PayPal Buttons"
+                -> create a "Donate" button, and PayPal will give you
+                a "hosted_button_id". You can then delete the
+                "business", "item_name", and "amount" hidden fields
+                below and replace them with a single line:
+                <input type="hidden" name="hosted_button_id" value="YOUR-BUTTON-ID">
+                This lets you manage amounts/branding from the
+                PayPal dashboard instead of this code.
+
+        STEP 4 (optional): to get notified automatically when a
+                donation comes in, set up PayPal IPN or add a
+                "notify_url" pointing to a small backend script —
+                that needs actual server-side code, which isn't
+                part of this static HTML page.
+        ============================================================
+      -->
+      <form class="donate-form-card" id="paypalDonateForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" novalidate>
+        <!-- v v v REPLACE THIS EMAIL WITH THE SCHOOL'S REAL PAYPAL ACCOUNT EMAIL v v v -->
+        <input type="hidden" name="business" value="PASTE-YOUR-PAYPAL-EMAIL-HERE@example.com">
+
+        <input type="hidden" name="cmd" id="ppCmd" value="_donations">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="no_shipping" value="1">
+        <input type="hidden" name="item_name" id="ppItemName" value="Donation to Amjad Islamic School — Where Needed Most">
+        <input type="hidden" name="amount" id="ppAmount" value="50">
+        <input type="hidden" name="a3" id="ppA3" value="50">
+        <input type="hidden" name="p3" value="1">
+        <input type="hidden" name="t3" value="M">
+        <input type="hidden" name="src" value="1">
+        <input type="hidden" name="srt" value="99">
+        <input type="hidden" name="first_name" id="ppFirstName" value="">
+        <input type="hidden" name="last_name" id="ppLastName" value="">
+        <input type="hidden" name="email" id="ppEmail" value="">
+        <input type="hidden" name="custom" id="ppCustom" value="">
+        <input type="hidden" name="return" value="../index.html#top">
+        <input type="hidden" name="cancel_return" value="donate.html#donate-form">
+
+        <div class="form-alert" id="formAlert" role="alert">
+          <span data-i18n="don_form_alert">Please fill in every required field before continuing to PayPal.</span>
+        </div>
+
+        <div class="donate-toggle" id="donateToggle">
+          <button type="button" class="active" data-freq="once" data-i18n="don_freq_once">One-time</button>
+          <button type="button" data-freq="monthly" data-i18n="don_freq_monthly">Monthly</button>
+        </div>
+
+        <div class="donate-amounts" id="donateAmounts">
+          <button type="button" class="amount-btn">$25</button>
+          <button type="button" class="amount-btn active">$50</button>
+          <button type="button" class="amount-btn">$100</button>
+          <button type="button" class="amount-btn">$250</button>
+          <button type="button" class="amount-btn">$500</button>
+          <button type="button" class="amount-btn amount-other" data-i18n="don_amount_other">Other</button>
+        </div>
+
+        <label class="field-label" for="fundSelect" data-i18n="don_field_fund">Designate this gift to</label>
+        <select id="fundSelect" class="donate-select" required>
+          <option data-i18n="fund6_h3">Where Needed Most</option>
+          <option data-i18n="fund1_h3">Scholarship Fund</option>
+          <option data-i18n="fund2_h3">Classroom &amp; STEM Resources</option>
+          <option data-i18n="fund3_h3">Campus Improvements</option>
+          <option data-i18n="fund4_h3">Qur'an &amp; Islamic Studies</option>
+          <option data-i18n="fund5_h3">Athletics &amp; Wellness</option>
+        </select>
+
+        <div class="donate-field-grid">
+          <div>
+            <label class="field-label" for="donorName"><span data-i18n="don_field_name">Full name</span><span class="req">*</span></label>
+            <input id="donorName" type="text" data-i18n-placeholder="don_ph_name" placeholder="Your name" required autocomplete="name">
+            <span class="field-error" id="nameError" data-i18n="don_err_name">Please enter your full name.</span>
+          </div>
+          <div>
+            <label class="field-label" for="donorEmail"><span data-i18n="don_field_email">Email address</span><span class="req">*</span></label>
+            <input id="donorEmail" type="email" data-i18n-placeholder="don_ph_email" placeholder="you@example.com" required autocomplete="email">
+            <span class="field-error" id="emailError" data-i18n="don_err_email">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <label class="donate-checkbox" id="dedicationToggle">
+          <input type="checkbox" id="dedicationCheck">
+          <span data-i18n="don_dedication_label">Make this gift in memory or honor of someone</span>
+        </label>
+        <div id="dedicationField" style="display:none;">
+          <label class="field-label" for="dedicationName" data-i18n="don_field_dedication">In honor/memory of</label>
+          <input id="dedicationName" type="text" data-i18n-placeholder="don_ph_dedication" placeholder="Name">
+          <span class="field-error" id="dedicationError" data-i18n="don_err_dedication">Please enter a name for this dedication.</span>
+        </div>
+        <label class="donate-checkbox">
+          <input type="checkbox" id="coverFeesCheck" checked>
+          <span data-i18n="don_cover_fees">Cover transaction fees so 100% of my gift goes to the school</span>
+        </label>
+
+        <button class="btn-gold donate-submit" type="submit"><span id="donateSubmitLabel">Donate $50 with PayPal &rarr;</span></button>
+        <p class="donate-disclaimer" data-i18n="don_disclaimer">You'll complete payment securely on PayPal.com. The school never sees your card details.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- WAYS TO GIVE -->
+<section>
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow" data-i18n="don_eyebrow3">OTHER WAYS TO GIVE</span>
+      <h2 data-i18n="don_h2_3">More than one way to support Amjad</h2>
+    </div>
+    <div class="ways-grid stagger">
+      <div class="value-card">
+        <div class="icon">&#10022;</div>
+        <h3 data-i18n="way1_h3">Monthly Giving Circle</h3>
+        <p data-i18n="way1_p">Join a community of recurring donors whose steady support funds year-round programming.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">&#9670;</div>
+        <h3 data-i18n="way2_h3">Matching Gifts</h3>
+        <p data-i18n="way2_p">Many employers match charitable donations — check whether your workplace can double your gift.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">&#10022;</div>
+        <h3 data-i18n="way3_h3">Legacy &amp; Planned Giving</h3>
+        <p data-i18n="way3_p">Include Amjad Islamic School in your will or estate plan to leave a lasting endowment gift.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">&#9670;</div>
+        <h3 data-i18n="way4_h3">In-Kind Donations</h3>
+        <p data-i18n="way4_p">Donate books, equipment, or professional services directly — contact the Development Office to arrange.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONOR FAQ -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow" data-i18n="don_eyebrow4">DONOR FAQ</span>
+      <h2 data-i18n="don_h2_4">Questions about giving</h2>
+    </div>
+    <div class="faq-list fade-in" id="donateFaqList">
+      <div class="faq-item open">
+        <button class="faq-q">
+          <h4 data-i18n="dfaq1_q">Is my donation tax-deductible?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="dfaq1_a">Yes. A tax receipt is issued automatically for every gift and emailed to the address you provide at checkout.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4 data-i18n="dfaq2_q">Can I change or cancel a monthly gift?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="dfaq2_a">Yes, anytime. Monthly donors can update their amount or cancel through the donor portal link sent in every receipt email.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4 data-i18n="dfaq3_q">Can I dedicate my gift in someone's honor or memory?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="dfaq3_a">Yes — check the dedication box on the donation form and we'll notify the honoree or their family by email or letter.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <h4 data-i18n="dfaq4_q">Who do I contact with questions about a gift?</h4>
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="dfaq4_a">Reach the Development Office at give@amjadislamic.example or (555) 019-2244 for anything related to donations.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid fade-in">
+      <div class="footer-col">
+        <h4 data-i18n="foot1_h4">Admissions</h4>
+        <a href="#" data-i18n="foot_phone">(555) 019-2244</a>
+        <a href="#" data-i18n="foot_email">admissions@amjadislamic.example</a>
+        <a href="#" data-i18n="btn_book_tour">Book a Tour</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot2_h4">Campus</h4>
+        <p style="margin:0 0 14px;" data-i18n-html="foot_address">240 Willowbrook Avenue<br>Riverside, ON L2G 4K1<br>(sample address)</p>
+        <a href="#" data-i18n="foot_map">Campus Map &amp; Directions</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot3_h4">Stay Connected</h4>
+        <p style="margin-bottom:14px;" data-i18n="foot_connected_p">Get news, event dates, and updates from Amjad Islamic School.</p>
+        <div class="foot-icons">
+          <a href="#">f</a><a href="#">◎</a><a href="#">𝕏</a><a href="#">in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-strip">
+      <span data-i18n="foot_mission">Amjad Islamic School exists to raise a generation grounded in faith, curious about the world, and committed to serving others — every student known by name, every family welcomed as part of our community.</span>
+    </div>
+
+    <div class="legal-row">
+      <span data-i18n="foot_copyright">© 2026 Amjad Islamic School. Preview site — all content is sample data.</span>
+      <span class="links">
+        <a href="#" data-i18n="link_privacy">Privacy</a><a href="#" data-i18n="link_accessibility">Accessibility</a><a href="#" data-i18n="link_careers">Careers</a><a href="#" data-i18n="link_contact">Contact</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<div class="cookie-consent" id="cookieConsent">
+  <h3 data-i18n="cookie_h3">We value your privacy</h3>
+  <p data-i18n="cookie_p">We use cookies to enhance your browsing experience and understand how families use our site. By clicking "Accept All," you consent to our use of cookies.</p>
+  <div class="cookie-actions">
+    <button class="btn-outline" id="cookieSettings" data-i18n="cookie_settings">Cookie Settings</button>
+    <button class="btn-ghost" id="cookieReject" data-i18n="cookie_reject">Reject All</button>
+    <button class="btn-gold" id="cookieAccept" data-i18n="cookie_accept">Accept All</button>
+  </div>
+</div>
+
+
+<script>
+  // ---------- Bilingual content (EN / AR) ----------
+  const I18N = {"preview_strip": {"en": "Preview build — sample content shown for design review only, not a live school website.", "ar": "نسخة تجريبية للعرض — المحتوى الظاهر هنا نموذجي لمراجعة التصميم فقط، وليس موقع المدرسة الفعلي."}, "util_portal": {"en": "Parent Portal", "ar": "بوابة أولياء الأمور"}, "link_careers": {"en": "Careers", "ar": "وظائف"}, "util_donate": {"en": "Donate", "ar": "تبرّع"}, "util_search": {"en": "Search", "ar": "بحث"}, "brand_name": {"en": "Amjad Islamic School", "ar": "مدرسة أمجاد الإسلامية"}, "brand_tagline": {"en": "FAITH &nbsp;·&nbsp; KNOWLEDGE &nbsp;·&nbsp; CHARACTER", "ar": "الإيمان &nbsp;·&nbsp; العلم &nbsp;·&nbsp; الأخلاق"}, "nav_academics": {"en": "Academics", "ar": "الأكاديميا"}, "nav_admissions": {"en": "Admissions", "ar": "القبول والتسجيل"}, "nav_about": {"en": "About Us", "ar": "من نحن"}, "nav_studentlife": {"en": "Student Life", "ar": "حياة الطالب"}, "nav_visit": {"en": "Visit", "ar": "زوروا مدرستنا"}, "mega_curriculum": {"en": "Our Curriculum", "ar": "منهجنا الدراسي"}, "mega_arabic": {"en": "Arabic Language Program", "ar": "برنامج اللغة العربية"}, "mega_islamic": {"en": "Islamic Studies Program", "ar": "برنامج الدراسات الإسلامية"}, "mega_quran": {"en": "Qur'an Memorization", "ar": "تحفيظ القرآن الكريم"}, "mega_enrollment": {"en": "Enrollment &amp; Admission", "ar": "التسجيل والقبول"}, "mega_partnership": {"en": "Parent Partnership", "ar": "شراكة أولياء الأمور"}, "mega_whatsay": {"en": "What Parents Say", "ar": "آراء أولياء الأمور"}, "mega_future": {"en": "Future Plans", "ar": "خططنا المستقبلية"}, "mega_welcome": {"en": "Welcome", "ar": "كلمة ترحيب"}, "mega_aboutus": {"en": "About Us", "ar": "من نحن"}, "mega_mission": {"en": "Our Mission &amp; Vision", "ar": "رسالتنا ورؤيتنا"}, "mega_unique": {"en": "Our Unique Approach", "ar": "نهجنا المميز"}, "mega_competitions": {"en": "Competitions &amp; Challenges", "ar": "المسابقات والتحديات"}, "mega_teachers": {"en": "Our Teachers", "ar": "معلمونا"}, "mega_studentdev": {"en": "Student Development", "ar": "تنمية الطالب"}, "mega_achievements": {"en": "Our Achievements", "ar": "إنجازاتنا"}, "mega_activities": {"en": "Activities &amp; Events", "ar": "الأنشطة والفعاليات"}, "mega_community": {"en": "Community Impact", "ar": "أثرنا المجتمعي"}, "mega_gallery": {"en": "Our Gallery", "ar": "معرض الصور"}, "mega_contact": {"en": "Contact Us", "ar": "تواصل معنا"}, "hero1_tag": {"en": "ENROLLING NOW", "ar": "التسجيل مفتوح الآن"}, "hero1_h2": {"en": "Apply now for the 2026–27 school year.", "ar": "قدّم الآن للعام الدراسي 2026–2027."}, "hero1_cta": {"en": "Start Your Application →", "ar": "ابدأ التقديم ←"}, "hero2_tag": {"en": "FINANCIAL AID", "ar": "الدعم المالي"}, "hero2_h2": {"en": "Tuition assistance is available for qualifying families.", "ar": "تتوفر مساعدات مالية للأسر المستحقة لدعم الرسوم الدراسية."}, "hero2_cta": {"en": "Explore Financial Aid →", "ar": "اكتشف خيارات الدعم المالي ←"}, "hero3_tag": {"en": "COMMUNITY", "ar": "المجتمع"}, "hero3_h2": {"en": "Join our Parent Association and stay close to school life.", "ar": "انضم إلى رابطة أولياء الأمور وابقَ قريباً من حياة المدرسة."}, "hero3_cta": {"en": "Get Involved →", "ar": "شارك معنا ←"}, "hero4_tag": {"en": "ATHLETICS", "ar": "الرياضة"}, "hero4_h2": {"en": "Cheer on the Amjad Falcons this season.", "ar": "شجّع فريق صقور أمجاد في هذا الموسم."}, "hero4_cta": {"en": "See the Schedule →", "ar": "اطّلع على الجدول ←"}, "donate_h3": {"en": "Our Annual Giving campaign is live", "ar": "حملة التبرع السنوية انطلقت الآن"}, "donate_p": {"en": "Help fund new classroom resources, scholarships, and campus upgrades this school year.", "ar": "ساهم في تمويل أدوات الفصول الجديدة والمنح الدراسية وتطوير الحرم المدرسي هذا العام."}, "donate_raised": {"en": "$96,000 raised", "ar": "تم جمع 96,000 دولار"}, "donate_goal": {"en": "of $150,000", "ar": "من أصل 150,000 دولار"}, "donate_cta": {"en": "Give Now →", "ar": "تبرّع الآن ←"}, "tagline_text": {"en": "Amjad Islamic School is a K–12 community in Riverside, Ontario. We offer <a href=\"#\">Qur'an-integrated academics</a> across three divisions, welcoming families from every background.", "ar": "مدرسة أمجاد الإسلامية هي صرح تعليمي من الروضة حتى الثانوية في ريفرسايد، أونتاريو. نقدّم <a href=\"#\">منهجاً أكاديمياً متكاملاً مع القرآن الكريم</a> عبر ثلاث مراحل دراسية، ونرحّب بالأسر من كل الخلفيات."}, "btn_book_tour": {"en": "Book a Tour", "ar": "احجز جولة"}, "stat_students": {"en": "Students enrolled", "ar": "طالب مسجّل"}, "badge_test": {"en": "Test", "ar": "تجريبي"}, "stat_countries": {"en": "Countries of family heritage", "ar": "جنسية وأصل عائلي مختلف"}, "stat_classsize": {"en": "Average class size", "ar": "متوسط حجم الفصل"}, "stat_years": {"en": "Years serving the community", "ar": "عاماً في خدمة المجتمع"}, "eyebrow_news": {"en": "SCHOOL NEWS", "ar": "أخبار المدرسة"}, "h2_news": {"en": "From around campus", "ar": "أخبار من الحرم المدرسي"}, "date_news1": {"en": "August 24, 2026", "ar": "24 أغسطس 2026"}, "news1_h3": {"en": "Meet Amjad in our Digital Viewbook", "ar": "تعرّف على أمجاد عبر كتيّبنا الرقمي"}, "news1_p": {"en": "Flip through a short interactive prospectus — admissions, academics, and campus life, just like a printed book.", "ar": "تصفّح كتيّباً تفاعلياً قصيراً يعرض القبول والمناهج وحياة الحرم المدرسي، تماماً كأنه كتاب مطبوع."}, "btn_read_book": {"en": "Read Book", "ar": "تصفّح الكتيّب"}, "eyebrow_events": {"en": "UPCOMING EVENTS", "ar": "فعاليات قادمة"}, "h2_events": {"en": "Mark your calendar", "ar": "دوّن هذه المواعيد"}, "event1_h4": {"en": "New Family Orientation", "ar": "لقاء تعريفي للعائلات الجديدة"}, "event1_span": {"en": "9:00 AM – 11:00 AM · Main Hall", "ar": "9:00 – 11:00 صباحاً · القاعة الرئيسية"}, "event2_h4": {"en": "First Day of School", "ar": "اليوم الأول من الدراسة"}, "event2_span": {"en": "All Day · All Campuses", "ar": "طوال اليوم · جميع الفروع"}, "event3_h4": {"en": "Parent–Teacher Meet &amp; Greet", "ar": "لقاء أولياء الأمور بالمعلمين"}, "event3_span": {"en": "5:30 PM – 7:30 PM · Gymnasium", "ar": "5:30 – 7:30 مساءً · صالة الألعاب"}, "date_news2": {"en": "August 19, 2026", "ar": "19 أغسطس 2026"}, "news2_h3": {"en": "STEM Lab unveils new robotics kits", "ar": "مختبر العلوم يكشف عن عدّة روبوتات جديدة"}, "news2_p": {"en": "Sample story: Grade 5–8 students will build and program their first robots this term using the new kits donated by the Parent Association.", "ar": "خبر نموذجي: سيقوم طلاب الصفوف 5 إلى 8 ببناء وبرمجة أول روبوت لهم هذا الفصل باستخدام العدّة الجديدة المهداة من رابطة أولياء الأمور."}, "date_news3": {"en": "August 12, 2026", "ar": "12 أغسطس 2026"}, "news3_h3": {"en": "Welcome, new teachers!", "ar": "أهلاً بمعلمينا الجدد!"}, "news3_p": {"en": "Sample story: five new faculty members joined the Amjad family this summer across Arabic, science, and elementary homeroom teams.", "ar": "خبر نموذجي: انضم خمسة معلمين جدد إلى أسرة أمجاد هذا الصيف في أقسام اللغة العربية والعلوم والمرحلة الابتدائية."}, "date_news4": {"en": "August 5, 2026", "ar": "5 أغسطس 2026"}, "news4_h3": {"en": "Summer reading challenge wraps up", "ar": "ختام تحدي القراءة الصيفي"}, "news4_p": {"en": "Sample story: over 300 students logged more than 4,000 books read together this summer as part of the library's annual challenge.", "ar": "خبر نموذجي: سجّل أكثر من 300 طالب قراءة ما يزيد على 4,000 كتاب هذا الصيف ضمن تحدي المكتبة السنوي."}, "btn_read_more": {"en": "Read More", "ar": "اقرأ المزيد"}, "eyebrow_programs": {"en": "PROGRAMS", "ar": "البرامج"}, "h2_programs": {"en": "A well-rounded path for every student", "ar": "مسار متكامل لكل طالب"}, "p_programs": {"en": "From daily Qur'an study to robotics club, students build knowledge, skill, and character side by side.", "ar": "من درس القرآن اليومي إلى نادي الروبوتات، يبني الطلاب معارفهم ومهاراتهم وأخلاقهم جنباً إلى جنب."}, "pill_quran": {"en": "Qur'an Memorization", "ar": "تحفيظ القرآن الكريم"}, "pill_stem": {"en": "STEM Lab", "ar": "مختبر العلوم والتقنية"}, "pill_arabic": {"en": "Arabic Language", "ar": "اللغة العربية"}, "pill_sports": {"en": "Sports Academy", "ar": "أكاديمية الرياضة"}, "pill_robotics": {"en": "Robotics Club", "ar": "نادي الروبوتات"}, "pill_arts": {"en": "Arts Studio", "ar": "استوديو الفنون"}, "pill_debate": {"en": "Debate &amp; Public Speaking", "ar": "المناظرة والخطابة"}, "pill_service": {"en": "Community Service", "ar": "الخدمة المجتمعية"}, "eyebrow_life": {"en": "LIFE AT AMJAD", "ar": "الحياة في أمجاد"}, "h2_life": {"en": "A glimpse into everyday campus life", "ar": "لمحة عن الحياة اليومية في الحرم المدرسي"}, "p_life": {"en": "From morning assembly to science fair afternoons, here's a sample of the moments that fill an Amjad school year.", "ar": "من طابور الصباح إلى معرض العلوم، إليك لمحة من اللحظات التي تملأ عام أمجاد الدراسي."}, "gal1_span": {"en": "QUR'AN &amp; ISLAMIC STUDIES", "ar": "القرآن والدراسات الإسلامية"}, "gal1_strong": {"en": "Morning halaqa circle", "ar": "حلقة القرآن الصباحية"}, "gal2_span": {"en": "STEM &amp; ROBOTICS", "ar": "العلوم والروبوتات"}, "gal2_strong": {"en": "Building the term project", "ar": "بناء مشروع الفصل"}, "gal3_span": {"en": "ATHLETICS", "ar": "الرياضة"}, "gal3_strong": {"en": "Falcons at practice", "ar": "صقور أمجاد في التدريب"}, "gal4_span": {"en": "COMMUNITY SERVICE", "ar": "الخدمة المجتمعية"}, "gal4_strong": {"en": "Annual food-drive volunteers", "ar": "متطوعو حملة التبرع الغذائي السنوية"}, "gal5_span": {"en": "ARTS STUDIO", "ar": "استوديو الفنون"}, "gal5_strong": {"en": "Calligraphy workshop", "ar": "ورشة الخط العربي"}, "eyebrow_values": {"en": "WHY FAMILIES CHOOSE AMJAD", "ar": "لماذا تختار العائلات أمجاد"}, "h2_values": {"en": "Built on six commitments", "ar": "مبنيّة على ستة التزامات"}, "p_values": {"en": "These are the values our teachers, staff, and families return to every single day.", "ar": "هذه هي القيم التي يعود إليها معلمونا وموظفونا وعائلاتنا كل يوم."}, "val1_h3": {"en": "Faith-Centered Learning", "ar": "تعلّم محوره الإيمان"}, "val1_p": {"en": "Daily Qur'an, Islamic studies, and prayer are woven into the rhythm of every school day, not treated as an add-on.", "ar": "القرآن اليومي والدراسات الإسلامية والصلاة جزء أصيل من إيقاع كل يوم دراسي، لا مجرد إضافة."}, "val2_h3": {"en": "Academic Rigor", "ar": "صرامة أكاديمية"}, "val2_p": {"en": "A provincially aligned curriculum taught by certified teachers, with small class sizes and individual attention.", "ar": "منهج معتمد يتماشى مع مناهج المقاطعة، يدرّسه معلمون معتمدون، مع فصول صغيرة واهتمام فردي."}, "val3_h3": {"en": "Community &amp; Character", "ar": "المجتمع والأخلاق"}, "val3_p": {"en": "Students graduate with strong character, service habits, and a lasting sense of belonging to their community.", "ar": "يتخرّج الطلاب بأخلاق راسخة وعادات في خدمة الآخرين وشعور دائم بالانتماء لمجتمعهم."}, "val4_h3": {"en": "Bilingual Foundation", "ar": "أساس ثنائي اللغة"}, "val4_p": {"en": "Arabic language study begins in Pre-K, building fluency and confidence alongside a strong English program.", "ar": "تبدأ دراسة اللغة العربية من مرحلة الروضة، لبناء الطلاقة والثقة جنباً إلى جنب مع برنامج قوي للغة الإنجليزية."}, "val5_h3": {"en": "Modern Facilities", "ar": "مرافق حديثة"}, "val5_p": {"en": "Renovated science labs, a dedicated STEM &amp; robotics room, and a full-size gymnasium support hands-on learning.", "ar": "مختبرات علوم مجدّدة، وقاعة مخصّصة للعلوم والروبوتات، وصالة ألعاب كاملة تدعم التعلّم العملي."}, "val6_h3": {"en": "Family Partnership", "ar": "شراكة مع العائلة"}, "val6_p": {"en": "Regular parent–teacher touchpoints, a family handbook, and an active Parent Association keep families close to school life.", "ar": "تواصل منتظم بين أولياء الأمور والمعلمين، ودليل للعائلة، ورابطة أولياء أمور نشطة تبقي العائلات قريبة من حياة المدرسة."}, "eyebrow_voices": {"en": "FAMILY VOICES", "ar": "أصوات العائلات"}, "h2_voices": {"en": "What Amjad families are saying", "ar": "ماذا تقول عائلات أمجاد"}, "p_voices": {"en": "Sample quotes shared for this preview — real testimonials would appear here on the live site.", "ar": "اقتباسات نموذجية لهذا العرض — ستظهر هنا الشهادات الحقيقية عند إطلاق الموقع."}, "t1_quote": {"en": "Our daughter looks forward to school every morning. The Qur'an circle has become the highlight of her week, and her Arabic has improved so much.", "ar": "ابنتنا تنتظر الذهاب للمدرسة كل صباح بشغف. أصبحت حلقة القرآن أبرز ما في أسبوعها، وتحسّنت لغتها العربية كثيراً."}, "t1_name": {"en": "Sarah H.", "ar": "سارة ح."}, "t1_role": {"en": "Parent, Grade 3", "ar": "ولية أمر، الصف الثالث"}, "t2_quote": {"en": "The class sizes make a real difference. Every teacher knows my son by name and checks in with me regularly, not just at report card time.", "ar": "حجم الفصول الصغير يصنع فرقاً حقيقياً. كل معلم يعرف ابني باسمه ويتواصل معي بانتظام، لا فقط وقت التقارير."}, "t2_name": {"en": "Omar M.", "ar": "عمر م."}, "t2_role": {"en": "Parent, Grade 7", "ar": "ولي أمر، الصف السابع"}, "t3_quote": {"en": "I transferred here in Grade 9 and was nervous about fitting in. The Student Life team and my classmates made it easy — I found my community fast.", "ar": "انتقلت إلى هنا في الصف التاسع وكنت قلقة من الاندماج. فريق حياة الطالب وزملائي جعلوا الأمر سهلاً — وجدت مجتمعي بسرعة."}, "t3_name": {"en": "Layla R.", "ar": "ليلى ر."}, "t3_role": {"en": "Grade 11 Student", "ar": "طالبة، الصف الحادي عشر"}, "eyebrow_team": {"en": "MEET THE TEAM", "ar": "تعرّف على فريقنا"}, "h2_team": {"en": "A few faces from our faculty", "ar": "بعض الوجوه من طاقمنا التعليمي"}, "p_team": {"en": "Sample staff profiles — meet the full team on the Faculty &amp; Staff Directory page.", "ar": "ملفات تعريفية نموذجية للطاقم — تعرّف على الفريق الكامل في صفحة دليل الطاقم التعليمي."}, "f1_name": {"en": "Dr. Imani Salah", "ar": "د. إيماني صلاح"}, "f1_role": {"en": "Principal", "ar": "مديرة المدرسة"}, "f1_bio": {"en": "Leads school-wide strategy and academics, with a background in curriculum design.", "ar": "تقود الاستراتيجية العامة للمدرسة والشؤون الأكاديمية، ولديها خبرة في تصميم المناهج."}, "f2_name": {"en": "Ustadh Bilal Faruq", "ar": "الأستاذ بلال فاروق"}, "f2_role": {"en": "Head of Islamic Studies", "ar": "رئيس قسم الدراسات الإسلامية"}, "f2_bio": {"en": "Oversees Qur'an memorization and Islamic studies across all three divisions.", "ar": "يشرف على تحفيظ القرآن والدراسات الإسلامية في جميع المراحل الثلاث."}, "f3_name": {"en": "Ms. Farah Idris", "ar": "الأستاذة فرح إدريس"}, "f3_role": {"en": "STEM &amp; Robotics Lead", "ar": "مسؤولة العلوم والروبوتات"}, "f3_bio": {"en": "Runs the robotics club and coordinates the middle school science fair.", "ar": "تدير نادي الروبوتات وتنسّق معرض العلوم للمرحلة المتوسطة."}, "f4_name": {"en": "Mr. Karim Aziz", "ar": "الأستاذ كريم عزيز"}, "f4_role": {"en": "Director of Admissions", "ar": "مدير القبول والتسجيل"}, "f4_bio": {"en": "Guides new families through applications, tours, and placement assessments.", "ar": "يرافق العائلات الجديدة خلال التقديم والجولات واختبارات تحديد المستوى."}, "info1_h4": {"en": "Daily Prayer Times", "ar": "مواقيت الصلاة اليومية"}, "prayer_dhuhr": {"en": "Dhuhr", "ar": "الظهر"}, "prayer_asr": {"en": "Asr", "ar": "العصر"}, "prayer_jumuah": {"en": "Jumu'ah", "ar": "الجمعة"}, "info2_h4": {"en": "School Hours", "ar": "ساعات الدوام"}, "hours_elem": {"en": "Elementary", "ar": "الابتدائية"}, "hours_mhs": {"en": "Middle &amp; High School", "ar": "المتوسطة والثانوية"}, "hours_office": {"en": "Office", "ar": "الإدارة"}, "info3_h4": {"en": "Key Dates", "ar": "تواريخ مهمة"}, "date_firstday": {"en": "First Day of School", "ar": "اليوم الأول من الدراسة"}, "date_fallbreak": {"en": "Fall Break", "ar": "إجازة الخريف"}, "date_winterconcert": {"en": "Winter Concert", "ar": "حفل الشتاء"}, "eyebrow_faq": {"en": "FAQ", "ar": "الأسئلة الشائعة"}, "h2_faq": {"en": "Questions families often ask", "ar": "أسئلة يتكرر طرحها من العائلات"}, "faq1_q": {"en": "What grades does Amjad Islamic School serve?", "ar": "ما هي المراحل الدراسية التي تغطيها مدرسة أمجاد الإسلامية؟"}, "faq1_a": {"en": "We serve Pre-K through Grade 12 across three divisions: Early Childhood, Elementary, and Middle/High School, all on one campus.", "ar": "نستقبل الطلاب من مرحلة ما قبل الروضة وحتى الصف الثاني عشر عبر ثلاث مراحل: الطفولة المبكرة، الابتدائية، والمتوسطة/الثانوية، في حرم واحد."}, "faq2_q": {"en": "Is financial aid available?", "ar": "هل تتوفر مساعدات مالية؟"}, "faq2_a": {"en": "Yes. Sibling discounts, need-based financial assistance, and flexible payment plans are available — see the Tuition &amp; Aid section under Admissions.", "ar": "نعم. تتوفر خصومات للأشقاء ومساعدات مالية حسب الحاجة وخطط دفع مرنة — راجع قسم الرسوم والمساعدات تحت القبول والتسجيل."}, "faq3_q": {"en": "Do you accept transfer students mid-year?", "ar": "هل تقبلون الطلاب المنقولين في منتصف العام؟"}, "faq3_a": {"en": "We do, space permitting, following a placement assessment. Reach out to Admissions any time during the school year to check current availability.", "ar": "نعم، في حال توفر مقاعد وبعد اجتياز اختبار تحديد المستوى. تواصل مع قسم القبول في أي وقت خلال العام الدراسي للاستفسار عن المقاعد المتاحة."}, "faq4_q": {"en": "Is transportation provided?", "ar": "هل تتوفر خدمة النقل؟"}, "faq4_a": {"en": "Bus routes are offered across several neighborhoods in Riverside. Contact the office to confirm whether your address falls on an existing route.", "ar": "تتوفر خطوط حافلات في عدة أحياء بريفرسايد. تواصل مع الإدارة للتأكد من وقوع عنوانك ضمن أحد الخطوط الحالية."}, "faq5_q": {"en": "Can I schedule a campus tour before applying?", "ar": "هل يمكنني حجز جولة في الحرم المدرسي قبل التقديم؟"}, "faq5_a": {"en": "Absolutely — tours run most weekday mornings. Use the \"Book a Tour\" button anywhere on this site or visit the Visit section to plan your visit.", "ar": "بالتأكيد — تُنظّم الجولات في معظم صباحات أيام الأسبوع. استخدم زر \"احجز جولة\" في أي مكان بالموقع أو زر قسم \"زوروا مدرستنا\" لتحديد موعد زيارتك."}, "cta_circle": {"en": "Visit<br>Amjad", "ar": "زوروا<br>أمجاد"}, "cta_h2": {"en": "Come see a classroom in session", "ar": "تعالَ وشاهد حصة دراسية حيّة"}, "cta_p": {"en": "Our admissions team is happy to answer your questions, walk you through the campus, and talk through the right grade placement for your child.", "ar": "فريق القبول لدينا سعيد بالإجابة عن استفساراتكم، واصطحابكم في جولة بالحرم المدرسي، ومناقشة الصف المناسب لطفلكم."}, "cta_chatlink": {"en": "or chat with our admissions team", "ar": "أو تحدّث مع فريق القبول لدينا"}, "nl_h3": {"en": "Stay in the loop", "ar": "ابقَ على اطلاع"}, "nl_p": {"en": "Sign up for our monthly newsletter — school news, event dates, and admissions updates, straight to your inbox.", "ar": "اشترك في نشرتنا الشهرية لتصلك أخبار المدرسة ومواعيد الفعاليات وتحديثات القبول مباشرة إلى بريدك."}, "nl_placeholder": {"en": "Your email address", "ar": "بريدك الإلكتروني"}, "nl_submit": {"en": "Subscribe", "ar": "اشترك"}, "foot1_h4": {"en": "Admissions", "ar": "القبول والتسجيل"}, "foot_phone": {"en": "(555) 019-2244", "ar": "(555) 019-2244"}, "foot_email": {"en": "admissions@amjadislamic.example", "ar": "admissions@amjadislamic.example"}, "foot2_h4": {"en": "Campus", "ar": "الحرم المدرسي"}, "foot_address": {"en": "240 Willowbrook Avenue<br>Riverside, ON L2G 4K1<br>(sample address)", "ar": "240 شارع ويلوبروك<br>ريفرسايد، أونتاريو L2G 4K1<br>(عنوان تجريبي)"}, "foot_map": {"en": "Campus Map &amp; Directions", "ar": "خريطة الحرم واتجاهات الوصول"}, "foot3_h4": {"en": "Stay Connected", "ar": "ابقَ على تواصل"}, "foot_connected_p": {"en": "Get news, event dates, and updates from Amjad Islamic School.", "ar": "تابع الأخبار ومواعيد الفعاليات وتحديثات مدرسة أمجاد الإسلامية."}, "foot_mission": {"en": "Amjad Islamic School exists to raise a generation grounded in faith, curious about the world, and committed to serving others — every student known by name, every family welcomed as part of our community.", "ar": "تأسست مدرسة أمجاد الإسلامية لتنشئة جيل راسخ في إيمانه، فضولي تجاه عالمه، وملتزم بخدمة الآخرين — كل طالب معروف باسمه، وكل عائلة مرحّب بها كجزء من مجتمعنا."}, "foot_copyright": {"en": "© 2026 Amjad Islamic School. Preview site — all content is sample data.", "ar": "© 2026 مدرسة أمجاد الإسلامية. نسخة تجريبية للعرض — جميع المحتويات بيانات نموذجية."}, "link_privacy": {"en": "Privacy", "ar": "الخصوصية"}, "link_accessibility": {"en": "Accessibility", "ar": "إمكانية الوصول"}, "link_contact": {"en": "Contact", "ar": "تواصل معنا"}, "cookie_h3": {"en": "We value your privacy", "ar": "نحن نقدّر خصوصيتك"}, "cookie_p": {"en": "We use cookies to enhance your browsing experience and understand how families use our site. By clicking \"Accept All,\" you consent to our use of cookies.", "ar": "نستخدم ملفات تعريف الارتباط لتحسين تجربة تصفحك وفهم كيفية استخدام العائلات لموقعنا. بالنقر على \"قبول الكل\"، فإنك توافق على استخدامنا لملفات تعريف الارتباط."}, "cookie_settings": {"en": "Cookie Settings", "ar": "إعدادات ملفات الارتباط"}, "cookie_reject": {"en": "Reject All", "ar": "رفض الكل"}, "cookie_accept": {"en": "Accept All", "ar": "قبول الكل"}, "don_tag": {"en": "GIVE TO AMJAD", "ar": "تبرّع لأمجاد"}, "don_h1": {"en": "Every gift builds a stronger community.", "ar": "كل تبرّع يبني مجتمعاً أقوى."}, "don_p": {"en": "Your donation funds scholarships, classroom resources, and campus improvements so every child at Amjad Islamic School can thrive — in faith, in knowledge, and in character.", "ar": "تبرّعك يموّل المنح الدراسية وأدوات الفصول وتطوير الحرم المدرسي، حتى يزدهر كل طفل في مدرسة أمجاد الإسلامية في إيمانه وعلمه وأخلاقه."}, "don_cta": {"en": "Give Now &darr;", "ar": "تبرّع الآن &darr;"}, "don_stat1": {"en": "$K raised of $150K goal", "ar": "ألف دولار تم جمعها من هدف 150 ألف دولار"}, "don_stat2": {"en": "Donors this year", "ar": "متبرّع هذا العام"}, "don_stat3": {"en": "Scholarships funded", "ar": "منحة دراسية تم تمويلها"}, "don_stat4": {"en": "Years of community giving", "ar": "عاماً من العطاء المجتمعي"}, "don_eyebrow1": {"en": "WHERE YOUR GIFT GOES", "ar": "إلى أين يذهب تبرّعك"}, "don_h2_1": {"en": "Choose a program to support", "ar": "اختر برنامجاً لدعمه"}, "don_p_1": {"en": "Every fund below directly supports a different part of campus life. Pick one when you fill in the form, or leave it as \"Where Needed Most.\"", "ar": "كل صندوق أدناه يدعم جانباً مختلفاً من حياة الحرم المدرسي. اختر أحدها عند تعبئة النموذج، أو اتركه على \"حيث تشتد الحاجة\"."}, "don_give_btn": {"en": "Give to this fund", "ar": "تبرّع لهذا الصندوق"}, "fund1_h3": {"en": "Scholarship Fund", "ar": "صندوق المنح الدراسية"}, "fund1_p": {"en": "Covers full and partial tuition for qualifying families so no child is turned away for financial reasons.", "ar": "يغطي الرسوم الدراسية كاملة أو جزئية للأسر المستحقة حتى لا يُحرم أي طفل لأسباب مادية."}, "fund2_h3": {"en": "Classroom &amp; STEM Resources", "ar": "أدوات الفصول والعلوم والتقنية"}, "fund2_p": {"en": "Funds robotics kits, science lab equipment, and books for the library and resource room.", "ar": "يموّل عدد الروبوتات ومعدات مختبر العلوم والكتب لمكتبة المدرسة وغرفة المصادر."}, "fund3_h3": {"en": "Campus Improvements", "ar": "تطوير الحرم المدرسي"}, "fund3_p": {"en": "Supports upgrades to the gymnasium, musalla, and outdoor play areas used by every division.", "ar": "يدعم تطوير صالة الألعاب والمصلى وساحات اللعب الخارجية التي يستخدمها جميع الطلاب."}, "fund4_h3": {"en": "Qur'an &amp; Islamic Studies", "ar": "القرآن والدراسات الإسلامية"}, "fund4_p": {"en": "Provides mushafs, memorization materials, and guest scholar visits across all three divisions.", "ar": "يوفّر المصاحف ومواد التحفيظ وزيارات علماء ضيوف عبر المراحل الثلاث."}, "fund5_h3": {"en": "Athletics &amp; Wellness", "ar": "الرياضة والصحة"}, "fund5_p": {"en": "Funds team uniforms, sports equipment, and the counseling &amp; wellness program for students.", "ar": "يموّل زي الفرق الرياضية والمعدات وبرنامج الإرشاد والصحة النفسية للطلاب."}, "fund6_h3": {"en": "Where Needed Most", "ar": "حيث تشتد الحاجة"}, "fund6_p": {"en": "Lets the school direct your gift to the area of greatest need at the time it's received.", "ar": "يتيح للمدرسة توجيه تبرّعك إلى المجال الأكثر احتياجاً وقت استلامه."}, "don_eyebrow2": {"en": "MAKE YOUR GIFT", "ar": "قدّم تبرّعك"}, "don_h2_2": {"en": "Complete your donation", "ar": "أكمل عملية التبرّع"}, "don_p_2": {"en": "Fill in every field below, then you'll be securely redirected to PayPal to finish your donation — nothing is charged on this page.", "ar": "املأ جميع الحقول أدناه، وبعدها سيتم تحويلك بأمان إلى PayPal لإتمام تبرّعك — لا يتم خصم أي مبلغ من هذه الصفحة."}, "don_trust1": {"en": "&#10003; Tax receipts issued for all gifts", "ar": "&#10003; إيصالات ضريبية لجميع التبرعات"}, "don_trust2": {"en": "&#10003; Secure checkout on PayPal", "ar": "&#10003; دفع آمن عبر PayPal"}, "don_trust3": {"en": "&#10003; Cancel or change a recurring gift anytime", "ar": "&#10003; يمكنك إلغاء أو تعديل التبرّع الشهري في أي وقت"}, "don_form_alert": {"en": "Please fill in every required field before continuing to PayPal.", "ar": "يرجى تعبئة جميع الحقول المطلوبة قبل المتابعة إلى PayPal."}, "don_freq_once": {"en": "One-time", "ar": "مرة واحدة"}, "don_freq_monthly": {"en": "Monthly", "ar": "شهرياً"}, "don_amount_other": {"en": "Other", "ar": "مبلغ آخر"}, "don_field_fund": {"en": "Designate this gift to", "ar": "وجّه هذا التبرّع إلى"}, "don_field_name": {"en": "Full name", "ar": "الاسم الكامل"}, "don_field_email": {"en": "Email address", "ar": "البريد الإلكتروني"}, "don_ph_name": {"en": "Your name", "ar": "اسمك"}, "don_ph_email": {"en": "you@example.com", "ar": "بريدك@مثال.com"}, "don_err_name": {"en": "Please enter your full name.", "ar": "يرجى إدخال اسمك الكامل."}, "don_err_email": {"en": "Please enter a valid email address.", "ar": "يرجى إدخال بريد إلكتروني صحيح."}, "don_dedication_label": {"en": "Make this gift in memory or honor of someone", "ar": "أهدِ هذا التبرّع تكريماً أو في ذكرى شخص ما"}, "don_field_dedication": {"en": "In honor/memory of", "ar": "تكريماً/في ذكرى"}, "don_ph_dedication": {"en": "Name", "ar": "الاسم"}, "don_err_dedication": {"en": "Please enter a name for this dedication.", "ar": "يرجى إدخال اسم لهذا الإهداء."}, "don_cover_fees": {"en": "Cover transaction fees so 100% of my gift goes to the school", "ar": "تغطية رسوم المعاملة حتى يذهب 100% من تبرّعي للمدرسة"}, "don_disclaimer": {"en": "You'll complete payment securely on PayPal.com. The school never sees your card details.", "ar": "ستكمل الدفع بأمان عبر PayPal.com. المدرسة لا تطّلع أبداً على بيانات بطاقتك."}, "don_eyebrow3": {"en": "OTHER WAYS TO GIVE", "ar": "طرق أخرى للتبرّع"}, "don_h2_3": {"en": "More than one way to support Amjad", "ar": "أكثر من طريقة لدعم أمجاد"}, "way1_h3": {"en": "Monthly Giving Circle", "ar": "دائرة العطاء الشهري"}, "way1_p": {"en": "Join a community of recurring donors whose steady support funds year-round programming.", "ar": "انضم إلى مجتمع من المتبرعين الدائمين الذين يموّل دعمهم المستمر برامج المدرسة على مدار العام."}, "way2_h3": {"en": "Matching Gifts", "ar": "التبرعات المضاعفة من جهة العمل"}, "way2_p": {"en": "Many employers match charitable donations — check whether your workplace can double your gift.", "ar": "يقوم كثير من أصحاب العمل بمضاعفة التبرعات الخيرية — تحقق إن كانت جهة عملك تدعم ذلك."}, "way3_h3": {"en": "Legacy &amp; Planned Giving", "ar": "العطاء الموصى به"}, "way3_p": {"en": "Include Amjad Islamic School in your will or estate plan to leave a lasting endowment gift.", "ar": "أدرج مدرسة أمجاد الإسلامية في وصيتك لترك أثر دائم من العطاء."}, "way4_h3": {"en": "In-Kind Donations", "ar": "تبرعات عينية"}, "way4_p": {"en": "Donate books, equipment, or professional services directly — contact the Development Office to arrange.", "ar": "تبرّع بكتب أو معدات أو خدمات مهنية مباشرة — تواصل مع مكتب التطوير لترتيب ذلك."}, "don_eyebrow4": {"en": "DONOR FAQ", "ar": "أسئلة المتبرعين"}, "don_h2_4": {"en": "Questions about giving", "ar": "أسئلة حول التبرّع"}, "dfaq1_q": {"en": "Is my donation tax-deductible?", "ar": "هل تبرّعي معفى من الضريبة؟"}, "dfaq1_a": {"en": "Yes. A tax receipt is issued automatically for every gift and emailed to the address you provide at checkout.", "ar": "نعم. يتم إصدار إيصال ضريبي تلقائياً لكل تبرّع ويُرسل إلى البريد الإلكتروني الذي تدخله عند الدفع."}, "dfaq2_q": {"en": "Can I change or cancel a monthly gift?", "ar": "هل يمكنني تعديل أو إلغاء تبرّعي الشهري؟"}, "dfaq2_a": {"en": "Yes, anytime. Monthly donors can update their amount or cancel through the donor portal link sent in every receipt email.", "ar": "نعم، في أي وقت. يمكن للمتبرعين الشهريين تعديل المبلغ أو الإلغاء عبر رابط بوابة المتبرعين المُرسل في كل إيصال."}, "dfaq3_q": {"en": "Can I dedicate my gift in someone's honor or memory?", "ar": "هل يمكنني إهداء تبرّعي تكريماً أو في ذكرى شخص ما؟"}, "dfaq3_a": {"en": "Yes — check the dedication box on the donation form and we'll notify the honoree or their family by email or letter.", "ar": "نعم — فعّل خيار الإهداء في نموذج التبرّع وسنقوم بإخطار الشخص المُكرَّم أو عائلته عبر البريد الإلكتروني أو رسالة."}, "dfaq4_q": {"en": "Who do I contact with questions about a gift?", "ar": "من أتواصل معه للاستفسار عن تبرّع؟"}, "dfaq4_a": {"en": "Reach the Development Office at give@amjadislamic.example or (555) 019-2244 for anything related to donations.", "ar": "تواصل مع مكتب التطوير عبر give@amjadislamic.example أو على (555) 019-2244 لأي استفسار متعلق بالتبرعات."}};
+  let currentLang = 'en';
+  function applyLang(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const d = I18N[el.getAttribute('data-i18n')];
+      if(d) el.textContent = d[lang];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const d = I18N[el.getAttribute('data-i18n-html')];
+      if(d) el.innerHTML = d[lang];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+      const d = I18N[el.getAttribute('data-i18n-placeholder')];
+      if(d) el.setAttribute('placeholder', d[lang]);
+    });
+    document.querySelectorAll('.lang-btn').forEach(b=>{
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    if(typeof window.updateDonateSubmitLabel === 'function') window.updateDonateSubmitLabel();
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
+
+
+  // Dropdown menus
+  document.querySelectorAll('.navitem').forEach(item=>{
+    const trigger = item.querySelector('.navtrigger');
+    trigger.addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.navitem')){
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+
+  // Hamburger menu (mobile)
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  hamburgerBtn.addEventListener('click', ()=>{
+    const isOpen = mainNav.classList.toggle('nav-open');
+    hamburgerBtn.classList.toggle('open', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    if(!isOpen){
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('nav.mainnav') && !e.target.closest('.hamburger') && mainNav.classList.contains('nav-open')){
+      mainNav.classList.remove('nav-open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', false);
+      document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+
+  // Hero banner slider (only present on the homepage)
+  const slider = document.getElementById('heroSlider');
+  if (slider) {
+    const slides = Array.from(slider.querySelectorAll('.slide'));
+    const dotsWrap = slider.querySelector('.slide-dots');
+    let current = 0;
+    let timer;
+
+    slides.forEach((_, i)=>{
+      const b = document.createElement('button');
+      if(i===0) b.classList.add('active');
+      b.addEventListener('click', ()=>{ goTo(i); restart(); });
+      dotsWrap.appendChild(b);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function goTo(i){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function next(){ goTo(current+1); }
+    function prev(){ goTo(current-1); }
+
+    slider.querySelector('.next').addEventListener('click', ()=>{ next(); restart(); });
+    slider.querySelector('.prev').addEventListener('click', ()=>{ prev(); restart(); });
+
+    function restart(){ clearInterval(timer); timer = setInterval(next, 6000); }
+    restart();
+  }
+
+  // Donation campaign banner dismiss
+  const donateStrip = document.getElementById('donateStrip');
+  const donateStripClose = document.getElementById('donateStripClose');
+  if(donateStrip && donateStripClose){
+    donateStripClose.addEventListener('click', ()=>{
+      donateStrip.style.transition = 'max-height .3s ease, opacity .3s ease, padding .3s ease';
+      donateStrip.style.maxHeight = donateStrip.offsetHeight + 'px';
+      requestAnimationFrame(()=>{
+        donateStrip.style.maxHeight = '0px';
+        donateStrip.style.opacity = '0';
+        donateStrip.style.paddingTop = '0px';
+        donateStrip.style.paddingBottom = '0px';
+        donateStrip.style.overflow = 'hidden';
+      });
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.fade-in, .stagger');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('in-view'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Animated stat counters
+  const counters = document.querySelectorAll('.stat .num');
+  const cio = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        const el = en.target;
+        const target = parseInt(el.dataset.count, 10);
+        const duration = 1200;
+        const start = performance.now();
+        function step(now){
+          const progress = Math.min((now-start)/duration, 1);
+          el.textContent = Math.floor(progress * target);
+          if(progress < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+        cio.unobserve(el);
+      }
+    });
+  }, {threshold:0.4});
+  counters.forEach(el=>cio.observe(el));
+
+  // Scroll progress bar + back to top
+  const progressBar = document.getElementById('scrollProgress');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+    if(h.scrollTop > 420){ backToTop.classList.add('show'); } else { backToTop.classList.remove('show'); }
+  });
+  backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Cookie consent — blooms in shortly after load
+  const cookieBox = document.getElementById('cookieConsent');
+  setTimeout(()=> cookieBox.classList.add('show'), 900);
+  function dismissCookie(){ cookieBox.classList.remove('show'); }
+  document.getElementById('cookieAccept').addEventListener('click', dismissCookie);
+  document.getElementById('cookieReject').addEventListener('click', dismissCookie);
+  document.getElementById('cookieSettings').addEventListener('click', dismissCookie);
+  // ---------- Page fade transition ----------
+  window.addEventListener('DOMContentLoaded', ()=>{
+    requestAnimationFrame(()=> document.body.classList.add('page-loaded'));
+  });
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || a.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.remove('page-loaded');
+    document.body.classList.add('page-leaving');
+    setTimeout(()=>{ window.location.href = href; }, 260);
+  });
+
+  // ---------- Donation form: PayPal field wiring + required-field validation ----------
+  (function(){
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const donateSubmit = document.querySelector('.donate-submit');
+    const donateSubmitLabel = document.getElementById('donateSubmitLabel');
+    const freqBtns = document.querySelectorAll('#donateToggle button');
+    const paypalForm = document.getElementById('paypalDonateForm');
+    if(!paypalForm) return; // not on this page
+
+    const fundSelect = document.getElementById('fundSelect');
+    const dedicationCheck = document.getElementById('dedicationCheck');
+    const dedicationField = document.getElementById('dedicationField');
+    const dedicationName = document.getElementById('dedicationName');
+    const coverFeesCheck = document.getElementById('coverFeesCheck');
+    const donorName = document.getElementById('donorName');
+    const donorEmail = document.getElementById('donorEmail');
+    const formAlert = document.getElementById('formAlert');
+
+    let baseAmount = 50;
+    let currentFreq = 'once';
+
+    const PAYPAL_FEE_RATE = 0.0349; // rough estimate of PayPal's ~3.49% + $0.49 fee, used only for the optional "cover fees" toggle
+    const PAYPAL_FEE_FIXED = 0.49;
+
+    function computeChargedAmount(){
+      if(coverFeesCheck && coverFeesCheck.checked){
+        const covered = (baseAmount + PAYPAL_FEE_FIXED) / (1 - PAYPAL_FEE_RATE);
+        return Math.round(covered * 100) / 100;
+      }
+      return baseAmount;
+    }
+
+    function updatePaypalFields(){
+      const amount = computeChargedAmount();
+      const fund = fundSelect ? (fundSelect.options[fundSelect.selectedIndex] ? fundSelect.options[fundSelect.selectedIndex].text : '') : '';
+
+      document.getElementById('ppCmd').value = currentFreq === 'monthly' ? '_xclick-subscriptions' : '_donations';
+      document.getElementById('ppItemName').value = `Donation to Amjad Islamic School — ${fund}`;
+      document.getElementById('ppAmount').value = amount;
+      document.getElementById('ppA3').value = amount;
+
+      const name = (donorName.value || '').trim();
+      const [first, ...rest] = name.split(' ');
+      document.getElementById('ppFirstName').value = first || '';
+      document.getElementById('ppLastName').value = rest.join(' ') || '';
+      document.getElementById('ppEmail').value = donorEmail.value || '';
+
+      const dedication = (dedicationCheck && dedicationCheck.checked)
+        ? `In honor/memory of: ${(dedicationName.value || '').trim()}`
+        : '';
+      document.getElementById('ppCustom').value = dedication;
+
+      if(donateSubmitLabel){
+        const suffix = currentFreq === 'monthly' ? '/mo' : '';
+        const arrow = (document.documentElement.dir === 'rtl') ? '←' : '→';
+        const donateWord = (document.documentElement.lang === 'ar') ? 'تبرّع بـ' : 'Donate';
+        const withWord = (document.documentElement.lang === 'ar') ? 'عبر PayPal' : 'with PayPal';
+        donateSubmitLabel.textContent = (document.documentElement.lang === 'ar')
+          ? `${donateWord} $${amount}${suffix} ${withWord} ${arrow}`
+          : `${donateWord} $${amount}${suffix} ${withWord} ${arrow}`;
+      }
+    }
+    // expose for the language switcher so amounts/labels re-render after a language change
+    window.updateDonateSubmitLabel = updatePaypalFields;
+
+    amountBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        amountBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        if(btn.classList.contains('amount-other')){
+          const promptText = (document.documentElement.lang === 'ar') ? 'أدخل مبلغاً مخصصاً (بالدولار):' : 'Enter a custom amount (USD):';
+          const val = prompt(promptText, baseAmount);
+          const parsed = parseFloat(val);
+          baseAmount = (!isNaN(parsed) && parsed > 0) ? parsed : baseAmount;
+          btn.textContent = `$${baseAmount}`;
+        } else {
+          baseAmount = parseFloat(btn.textContent.replace('$',''));
+        }
+        updatePaypalFields();
+      });
+    });
+
+    freqBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        freqBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFreq = btn.dataset.freq;
+        updatePaypalFields();
+      });
+    });
+
+    if(fundSelect) fundSelect.addEventListener('change', updatePaypalFields);
+    if(coverFeesCheck) coverFeesCheck.addEventListener('change', updatePaypalFields);
+    [donorName, donorEmail, dedicationName].forEach(el=>{
+      if(el) el.addEventListener('input', updatePaypalFields);
+    });
+
+    if(dedicationCheck && dedicationField){
+      dedicationCheck.addEventListener('change', ()=>{
+        dedicationField.style.display = dedicationCheck.checked ? 'block' : 'none';
+        dedicationName.required = dedicationCheck.checked;
+        clearFieldError(dedicationName, 'dedicationError');
+        updatePaypalFields();
+      });
+    }
+
+    document.querySelectorAll('[data-fund]').forEach(link=>{
+      link.addEventListener('click', (e)=>{
+        e.preventDefault();
+        if(fundSelect){
+          const target = link.dataset.fund;
+          const match = Array.from(fundSelect.options).find(o => o.text.trim() === target.trim());
+          if(match) fundSelect.value = match.value;
+        }
+        updatePaypalFields();
+        document.getElementById('donate-form').scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // ---- Required-field validation: every field must be filled before we let the
+    //      browser continue to PayPal. This runs on submit, not just on blur, so a
+    //      donor can't skip past an empty field. ----
+    function setFieldInvalid(el, errorId){
+      el.classList.add('field-invalid');
+      const err = document.getElementById(errorId);
+      if(err) err.classList.add('show');
+    }
+    function clearFieldError(el, errorId){
+      if(el) el.classList.remove('field-invalid');
+      const err = document.getElementById(errorId);
+      if(err) err.classList.remove('show');
+    }
+    [ [donorName,'nameError'], [donorEmail,'emailError'], [dedicationName,'dedicationError'] ].forEach(([el, errId])=>{
+      if(!el) return;
+      el.addEventListener('input', ()=> clearFieldError(el, errId));
+    });
+
+    function isValidEmail(value){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateForm(){
+      let valid = true;
+      clearFieldError(donorName, 'nameError');
+      clearFieldError(donorEmail, 'emailError');
+      clearFieldError(dedicationName, 'dedicationError');
+
+      if(!donorName.value.trim()){
+        setFieldInvalid(donorName, 'nameError');
+        valid = false;
+      }
+      if(!donorEmail.value.trim() || !isValidEmail(donorEmail.value.trim())){
+        setFieldInvalid(donorEmail, 'emailError');
+        valid = false;
+      }
+      if(dedicationCheck && dedicationCheck.checked && !dedicationName.value.trim()){
+        setFieldInvalid(dedicationName, 'dedicationError');
+        valid = false;
+      }
+      if(fundSelect && !fundSelect.value){
+        valid = false;
+      }
+      return valid;
+    }
+
+    paypalForm.addEventListener('submit', (e)=>{
+      updatePaypalFields();
+      if(!validateForm()){
+        e.preventDefault();
+        if(formAlert) formAlert.classList.add('show');
+        const firstInvalid = paypalForm.querySelector('.field-invalid');
+        if(firstInvalid) firstInvalid.focus();
+        return false;
+      }
+      if(formAlert) formAlert.classList.remove('show');
+    });
+
+    updatePaypalFields();
+  })();
+</script>
+
+</body>
+</html>

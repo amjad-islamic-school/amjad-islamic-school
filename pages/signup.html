@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاشتراك — مدرسة أمجاد الإسلامية</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --p-indigo-950:#1F0E17;
+  --p-indigo-900:#341527;
+  --p-indigo-800:#4F1F38;
+  --p-turq-500:#A8456B;
+  --p-turq-100:#F6E3EC;
+  --p-gold-600:#A8752A;
+  --p-gold-500:#E3B049;
+  --p-gold-100:#FCEFD3;
+  --p-paper-50:#FDFBF5;
+  --p-stone-100:#F5EED9;
+  --p-ink-900:#231320;
+  --p-ink-600:#6E4C5E;
+  --p-ink-dim:#B79AA6;
+  --p-line:#E6D6DE;
+
+  --p-gold-foil: linear-gradient(100deg, var(--p-gold-600) 0%, var(--p-gold-500) 22%, #FFEFC2 45%, var(--p-gold-500) 68%, var(--p-gold-600) 100%);
+  --p-danger:#B4405A;
+  --p-ok:#3D8F63;
+  --p-radius:16px;
+  --p-ease: cubic-bezier(.22,.9,.32,1.1);
+  --p-shadow: 0 1px 2px rgba(31,14,23,.06), 0 18px 40px rgba(31,14,23,.12), 0 4px 16px rgba(168,117,42,.10);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body.premium-page{
+  margin:0;
+  font-family:'Cairo', sans-serif;
+  background:var(--p-paper-50);
+  color:var(--p-ink-900);
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+.premium-page h1,.premium-page h2,.premium-page h3{
+  font-family:'Amiri', serif;
+  font-weight:700;
+  margin:0;
+  line-height:1.25;
+  color:var(--p-indigo-900);
+}
+.premium-page a{color:inherit;}
+.premium-page .gold-foil{
+  background:var(--p-gold-foil);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:foil-sheen 7s ease-in-out infinite;
+}
+@keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+@keyframes p-fade-down{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-fade-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-card-in{from{opacity:0;transform:translateY(28px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes p-zoom-bg{from{transform:scale(1.08);}to{transform:scale(1);}}
+@keyframes p-pop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+.premium-visual{animation:p-zoom-bg 1.4s var(--p-ease) both;}
+.p-home-link{animation:p-fade-down .6s var(--p-ease) both;}
+.p-brand{animation:p-fade-down .6s var(--p-ease) .08s both;}
+.p-visual-quote .kicker{animation:p-fade-up .6s var(--p-ease) .18s both;}
+.p-visual-quote h1{animation:p-fade-up .6s var(--p-ease) .28s both;}
+.p-visual-quote p{animation:p-fade-up .6s var(--p-ease) .36s both;}
+.p-visual-stats{animation:p-fade-up .6s var(--p-ease) .44s both;}
+.premium-card{animation:p-card-in .7s var(--p-ease) .15s both;}
+.p-anim-in{animation:p-fade-up .5s var(--p-ease) both;}
+
+.p-home-link{
+  display:inline-flex;align-items:center;gap:7px;color:#F0E2DE;font-size:13.5px;font-weight:600;
+  text-decoration:none;opacity:.9;transition:opacity .2s ease, gap .2s ease;
+}
+.p-home-link:hover{opacity:1;gap:11px;color:var(--p-gold-500);}
+
+.p-dust{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.p-dust span{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--p-gold-500);opacity:.3;filter:blur(.3px);
+  animation:p-float 14s ease-in-out infinite;
+}
+@keyframes p-float{
+  0%,100%{transform:translateY(0) translateX(0);opacity:.12;}
+  50%{transform:translateY(-40px) translateX(14px);opacity:.4;}
+}
+
+.premium-shell{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+}
+
+.premium-visual{
+  position:relative;
+  min-height:100vh;
+  background-size:cover;background-position:center;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 52px;
+  background-color:var(--p-indigo-950);
+}
+.premium-visual::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg, rgba(31,14,23,.62) 0%, rgba(31,14,23,.78) 45%, rgba(31,14,23,.95) 100%);
+}
+.premium-visual > *{position:relative;z-index:1;}
+.p-brand{display:flex;align-items:center;gap:14px;}
+.p-brand img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5));}
+.p-brand .name{color:#fff;font-family:'Amiri',serif;font-size:20px;font-weight:700;}
+.p-brand .tag{display:block;font-family:'Cairo',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--p-gold-500);margin-top:2px;}
+.p-visual-quote{max-width:460px;}
+.p-visual-quote .kicker{display:inline-flex;align-items:center;gap:9px;color:var(--p-gold-500);font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:18px;}
+.p-visual-quote .kicker::before{content:"";width:26px;height:1px;background:var(--p-gold-500);}
+.p-visual-quote h1{color:#fff;font-size:36px;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.4);}
+.p-visual-quote p{color:#E7D6DC;font-size:15.5px;line-height:1.8;margin:0;}
+.p-visual-stats{display:flex;gap:34px;margin-top:36px;}
+.p-visual-stats div b{display:block;color:var(--p-gold-500);font-family:'Amiri',serif;font-size:26px;}
+.p-visual-stats div span{font-size:12.5px;color:#D9C3CA;}
+
+.premium-form-panel{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  padding:56px 48px;
+  background:
+    radial-gradient(1100px 560px at 100% 0%, rgba(168,69,107,.06), transparent 55%),
+    var(--p-paper-50);
+}
+.premium-card{
+  width:100%;max-width:460px;
+  background:#fff;
+  border:1px solid var(--p-line);
+  border-radius:var(--p-radius);
+  padding:38px 36px 32px;
+  box-shadow:var(--p-shadow);
+}
+.premium-card h2{font-size:26px;margin-bottom:6px;}
+.premium-card .p-sub{color:var(--p-ink-600);font-size:14px;margin:0 0 26px;line-height:1.7;}
+
+.p-steps{display:flex;align-items:center;gap:8px;margin-bottom:28px;}
+.p-steps .dot{flex:1;height:4px;border-radius:4px;background:var(--p-stone-100);overflow:hidden;position:relative;}
+.p-steps .dot::after{content:"";position:absolute;inset:0;background:var(--p-gold-foil);background-size:220% 100%;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--p-ease);}
+.p-steps .dot.done::after,.p-steps .dot.active::after{transform:scaleX(1);}
+
+.p-field{margin-bottom:18px;position:relative;}
+.p-field label{display:block;font-size:13px;color:var(--p-ink-600);margin-bottom:7px;font-weight:600;}
+.p-field input, .p-field select{
+  width:100%;padding:12px 15px;border-radius:10px;
+  border:1.5px solid var(--p-line);
+  background:var(--p-paper-50);
+  color:var(--p-ink-900);font-family:inherit;font-size:14.5px;
+  transition:border-color .2s ease, background .2s ease;
+}
+.p-field input::placeholder{color:#B79AA6;}
+.p-field input:focus, .p-field select:focus{
+  outline:none;border-color:var(--p-gold-500);background:#fff;
+}
+.p-field .p-err{display:none;color:var(--p-danger);font-size:12.5px;margin-top:6px;}
+.p-field.invalid input{border-color:var(--p-danger);}
+.p-field.invalid .p-err{display:block;}
+.p-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+.p-btn{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 20px;border-radius:26px;border:none;cursor:pointer;
+  font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;
+  background:var(--p-gold-500);color:var(--p-indigo-950);
+  box-shadow:none;
+  transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease;
+}
+.p-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:var(--p-shadow);background:#fff;}
+.p-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.p-btn-ghost{
+  width:100%;padding:12px 20px;border-radius:26px;text-align:center;
+  border:1.5px solid var(--p-gold-500);color:var(--p-gold-600);
+  background:transparent;font-weight:600;font-size:14px;cursor:pointer;
+  transition:all .2s var(--p-ease);
+}
+.p-btn-ghost:hover{background:var(--p-gold-500);color:var(--p-indigo-950);transform:translateY(-3px);}
+
+.p-link{color:var(--p-gold-600);font-weight:700;text-decoration:none;border-bottom:1.5px solid rgba(168,117,42,.4);padding-bottom:1px;}
+.p-link:hover{border-color:var(--p-gold-600);}
+
+.p-foot-note{text-align:center;font-size:13.5px;color:var(--p-ink-600);margin-top:22px;}
+
+.p-sub-card{
+  border:1px solid var(--p-line);border-radius:14px;padding:20px 20px 18px;
+  background:var(--p-gold-100);
+  margin-bottom:22px;
+}
+.p-sub-card .p-sub-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+.p-sub-card .p-sub-row span:first-child{color:var(--p-ink-600);font-size:13.5px;}
+.p-sub-card .p-price{font-family:'Amiri',serif;font-size:30px;color:var(--p-gold-600);}
+.p-sub-card .p-price small{font-size:14px;color:var(--p-ink-600);font-family:'Cairo',sans-serif;}
+.p-sub-card .p-usd-note{font-size:12px;color:var(--p-ink-600);margin-top:8px;line-height:1.6;}
+
+.p-summary-list{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-direction:column;gap:9px;}
+.p-summary-list li{display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px dashed var(--p-line);padding-bottom:8px;color:var(--p-ink-600);}
+.p-summary-list li b{color:var(--p-ink-900);font-weight:600;}
+
+.p-alert{border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;display:none;align-items:flex-start;gap:8px;line-height:1.6;}
+.p-alert.show{display:flex;}
+.p-alert.warn{background:#FBEAEE;border:1px solid #EFC3CD;color:#8F2D45;}
+.p-alert.ok{background:#E9F5EE;border:1px solid #BFE2CC;color:#2C6B48;}
+
+.p-success{text-align:center;padding:10px 4px 4px;}
+.p-success .p-check{
+  width:74px;height:74px;border-radius:50%;margin:0 auto 20px;
+  background:#E9F5EE;
+  border:1.5px solid #BFE2CC;
+  display:flex;align-items:center;justify-content:center;
+  animation:p-pop .5s var(--p-ease);
+}
+.p-success h2{font-size:22px;margin-bottom:10px;}
+.p-success p{color:var(--p-ink-600);font-size:14px;line-height:1.7;margin:0 0 22px;}
+.p-success .p-success-actions{display:flex;flex-direction:column;gap:10px;}
+
+.p-spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(31,14,23,.25);border-top-color:var(--p-indigo-950);animation:p-spin 0.7s linear infinite;}
+@keyframes p-spin{to{transform:rotate(360deg);}}
+
+@media (max-width: 900px){
+  .premium-shell{grid-template-columns:1fr;}
+  .premium-visual{min-height:280px;padding:32px 28px;}
+  .p-visual-quote h1{font-size:26px;}
+  .p-visual-stats{display:none;}
+  .premium-form-panel{padding:36px 20px 60px;}
+}
+</style>
+</head>
+<body class="premium-page">
+
+<div class="p-dust" id="pDust"></div>
+
+<div class="premium-shell">
+
+  <!-- ---------- Visual side ---------- -->
+  <div class="premium-visual" style="background-image:url('https://images.unsplash.com/photo-1769428197774-2dfdffe4a723?w=1400&q=80&auto=format&fit=crop');">
+    <div>
+      <a class="p-home-link" href="../index.html">→ الصفحة الرئيسية</a>
+      <div class="p-brand" style="margin-top:16px;">
+        <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="شعار مدرسة أمجاد">
+        <span class="name">مدرسة أمجاد الإسلامية<span class="tag">الإيمان · العلم · الأخلاق</span></span>
+      </div>
+    </div>
+
+    <div class="p-visual-quote">
+      <span class="kicker">اشتراك أولياء الأمور</span>
+      <h1 class="gold-foil">انضم لمجتمع أمجاد اليوم</h1>
+      <p>سجّل بياناتك في دقيقتين، وفعّل اشتراكك السنوي عشان تقدر تتابع كل مستجدات ابنك الدراسية وخدمات المدرسة أول بأول.</p>
+      <div class="p-visual-stats">
+        <div><b>480+</b><span>أسرة مشتركة</span></div>
+        <div><b>19</b><span>سنة خبرة</span></div>
+        <div><b>600 ج.م</b><span>اشتراك سنوي</span></div>
+      </div>
+    </div>
+
+    <div style="font-size:12.5px;color:#C9A8AE;">© 2026 مدرسة أمجاد الإسلامية</div>
+  </div>
+
+  <!-- ---------- Form side ---------- -->
+  <div class="premium-form-panel">
+    <div class="premium-card">
+
+      <!-- STEP INDICATOR -->
+      <div class="p-steps">
+        <div class="dot active" id="dotStep1"></div>
+        <div class="dot" id="dotStep2"></div>
+      </div>
+
+      <!-- ============ STEP 1 : registration form ============ -->
+      <div id="step1">
+        <h2>إنشاء حساب الاشتراك</h2>
+        <p class="p-sub">من فضلك املأ بياناتك بالكامل وبشكل صحيح، هنستخدمها للتواصل معاك ولإنشاء ملفك الشخصي.</p>
+
+        <div class="p-alert warn" id="existsAlert">
+          هذا البريد الإلكتروني مسجّل عندنا بالفعل. تقدر <a class="p-link" href="login.html">تسجّل الدخول من هنا</a> بدل إنشاء حساب جديد.
+        </div>
+
+        <form id="regForm" novalidate>
+          <div class="p-field" id="f-name">
+            <label>الاسم الكامل</label>
+            <input type="text" id="fullName" placeholder="مثال: أحمد محمد علي" autocomplete="name">
+            <div class="p-err">من فضلك اكتب الاسم الكامل (٣ أحرف على الأقل)</div>
+          </div>
+
+          <div class="p-field" id="f-age">
+            <label>السن</label>
+            <input type="number" id="age" placeholder="مثال: 35" min="1" max="100" autocomplete="off">
+            <div class="p-err">من فضلك اكتب سن صحيح</div>
+          </div>
+
+          <div class="p-field" id="f-email">
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="email" placeholder="example@email.com" autocomplete="email">
+            <div class="p-err">من فضلك اكتب بريد إلكتروني صحيح</div>
+          </div>
+
+          <div class="p-field" id="f-phone">
+            <label>رقم التليفون</label>
+            <input type="tel" id="phone" placeholder="01xxxxxxxxx" autocomplete="tel">
+            <div class="p-err">رقم التليفون لازم يكون 11 رقم ويبدأ بـ 01</div>
+          </div>
+
+          <div class="p-field" id="f-whatsapp">
+            <label>رقم الواتساب</label>
+            <input type="tel" id="whatsapp" placeholder="01xxxxxxxxx" autocomplete="off">
+            <div class="p-err">رقم الواتساب لازم يكون 11 رقم ويبدأ بـ 01</div>
+          </div>
+
+          <div class="p-field" id="f-altphone">
+            <label>رقم تاني للتواصل</label>
+            <input type="tel" id="altPhone" placeholder="01xxxxxxxxx" autocomplete="off">
+            <div class="p-err">رقم التواصل لازم يكون 11 رقم ويبدأ بـ 01</div>
+          </div>
+
+          <button type="submit" class="p-btn" id="step1Btn">
+            <span>متابعة لخطوة الدفع</span>
+          </button>
+        </form>
+
+        <p class="p-foot-note">عندك حساب بالفعل؟ <a class="p-link" href="login.html">سجّل الدخول</a></p>
+      </div>
+
+      <!-- ============ STEP 2 : subscription + payment ============ -->
+      <div id="step2" style="display:none;">
+        <h2>تفعيل الاشتراك</h2>
+        <p class="p-sub">آخر خطوة! أكّد بيانات الاشتراك وادفع بأمان عبر PayPal عشان يتفعّل حسابك فورًا.</p>
+
+        <div class="p-sub-card">
+          <div class="p-sub-row"><span>اشتراك سنوي</span><span class="p-price" id="priceEGP">600 <small>ج.م</small></span></div>
+          <div class="p-sub-row"><span>طريقة الدفع</span><span style="color:#fff;font-weight:700;">PayPal</span></div>
+          <div class="p-usd-note">
+            باي بال بيحصّل المبلغ بالدولار الأمريكي (السعر التقريبي المكافئ لـ <span id="priceEGP2">600</span> جنيه). القيمة المعروضة في زر الدفع بالأسفل هي المبلغ الفعلي اللي هيتخصم.
+          </div>
+        </div>
+
+        <ul class="p-summary-list" id="summaryList"></ul>
+
+        <div class="p-alert warn" id="payError"></div>
+        <div class="p-alert ok" id="payProcessing">جاري تأكيد عملية الدفع، من فضلك متقفلش الصفحة...</div>
+
+        <div id="paypal-button-container"></div>
+
+        <button type="button" class="p-btn-ghost" id="backToStep1" style="margin-top:14px;">رجوع لتعديل البيانات</button>
+      </div>
+
+      <!-- ============ SUCCESS ============ -->
+      <div id="stepSuccess" style="display:none;">
+        <div class="p-success">
+          <div class="p-check">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#6FCF97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2>تم تفعيل اشتراكك بنجاح 🎉</h2>
+          <p>احتفظنا ببياناتك على هذا الجهاز، ودلوقتي تقدر تدخل على ملفك الشخصي مباشرة.</p>
+          <div class="p-success-actions">
+            <a class="p-btn" href="profile.html" style="text-decoration:none;">الذهاب لملفي الشخصي</a>
+            <a class="p-btn-ghost" href="login.html" style="text-decoration:none;">تسجيل الدخول من صفحة تانية</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================
+  // إعدادات عامة للموقع
+  // ============================================
+  const SUBSCRIPTION = { amountEGP: 600, amountUSD: 12.5, currency: 'USD' };
+  const PAYPAL_CLIENT_ID = 'YOUR_PAYPAL_CLIENT_ID';
+
+  // ============================================
+  // طبقة تخزين البيانات — Local Storage (بديل Firebase)
+  // ============================================
+  const AMJAD_DB_KEY = 'amjad_members';
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+
+  function _readMembers(){
+    try{
+      const raw = localStorage.getItem(AMJAD_DB_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(err){
+      console.error('تعذّر قراءة بيانات الأعضاء من localStorage', err);
+      return [];
+    }
+  }
+  function _writeMembers(members){ localStorage.setItem(AMJAD_DB_KEY, JSON.stringify(members)); }
+  function _normEmail(email){ return String(email || '').trim().toLowerCase(); }
+
+  function findMemberByEmail(email){
+    return new Promise((resolve)=>{
+      const target = _normEmail(email);
+      const members = _readMembers();
+      resolve(members.find(m => _normEmail(m.email) === target) || null);
+    });
+  }
+
+  function saveMember(data){
+    return new Promise((resolve, reject)=>{
+      try{
+        const members = _readMembers();
+        const emailKey = _normEmail(data.email);
+        const idx = members.findIndex(m => _normEmail(m.email) === emailKey);
+        const now = new Date().toISOString();
+        if(idx > -1){
+          members[idx] = { ...members[idx], ...data, createdAt: members[idx].createdAt || now };
+          _writeMembers(members);
+          resolve(members[idx]);
+        }else{
+          const record = { ...data, createdAt: now };
+          members.push(record);
+          _writeMembers(members);
+          resolve(record);
+        }
+      }catch(err){ reject(err); }
+    });
+  }
+
+  function setSession(email){ localStorage.setItem(AMJAD_SESSION_KEY, _normEmail(email)); }
+  function getSession(){ return localStorage.getItem(AMJAD_SESSION_KEY); }
+  function clearSession(){ localStorage.removeItem(AMJAD_SESSION_KEY); }
+
+  // gold dust particles
+  (function(){
+    const wrap = document.getElementById('pDust');
+    for(let i=0;i<26;i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.animationDelay = (Math.random()*10) + 's';
+      s.style.animationDuration = (10 + Math.random()*10) + 's';
+      wrap.appendChild(s);
+    }
+  })();
+
+  const EG_PHONE = /^01[0-9]{9}$/;
+
+  function setInvalid(id, invalid){
+    document.getElementById(id).classList.toggle('invalid', invalid);
+  }
+
+  function validateStep1(){
+    let ok = true;
+    const fullName = document.getElementById('fullName').value.trim();
+    const age = document.getElementById('age').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const altPhone = document.getElementById('altPhone').value.trim();
+
+    const nameOk = fullName.length >= 3 && fullName.split(/\s+/).length >= 2;
+    setInvalid('f-name', !nameOk); if(!nameOk) ok = false;
+
+    const ageNum = Number(age);
+    const ageOk = age !== '' && Number.isFinite(ageNum) && ageNum > 0 && ageNum < 100;
+    setInvalid('f-age', !ageOk); if(!ageOk) ok = false;
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setInvalid('f-email', !emailOk); if(!emailOk) ok = false;
+
+    const phoneOk = EG_PHONE.test(phone);
+    setInvalid('f-phone', !phoneOk); if(!phoneOk) ok = false;
+
+    const waOk = EG_PHONE.test(whatsapp);
+    setInvalid('f-whatsapp', !waOk); if(!waOk) ok = false;
+
+    const altOk = EG_PHONE.test(altPhone);
+    setInvalid('f-altphone', !altOk); if(!altOk) ok = false;
+
+    return ok ? { fullName, age: ageNum, email, phone, whatsapp, altPhone } : null;
+  }
+
+  let pendingRegistration = null;
+
+  const regForm = document.getElementById('regForm');
+  const step1Btn = document.getElementById('step1Btn');
+  const existsAlert = document.getElementById('existsAlert');
+
+  regForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    existsAlert.classList.remove('show');
+    const data = validateStep1();
+    if(!data) return;
+
+    step1Btn.disabled = true;
+    step1Btn.innerHTML = '<span class="p-spin"></span><span>جاري التحقق...</span>';
+    try{
+      const existing = await findMemberByEmail(data.email);
+      if(existing && existing.paymentStatus === 'paid'){
+        existsAlert.classList.add('show');
+        return;
+      }
+      pendingRegistration = data;
+      goToStep2();
+    }catch(err){
+      console.error(err);
+      existsAlert.textContent = 'حصل خطأ غير متوقع أثناء التحقق من بياناتك. من فضلك حاول مرة أخرى.';
+      existsAlert.classList.add('show');
+    }finally{
+      step1Btn.disabled = false;
+      step1Btn.innerHTML = '<span>متابعة لخطوة الدفع</span>';
+    }
+  });
+
+  function animateIn(el){
+    el.classList.remove('p-anim-in');
+    void el.offsetWidth;
+    el.classList.add('p-anim-in');
+  }
+
+  function goToStep2(){
+    document.getElementById('step1').style.display = 'none';
+    const step2 = document.getElementById('step2');
+    step2.style.display = 'block';
+    animateIn(step2);
+    document.getElementById('dotStep1').classList.add('done');
+    document.getElementById('dotStep2').classList.add('active');
+
+    document.getElementById('priceEGP').innerHTML = SUBSCRIPTION.amountEGP + ' <small>ج.م</small>';
+    document.getElementById('priceEGP2').textContent = SUBSCRIPTION.amountEGP;
+
+    const list = document.getElementById('summaryList');
+    list.innerHTML = `
+      <li><span>الاسم</span><b>${escapeHtml(pendingRegistration.fullName)}</b></li>
+      <li><span>البريد الإلكتروني</span><b>${escapeHtml(pendingRegistration.email)}</b></li>
+      <li><span>رقم التليفون</span><b>${escapeHtml(pendingRegistration.phone)}</b></li>
+    `;
+
+    renderPaypal();
+  }
+
+  document.getElementById('backToStep1').addEventListener('click', ()=>{
+    document.getElementById('step2').style.display = 'none';
+    const step1 = document.getElementById('step1');
+    step1.style.display = 'block';
+    animateIn(step1);
+    document.getElementById('dotStep1').classList.remove('done');
+    document.getElementById('dotStep2').classList.remove('active');
+  });
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function renderPaypal(){
+    const container = document.getElementById('paypal-button-container');
+    container.innerHTML = '';
+
+    if(!window.paypal){
+      const errBox = document.getElementById('payError');
+      errBox.textContent = 'تعذّر تحميل بوابة الدفع (PayPal). تأكد إنك حطيت PAYPAL_CLIENT_ID الصحيح.';
+      errBox.classList.add('show');
+      return;
+    }
+
+    paypal.Buttons({
+      style:{ layout:'vertical', color:'gold', shape:'pill', label:'pay' },
+      createOrder: function(data, actions){
+        return actions.order.create({
+          purchase_units: [{
+            description: 'اشتراك سنوي - مدرسة أمجاد الإسلامية',
+            amount: { value: SUBSCRIPTION.amountUSD.toFixed(2), currency_code: SUBSCRIPTION.currency }
+          }]
+        });
+      },
+      onApprove: async function(data, actions){
+        const processing = document.getElementById('payProcessing');
+        const errBox = document.getElementById('payError');
+        errBox.classList.remove('show');
+        processing.classList.add('show');
+        try{
+          const details = await actions.order.capture();
+          if(details.status !== 'COMPLETED'){
+            throw new Error('payment_not_completed');
+          }
+          await saveMember({
+            ...pendingRegistration,
+            subscriptionAmountEGP: SUBSCRIPTION.amountEGP,
+            paidAmount: SUBSCRIPTION.amountUSD,
+            paidCurrency: SUBSCRIPTION.currency,
+            paymentMethod: 'paypal',
+            paymentStatus: 'paid',
+            paypalOrderId: data.orderID,
+            payerEmail: (details.payer && details.payer.email_address) || null
+          });
+
+          setSession(pendingRegistration.email);
+
+          processing.classList.remove('show');
+          document.getElementById('step2').style.display = 'none';
+          const successEl = document.getElementById('stepSuccess');
+          successEl.style.display = 'block';
+          animateIn(successEl);
+        }catch(err){
+          console.error(err);
+          processing.classList.remove('show');
+          errBox.textContent = 'الدفع تم لكن حصلت مشكلة في حفظ بياناتك. من فضلك سجّل رقم عملية الدفع (' + (data.orderID||'') + ') وتواصل معنا فورًا.';
+          errBox.classList.add('show');
+        }
+      },
+      onError: function(err){
+        console.error(err);
+        const errBox = document.getElementById('payError');
+        errBox.textContent = 'حصل خطأ أثناء عملية الدفع. من فضلك حاول تاني.';
+        errBox.classList.add('show');
+      }
+    }).render('#paypal-button-container');
+  }
+
+  // PayPal SDK
+  (function(){
+    const s = document.createElement('script');
+    s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=' + encodeURIComponent(SUBSCRIPTION.currency);
+    document.body.appendChild(s);
+  })();
+</script>
+
+</body>
+</html>

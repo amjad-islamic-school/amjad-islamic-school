@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول — مدرسة أمجاد الإسلامية</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --p-indigo-950:#1F0E17;
+  --p-indigo-900:#341527;
+  --p-indigo-800:#4F1F38;
+  --p-turq-500:#A8456B;
+  --p-turq-100:#F6E3EC;
+  --p-gold-600:#A8752A;
+  --p-gold-500:#E3B049;
+  --p-gold-100:#FCEFD3;
+  --p-paper-50:#FDFBF5;
+  --p-stone-100:#F5EED9;
+  --p-ink-900:#231320;
+  --p-ink-600:#6E4C5E;
+  --p-ink-dim:#B79AA6;
+  --p-line:#E6D6DE;
+
+  --p-gold-foil: linear-gradient(100deg, var(--p-gold-600) 0%, var(--p-gold-500) 22%, #FFEFC2 45%, var(--p-gold-500) 68%, var(--p-gold-600) 100%);
+  --p-danger:#B4405A;
+  --p-ok:#3D8F63;
+  --p-radius:16px;
+  --p-ease: cubic-bezier(.22,.9,.32,1.1);
+  --p-shadow: 0 1px 2px rgba(31,14,23,.06), 0 18px 40px rgba(31,14,23,.12), 0 4px 16px rgba(168,117,42,.10);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body.premium-page{
+  margin:0;
+  font-family:'Cairo', sans-serif;
+  background:var(--p-paper-50);
+  color:var(--p-ink-900);
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+.premium-page h1,.premium-page h2,.premium-page h3{
+  font-family:'Amiri', serif;
+  font-weight:700;
+  margin:0;
+  line-height:1.25;
+  color:var(--p-indigo-900);
+}
+.premium-page a{color:inherit;}
+.premium-page .gold-foil{
+  background:var(--p-gold-foil);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:foil-sheen 7s ease-in-out infinite;
+}
+@keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+@keyframes p-fade-down{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-fade-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-card-in{from{opacity:0;transform:translateY(28px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes p-zoom-bg{from{transform:scale(1.08);}to{transform:scale(1);}}
+
+.premium-visual{animation:p-zoom-bg 1.4s var(--p-ease) both;}
+.p-home-link{animation:p-fade-down .6s var(--p-ease) both;}
+.p-brand{animation:p-fade-down .6s var(--p-ease) .08s both;}
+.p-visual-quote .kicker{animation:p-fade-up .6s var(--p-ease) .18s both;}
+.p-visual-quote h1{animation:p-fade-up .6s var(--p-ease) .28s both;}
+.p-visual-quote p{animation:p-fade-up .6s var(--p-ease) .36s both;}
+.p-visual-stats{animation:p-fade-up .6s var(--p-ease) .44s both;}
+.premium-card{animation:p-card-in .7s var(--p-ease) .15s both;}
+.p-anim-in{animation:p-fade-up .5s var(--p-ease) both;}
+
+.p-home-link{
+  display:inline-flex;align-items:center;gap:7px;color:#F0E2DE;font-size:13.5px;font-weight:600;
+  text-decoration:none;opacity:.9;transition:opacity .2s ease, gap .2s ease;
+}
+.p-home-link:hover{opacity:1;gap:11px;color:var(--p-gold-500);}
+
+.p-dust{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.p-dust span{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--p-gold-500);opacity:.3;filter:blur(.3px);
+  animation:p-float 14s ease-in-out infinite;
+}
+@keyframes p-float{
+  0%,100%{transform:translateY(0) translateX(0);opacity:.12;}
+  50%{transform:translateY(-40px) translateX(14px);opacity:.4;}
+}
+
+.premium-shell{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+}
+
+.premium-visual{
+  position:relative;
+  min-height:100vh;
+  background-size:cover;background-position:center;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 52px;
+  background-color:var(--p-indigo-950);
+}
+.premium-visual::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg, rgba(31,14,23,.62) 0%, rgba(31,14,23,.78) 45%, rgba(31,14,23,.95) 100%);
+}
+.premium-visual > *{position:relative;z-index:1;}
+.p-brand{display:flex;align-items:center;gap:14px;}
+.p-brand img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5));}
+.p-brand .name{color:#fff;font-family:'Amiri',serif;font-size:20px;font-weight:700;}
+.p-brand .tag{display:block;font-family:'Cairo',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--p-gold-500);margin-top:2px;}
+.p-visual-quote{max-width:460px;}
+.p-visual-quote .kicker{display:inline-flex;align-items:center;gap:9px;color:var(--p-gold-500);font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:18px;}
+.p-visual-quote .kicker::before{content:"";width:26px;height:1px;background:var(--p-gold-500);}
+.p-visual-quote h1{color:#fff;font-size:36px;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.4);}
+.p-visual-quote p{color:#E7D6DC;font-size:15.5px;line-height:1.8;margin:0;}
+.p-visual-stats{display:flex;gap:34px;margin-top:36px;}
+.p-visual-stats div b{display:block;color:var(--p-gold-500);font-family:'Amiri',serif;font-size:26px;}
+.p-visual-stats div span{font-size:12.5px;color:#D9C3CA;}
+
+.premium-form-panel{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  padding:56px 48px;
+  background:
+    radial-gradient(1100px 560px at 100% 0%, rgba(168,69,107,.06), transparent 55%),
+    var(--p-paper-50);
+}
+.premium-card{
+  width:100%;max-width:460px;
+  background:#fff;
+  border:1px solid var(--p-line);
+  border-radius:var(--p-radius);
+  padding:38px 36px 32px;
+  box-shadow:var(--p-shadow);
+}
+.premium-card h2{font-size:26px;margin-bottom:6px;}
+.premium-card .p-sub{color:var(--p-ink-600);font-size:14px;margin:0 0 26px;line-height:1.7;}
+
+.p-field{margin-bottom:18px;position:relative;}
+.p-field label{display:block;font-size:13px;color:var(--p-ink-600);margin-bottom:7px;font-weight:600;}
+.p-field input, .p-field select{
+  width:100%;padding:12px 15px;border-radius:10px;
+  border:1.5px solid var(--p-line);
+  background:var(--p-paper-50);
+  color:var(--p-ink-900);font-family:inherit;font-size:14.5px;
+  transition:border-color .2s ease, background .2s ease;
+}
+.p-field input::placeholder{color:#B79AA6;}
+.p-field input:focus, .p-field select:focus{
+  outline:none;border-color:var(--p-gold-500);background:#fff;
+}
+.p-field .p-err{display:none;color:var(--p-danger);font-size:12.5px;margin-top:6px;}
+.p-field.invalid input{border-color:var(--p-danger);}
+.p-field.invalid .p-err{display:block;}
+
+.p-btn{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 20px;border-radius:26px;border:none;cursor:pointer;
+  font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;
+  background:var(--p-gold-500);color:var(--p-indigo-950);
+  box-shadow:none;
+  transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease;
+}
+.p-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:var(--p-shadow);background:#fff;}
+.p-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+
+.p-link{color:var(--p-gold-600);font-weight:700;text-decoration:none;border-bottom:1.5px solid rgba(168,117,42,.4);padding-bottom:1px;}
+.p-link:hover{border-color:var(--p-gold-600);}
+
+.p-foot-note{text-align:center;font-size:13.5px;color:var(--p-ink-600);margin-top:22px;}
+
+.p-alert{border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;display:none;align-items:flex-start;gap:8px;line-height:1.6;}
+.p-alert.show{display:flex;}
+.p-alert.warn{background:#FBEAEE;border:1px solid #EFC3CD;color:#8F2D45;}
+.p-alert.ok{background:#E9F5EE;border:1px solid #BFE2CC;color:#2C6B48;}
+
+.p-spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(31,14,23,.25);border-top-color:var(--p-indigo-950);animation:p-spin 0.7s linear infinite;}
+@keyframes p-spin{to{transform:rotate(360deg);}}
+
+@media (max-width: 900px){
+  .premium-shell{grid-template-columns:1fr;}
+  .premium-visual{min-height:280px;padding:32px 28px;}
+  .p-visual-quote h1{font-size:26px;}
+  .p-visual-stats{display:none;}
+  .premium-form-panel{padding:36px 20px 60px;}
+}
+</style>
+</head>
+<body class="premium-page">
+
+<div class="p-dust" id="pDust"></div>
+
+<div class="premium-shell">
+
+  <!-- ---------- Visual side ---------- -->
+  <div class="premium-visual" style="background-image:url('https://images.unsplash.com/photo-1776661617170-afed368e60af?w=1400&q=80&auto=format&fit=crop');">
+    <div>
+      <a class="p-home-link" href="../index.html">→ الصفحة الرئيسية</a>
+      <div class="p-brand" style="margin-top:16px;">
+        <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="شعار مدرسة أمجاد">
+        <span class="name">مدرسة أمجاد الإسلامية<span class="tag">الإيمان · العلم · الأخلاق</span></span>
+      </div>
+    </div>
+
+    <div class="p-visual-quote">
+      <span class="kicker">أهلًا بعودتك</span>
+      <h1 class="gold-foil">سجّل الدخول لملفك الشخصي</h1>
+      <p>اكتب نفس البريد الإلكتروني اللي اشتركت بيه، وهنوديك لملفك الشخصي على طول.</p>
+      <div class="p-visual-stats">
+        <div><b>480+</b><span>أسرة مشتركة</span></div>
+        <div><b>19</b><span>سنة خبرة</span></div>
+        <div><b>600 ج.م</b><span>اشتراك سنوي</span></div>
+      </div>
+    </div>
+
+    <div style="font-size:12.5px;color:#C9A8AE;">© 2026 مدرسة أمجاد الإسلامية</div>
+  </div>
+
+  <!-- ---------- Form side ---------- -->
+  <div class="premium-form-panel">
+    <div class="premium-card" style="max-width:440px;">
+
+      <h2>تسجيل الدخول</h2>
+      <p class="p-sub">من فضلك اكتب البريد الإلكتروني المرتبط باشتراكك عشان نعرض عليك ملفك الشخصي.</p>
+
+      <div class="p-alert warn" id="loginError"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="p-field" id="f-email">
+          <label>البريد الإلكتروني</label>
+          <input type="email" id="email" placeholder="example@email.com" autocomplete="email">
+          <div class="p-err">من فضلك اكتب بريد إلكتروني صحيح</div>
+        </div>
+
+        <button type="submit" class="p-btn" id="loginBtn">
+          <span>تسجيل الدخول</span>
+        </button>
+      </form>
+
+      <p class="p-foot-note">لسه معملتش اشتراك؟ <a class="p-link" href="signup.html">سجّل من هنا</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================
+  // طبقة تخزين البيانات — Local Storage (بديل Firebase)
+  // ============================================
+  const AMJAD_DB_KEY = 'amjad_members';
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+
+  function _readMembers(){
+    try{
+      const raw = localStorage.getItem(AMJAD_DB_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(err){
+      console.error('تعذّر قراءة بيانات الأعضاء من localStorage', err);
+      return [];
+    }
+  }
+  function _normEmail(email){ return String(email || '').trim().toLowerCase(); }
+
+  function findMemberByEmail(email){
+    return new Promise((resolve)=>{
+      const target = _normEmail(email);
+      const members = _readMembers();
+      resolve(members.find(m => _normEmail(m.email) === target) || null);
+    });
+  }
+
+  function setSession(email){ localStorage.setItem(AMJAD_SESSION_KEY, _normEmail(email)); }
+  function getSession(){ return localStorage.getItem(AMJAD_SESSION_KEY); }
+  function clearSession(){ localStorage.removeItem(AMJAD_SESSION_KEY); }
+
+  // gold dust particles
+  (function(){
+    const wrap = document.getElementById('pDust');
+    for(let i=0;i<26;i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.animationDelay = (Math.random()*10) + 's';
+      s.style.animationDuration = (10 + Math.random()*10) + 's';
+      wrap.appendChild(s);
+    }
+  })();
+
+  // لو المستخدم داخل بجلسة شغالة بالفعل، وديه على طول لملفه
+  if (getSession()) {
+    window.location.href = 'profile.html';
+  }
+
+  function setInvalid(id, invalid){
+    document.getElementById(id).classList.toggle('invalid', invalid);
+  }
+
+  const loginForm = document.getElementById('loginForm');
+  const loginBtn = document.getElementById('loginBtn');
+  const loginError = document.getElementById('loginError');
+
+  loginForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    loginError.classList.remove('show');
+
+    const email = document.getElementById('email').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setInvalid('f-email', !emailOk);
+    if(!emailOk) return;
+
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<span class="p-spin"></span><span>جاري التحقق...</span>';
+
+    try{
+      const member = await findMemberByEmail(email);
+      if(!member || member.paymentStatus !== 'paid'){
+        loginError.innerHTML = 'مش لاقيين اشتراك مفعّل بهذا البريد الإلكتروني. لو لسه معملتش اشتراك، <a class="p-link" href="signup.html">سجّل من هنا</a>.';
+        loginError.classList.add('show');
+        return;
+      }
+
+      setSession(email);
+      window.location.href = 'profile.html';
+    }catch(err){
+      console.error(err);
+      loginError.textContent = 'حصل خطأ غير متوقع أثناء تسجيل الدخول. من فضلك حاول مرة أخرى.';
+      loginError.classList.add('show');
+    }finally{
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = '<span>تسجيل الدخول</span>';
+    }
+  });
+</script>
+
+</body>
+</html>
