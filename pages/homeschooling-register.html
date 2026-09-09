@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — Homeschooling Program — Amjad Islamic School</title>
+<!--
+  PayPal JS SDK.
+  'sb' is PayPal's public sandbox client-id, used here so the button renders
+  and can be tested immediately. For real, live payments you MUST replace
+  'sb' with your own live Client ID from https://developer.paypal.com/dashboard/applications
+  (My Apps & Credentials -> your app -> Client ID, "Live" tab, not "Sandbox").
+-->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --p-indigo-950:#1F0E17;
+  --p-indigo-900:#341527;
+  --p-gold-600:#A8752A;
+  --p-gold-500:#E3B049;
+  --p-gold-100:#FCEFD3;
+  --p-paper-50:#FDFBF5;
+  --p-ink-900:#231320;
+  --p-ink-600:#6E4C5E;
+  --p-line:#E6D6DE;
+  --p-gold-foil: linear-gradient(100deg, var(--p-gold-600) 0%, var(--p-gold-500) 22%, #FFEFC2 45%, var(--p-gold-500) 68%, var(--p-gold-600) 100%);
+  --p-danger:#B4405A;
+  --p-radius:16px;
+  --p-ease: cubic-bezier(.22,.9,.32,1.1);
+  --p-shadow: 0 1px 2px rgba(31,14,23,.06), 0 18px 40px rgba(31,14,23,.12), 0 4px 16px rgba(168,117,42,.10);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body.premium-page{margin:0;font-family:'Cairo', sans-serif;background:var(--p-paper-50);color:var(--p-ink-900);min-height:100vh;position:relative;overflow-x:hidden;}
+.premium-page h1,.premium-page h2,.premium-page h3{font-family:'Amiri', serif;font-weight:700;margin:0;line-height:1.25;color:var(--p-indigo-900);}
+.premium-page a{color:inherit;}
+.gold-foil{background:var(--p-gold-foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil-sheen 7s ease-in-out infinite;}
+@keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+@keyframes p-fade-down{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-fade-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-card-in{from{opacity:0;transform:translateY(28px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes p-zoom-bg{from{transform:scale(1.08);}to{transform:scale(1);}}
+@keyframes p-pop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+@keyframes p-spin{to{transform:rotate(360deg);}}
+@keyframes p-row-in{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+
+.premium-visual{animation:p-zoom-bg 1.4s var(--p-ease) both;}
+.p-home-link{animation:p-fade-down .6s var(--p-ease) both;}
+.p-brand{animation:p-fade-down .6s var(--p-ease) .08s both;}
+.p-visual-quote .kicker{animation:p-fade-up .6s var(--p-ease) .18s both;}
+.p-visual-quote h1{animation:p-fade-up .6s var(--p-ease) .28s both;}
+.p-visual-quote p{animation:p-fade-up .6s var(--p-ease) .36s both;}
+.premium-card{animation:p-card-in .7s var(--p-ease) .15s both;}
+.p-anim-in{animation:p-fade-up .5s var(--p-ease) both;}
+
+.p-home-link{display:inline-flex;align-items:center;gap:7px;color:#F0E2DE;font-size:13.5px;font-weight:600;text-decoration:none;opacity:.9;transition:opacity .2s ease, gap .2s ease;}
+.p-home-link:hover{opacity:1;gap:11px;color:var(--p-gold-500);}
+
+.p-dust{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.p-dust span{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--p-gold-500);opacity:.3;filter:blur(.3px);animation:p-float 14s ease-in-out infinite;}
+@keyframes p-float{0%,100%{transform:translateY(0) translateX(0);opacity:.12;}50%{transform:translateY(-40px) translateX(14px);opacity:.4;}}
+
+.premium-shell{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr;}
+.premium-visual{position:relative;min-height:100vh;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:space-between;padding:48px 52px;background-color:var(--p-indigo-950);}
+.premium-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(31,14,23,.62) 0%, rgba(31,14,23,.78) 45%, rgba(31,14,23,.95) 100%);}
+.premium-visual > *{position:relative;z-index:1;}
+.p-brand{display:flex;align-items:center;gap:14px;}
+.p-brand img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5));}
+.p-brand .name{color:#fff;font-family:'Amiri',serif;font-size:20px;font-weight:700;}
+.p-brand .tag{display:block;font-family:'Cairo',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--p-gold-500);margin-top:2px;}
+.p-visual-quote{max-width:460px;}
+.p-visual-quote .kicker{display:inline-flex;align-items:center;gap:9px;color:var(--p-gold-500);font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:18px;}
+.p-visual-quote .kicker::before{content:"";width:26px;height:1px;background:var(--p-gold-500);}
+.p-visual-quote h1{color:#fff;font-size:32px;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.4);}
+.p-visual-quote p{color:#E7D6DC;font-size:15.5px;line-height:1.8;margin:0;}
+
+/* Levels reference list on the visual side, so people can see what each level includes while building their package */
+.p-level-ref{margin-top:22px;display:flex;flex-direction:column;gap:8px;}
+.p-level-ref .lr-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 13px;font-size:12.5px;color:#EAD9DE;}
+.p-level-ref .lr-item strong{color:#fff;font-weight:600;}
+.p-level-ref .lr-item span.lr-fee{color:var(--p-gold-500);font-weight:700;white-space:nowrap;}
+
+.premium-form-panel{position:relative;display:flex;align-items:center;justify-content:center;padding:56px 48px;background:radial-gradient(1100px 560px at 100% 0%, rgba(168,69,107,.06), transparent 55%), var(--p-paper-50);}
+.premium-card{width:100%;max-width:480px;background:#fff;border:1px solid var(--p-line);border-radius:var(--p-radius);padding:38px 36px 32px;box-shadow:var(--p-shadow);}
+.premium-card h2{font-size:24px;margin-bottom:6px;}
+.premium-card .p-sub{color:var(--p-ink-600);font-size:14px;margin:0 0 22px;line-height:1.7;}
+
+/* ---------- Package / cart ---------- */
+.p-package{border:1px solid var(--p-line);border-radius:12px;padding:16px 16px 6px;margin-bottom:20px;opacity:0;animation:p-card-in .6s var(--p-ease) .08s both;background:var(--p-paper-50);}
+.p-package .pkg-title{font-size:12px;letter-spacing:.05em;font-weight:700;color:var(--p-gold-600);margin-bottom:12px;}
+.pkg-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--p-line);border-radius:10px;padding:10px 12px;margin-bottom:10px;animation:p-row-in .3s var(--p-ease) both;}
+.pkg-row .pr-name{font-size:13.5px;font-weight:600;color:var(--p-indigo-900);}
+.pkg-row .pr-fee{font-size:13px;color:var(--p-ink-600);margin-top:1px;}
+.pkg-row .pr-remove{flex:none;width:26px;height:26px;border-radius:50%;border:none;background:var(--p-gold-100);color:var(--p-gold-600);cursor:pointer;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s ease, color .2s ease;}
+.pkg-row .pr-remove:hover{background:var(--p-danger);color:#fff;}
+.pkg-empty{font-size:13px;color:var(--p-ink-600);padding:6px 0 14px;text-align:center;}
+
+.pkg-add{display:flex;gap:8px;margin:4px 0 14px;}
+.pkg-add select{flex:1;padding:10px 12px;border-radius:10px;border:1.5px solid var(--p-line);background:#fff;color:var(--p-ink-900);font-family:inherit;font-size:13.5px;}
+.pkg-add select:focus{outline:none;border-color:var(--p-gold-500);}
+.pkg-add button{flex:none;padding:10px 16px;border-radius:10px;border:1.5px solid var(--p-gold-500);background:#fff;color:var(--p-gold-600);font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s ease;}
+.pkg-add button:hover{background:var(--p-gold-500);color:var(--p-indigo-950);}
+.pkg-add button:disabled{opacity:.5;cursor:not-allowed;}
+
+.pkg-total{display:flex;align-items:center;justify-content:space-between;border-top:1.5px dashed var(--p-line);padding:12px 0 14px;margin-top:4px;}
+.pkg-total .t-label{font-size:13.5px;font-weight:700;color:var(--p-indigo-900);}
+.pkg-total .t-amt{font-family:'Amiri',serif;font-size:21px;font-weight:700;color:var(--p-gold-600);}
+
+/* ---------- Optional enrichment bundle (one package, not per-subject) ---------- */
+.p-enrichment{margin-bottom:20px;opacity:0;animation:p-card-in .6s var(--p-ease) .12s both;}
+.p-enrichment .enr-title{font-size:12px;letter-spacing:.05em;font-weight:700;color:var(--p-gold-600);margin-bottom:4px;}
+.p-enrichment .enr-sub{font-size:12.5px;color:var(--p-ink-600);margin:0 0 12px;line-height:1.6;}
+.enr-card{border:1.5px solid var(--p-gold-500);background:var(--p-gold-100);border-radius:12px;padding:16px 16px 14px;transition:border-color .2s ease, background .2s ease;}
+.enr-card.added{border-color:#BFE2CC;background:#F5FBF7;}
+.enr-card .enr-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.enr-card .enr-name{font-family:'Amiri',serif;font-size:16.5px;font-weight:700;color:var(--p-indigo-900);}
+.enr-card .enr-fee{font-size:13px;color:var(--p-gold-600);font-weight:700;white-space:nowrap;margin-top:2px;}
+.enr-subjects{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:6px;}
+.enr-subjects li{position:relative;padding-left:16px;font-size:13px;color:var(--p-ink-900);}
+.enr-subjects li::before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--p-gold-600);}
+.enr-subjects li .st{display:block;font-size:11.5px;color:var(--p-ink-600);margin-top:1px;}
+.enr-card-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:24px;border:1.5px solid var(--p-gold-500);background:#fff;color:var(--p-gold-600);font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:all .2s ease;}
+.enr-card-btn:hover{background:var(--p-gold-500);color:var(--p-indigo-950);}
+.enr-card-btn.added{background:#3D8F63;border-color:#3D8F63;color:#fff;cursor:default;}
+.enr-card-btn.added:hover{background:#3D8F63;color:#fff;}
+
+.p-field{margin-bottom:18px;position:relative;opacity:0;animation:p-fade-up .5s var(--p-ease) both;}
+#formState #f-name{animation-delay:.42s;}
+#formState #f-phone{animation-delay:.5s;}
+#formState .p-field:nth-of-type(3){animation-delay:.58s;}
+#submitBtn{opacity:0;animation:p-fade-up .5s var(--p-ease) .66s both;}
+.p-field label{display:block;font-size:13px;color:var(--p-ink-600);margin-bottom:7px;font-weight:600;}
+.p-field input{width:100%;padding:12px 15px;border-radius:10px;border:1.5px solid var(--p-line);background:var(--p-paper-50);color:var(--p-ink-900);font-family:inherit;font-size:14.5px;transition:border-color .2s ease, background .2s ease;}
+.p-field input:focus{outline:none;border-color:var(--p-gold-500);background:#fff;}
+.p-field input[disabled]{color:var(--p-ink-600);}
+.p-field .p-err{display:none;color:var(--p-danger);font-size:12.5px;margin-top:6px;}
+.p-field.invalid input{border-color:var(--p-danger);}
+.p-field.invalid .p-err{display:block;}
+
+.p-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:26px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;background:var(--p-gold-500);color:var(--p-indigo-950);transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease, color .2s ease;}
+.p-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:var(--p-shadow);background:#fff;}
+.p-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.p-btn.locked{background:#E7E1D8;color:#9A8B90;}
+.p-btn.locked:hover{transform:none;box-shadow:none;background:#E7E1D8;}
+.p-btn.pay-error{background:var(--p-danger);color:#fff;opacity:1;}
+.p-btn.pay-error:hover{background:#9A2E45;transform:none;box-shadow:none;}
+.p-btn.pay-success{background:#3D8F63;color:#fff;}
+.p-btn.pay-success:hover{background:#2C6B48;color:#fff;}
+
+/* ---------- PayPal payment block ---------- */
+.p-pay-block{margin-bottom:22px;padding:18px 16px;border:1.5px solid var(--p-line);border-radius:12px;background:var(--p-paper-50);}
+.p-pay-block .p-pay-label{font-size:13px;font-weight:700;color:var(--p-ink-900);margin-bottom:4px;display:flex;align-items:center;gap:7px;}
+.p-pay-block .p-pay-sub{font-size:12.5px;color:var(--p-ink-600);margin:0 0 14px;line-height:1.6;}
+#paypal-button-container{min-height:45px;}
+.p-pay-status{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;margin-top:12px;padding:9px 12px;border-radius:8px;}
+.p-pay-status.idle{background:#F5EED9;color:var(--p-ink-600);}
+.p-pay-status.ok{background:#E9F5EE;color:#2C6B48;border:1px solid #BFE2CC;}
+.p-pay-status.fail{background:#FBEAEE;color:#8F2D45;border:1px solid #EFC3CD;}
+
+.p-alert{border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;display:none;align-items:flex-start;gap:8px;line-height:1.6;}
+.p-alert.show{display:flex;}
+.p-alert.warn{background:#FBEAEE;border:1px solid #EFC3CD;color:#8F2D45;}
+
+.p-success{text-align:center;padding:10px 4px 4px;}
+.p-success .p-check{width:74px;height:74px;border-radius:50%;margin:0 auto 20px;background:#E9F5EE;border:1.5px solid #BFE2CC;display:flex;align-items:center;justify-content:center;animation:p-pop .5s var(--p-ease);}
+.p-success h2{font-size:22px;margin-bottom:10px;}
+.p-success p{color:var(--p-ink-600);font-size:14px;line-height:1.7;margin:0 0 16px;}
+.p-success .p-success-items{text-align:left;background:var(--p-paper-50);border:1px solid var(--p-line);border-radius:10px;padding:12px 14px;margin:0 0 22px;font-size:13px;color:var(--p-ink-900);}
+.p-success .p-success-items li{display:flex;justify-content:space-between;padding:4px 0;list-style:none;}
+
+.p-spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(31,14,23,.25);border-top-color:var(--p-indigo-950);animation:p-spin 0.7s linear infinite;}
+
+.p-redirecting{max-width:420px;margin:0 auto;text-align:center;color:var(--p-ink-600);font-size:14.5px;}
+.p-redirecting a{color:var(--p-gold-600);font-weight:700;}
+
+@media (max-width: 900px){
+  .premium-shell{grid-template-columns:1fr;}
+  .premium-visual{min-height:auto;padding:32px 28px;}
+  .p-visual-quote h1{font-size:24px;}
+  .p-level-ref{display:none;}
+  .premium-form-panel{padding:36px 20px 60px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+
+/* ---------- Basic front-end tamper deterrents ---------- */
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+input, textarea{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+img{-webkit-user-drag:none;pointer-events:auto;}
+</style>
+</head>
+<body class="premium-page">
+
+<div class="p-dust" id="pDust"></div>
+
+<div class="premium-shell">
+
+  <!-- ---------- Visual side ---------- -->
+  <div class="premium-visual" style="background-image:url('https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=1400');">
+    <div>
+      <a class="p-home-link" href="homeschooling-programs.html">← Back to Homeschooling Program</a>
+      <div class="p-brand" style="margin-top:16px;">
+        <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="Amjad Islamic School logo">
+        <span class="name">Amjad Islamic School<span class="tag">HOMESCHOOLING PROGRAM</span></span>
+      </div>
+    </div>
+
+    <div class="p-visual-quote">
+      <span class="kicker">Build Your Package</span>
+      <h1 class="gold-foil">One Registration, Every Level</h1>
+      <p>Add the level (or levels) your child needs — the total updates automatically, and you only pay once.</p>
+      <div class="p-level-ref">
+        <div class="lr-item"><strong>Level 1 — Kindergarten</strong><span class="lr-fee">$250</span></div>
+        <div class="lr-item"><strong>Level 2 — Grades 1–3</strong><span class="lr-fee">$280</span></div>
+        <div class="lr-item"><strong>Level 3 — Grades 4–6</strong><span class="lr-fee">$300</span></div>
+        <div class="lr-item"><strong>Level 4 — Grades 7–8</strong><span class="lr-fee">$320</span></div>
+      </div>
+    </div>
+
+    <div style="font-size:12.5px;color:#C9A8AE;">© 2026 Amjad Islamic School</div>
+  </div>
+
+  <!-- ---------- Form side ---------- -->
+  <div class="premium-form-panel">
+    <div class="premium-card" id="premiumCard">
+
+      <!-- Shown briefly if no one is signed in, before the redirect fires -->
+      <div class="p-redirecting" id="redirectState" style="display:none;">
+        Please create an account or log in to finish registering — redirecting you now.
+        <br><br><a id="manualLink" href="signup.html">Continue to sign up →</a>
+      </div>
+
+      <!-- ============ Confirmation form ============ -->
+      <div id="formState" style="display:none;">
+
+        <h2>Your Registration Package</h2>
+        <p class="p-sub">Add every level your child (or children) will take. You'll pay the total once, in one payment.</p>
+
+        <div class="p-alert warn" id="formError"></div>
+
+        <div class="p-package">
+          <div class="pkg-title">SELECTED LEVELS</div>
+          <div id="pkgRows"></div>
+          <div class="pkg-empty" id="pkgEmpty" style="display:none;">No levels added yet — choose one below.</div>
+
+          <div class="pkg-add">
+            <select id="levelSelect"></select>
+            <button type="button" id="addLevelBtn">+ Add</button>
+          </div>
+
+          <div class="pkg-total">
+            <span class="t-label">Total</span>
+            <span class="t-amt" id="pkgTotal">$0</span>
+          </div>
+        </div>
+
+        <div class="p-enrichment">
+          <div class="enr-title">⭐ AMJAD ACADEMIC ENRICHMENT</div>
+          <p class="enr-sub">One combined package offered alongside the core subjects, all year round.</p>
+          <div id="enrCard"></div>
+        </div>
+
+        <div class="p-pay-block" id="payBlock" style="display:none;">
+          <div class="p-pay-label">💳 Pay with PayPal</div>
+          <p class="p-pay-sub">Payment is required before your registration can be confirmed.</p>
+          <div id="paypal-button-container"></div>
+          <div class="p-pay-status idle" id="payStatus">
+            <span>🔒</span><span>Waiting for payment…</span>
+          </div>
+        </div>
+
+        <form id="registerForm" novalidate>
+          <div class="p-field" id="f-name">
+            <label>Full Name</label>
+            <input type="text" id="fullName">
+            <div class="p-err">Please enter the full name</div>
+          </div>
+          <div class="p-field" id="f-phone">
+            <label>Phone Number</label>
+            <input type="tel" id="phone">
+            <div class="p-err">Please enter a phone number</div>
+          </div>
+          <div class="p-field">
+            <label>Email</label>
+            <input type="email" id="email" disabled>
+          </div>
+          <button type="submit" class="p-btn locked" id="submitBtn" disabled>
+            <span>🔒 Add a Level to Continue</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- ============ SUCCESS ============ -->
+      <div id="successState" style="display:none;">
+        <div class="p-success">
+          <div class="p-check">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#6FCF97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2>Registration Received 🎉</h2>
+          <p>We've logged your registration package below. Our team will follow up on WhatsApp or by phone with next steps.</p>
+          <ul class="p-success-items" id="successItems"></ul>
+          <a class="p-btn" href="homeschooling-programs.html" style="text-decoration:none;">← Back to Homeschooling Program</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================
+  // Google Sheets backend (Google Apps Script Web App)
+  // ============================================
+  // Same deployment URL used elsewhere on the site (signup.html / login.html / profile.html).
+  const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzkRyW_9qkxZ4G1arBoq4e07TSW7bMHvlS_5M5_E84dwvAqeQBHZ2miOvXj_fxXrBue9A/exec';
+
+  const AMJAD_PROFILE_KEY = 'amjad_profile';
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+
+  function getSession(){ return localStorage.getItem(AMJAD_SESSION_KEY); }
+  function getCachedProfile(){
+    try{ const raw = localStorage.getItem(AMJAD_PROFILE_KEY); return raw ? JSON.parse(raw) : null; }
+    catch(err){ return null; }
+  }
+
+  // gold dust particles (matches the rest of the site)
+  (function(){
+    const wrap = document.getElementById('pDust');
+    for(let i=0;i<26;i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.animationDelay = (Math.random()*10) + 's';
+      s.style.animationDuration = (10 + Math.random()*10) + 's';
+      wrap.appendChild(s);
+    }
+  })();
+
+  // ============================================
+  // Levels catalog — keep in sync with homeschooling-programs.html
+  // ============================================
+  const LEVELS = [
+    { id: 'l1', name: 'Level 1 — Kindergarten',   sub: 'Early Learning & School Readiness',        fee: 250 },
+    { id: 'l2', name: 'Level 2 — Grades 1–3',      sub: 'Elementary Foundations',                   fee: 280 },
+    { id: 'l3', name: 'Level 3 — Grades 4–6',      sub: 'Elementary Academic Development',          fee: 300 },
+    { id: 'l4', name: 'Level 4 — Grades 7–8',      sub: 'Middle School Preparation',                fee: 320 }
+  ];
+
+  function findLevelByName(name){
+    if (!name) return null;
+    return LEVELS.find(l => l.name === name) || null;
+  }
+
+  // ============================================
+  // Optional enrichment bundle — one package covering all five subjects
+  // together (not addable individually). Added or removed as a single item,
+  // stacking onto the same package/total as the levels above.
+  // ============================================
+  const ENRICHMENT_BUNDLE = {
+    id: 'enrichment-bundle',
+    name: 'Amjad Academic Enrichment',
+    fee: 220,
+    subjects: [
+      { name: 'Arabic Language',         tag: 'Conversation • Reading • Writing • Grammar' },
+      { name: 'Islamic Education',       tag: "Qur'an • Hadith • Seerah • Islamic Values" },
+      { name: 'STEM & Innovation',       tag: 'Science • Technology • Engineering • Creative Projects' },
+      { name: 'Arts & Creativity',       tag: 'Drawing • Design • Creative Writing • Projects' },
+      { name: 'Leadership & Life Skills',tag: 'Communication • Confidence • Teamwork • Problem Solving' }
+    ]
+  };
+
+  // Package state: array of { id, name, fee }
+  let pkg = [];
+
+  const params = new URLSearchParams(location.search);
+  const incomingLevelName = params.get('level');
+  const incomingFee = params.get('fee');
+
+  // Pre-fill the package from the link that was clicked. If the level name
+  // doesn't match the catalog exactly, fall back to a custom line item using
+  // whatever name/fee were passed in the URL.
+  (function seedPackage(){
+    if (!incomingLevelName) return;
+    const match = findLevelByName(incomingLevelName);
+    if (match) {
+      pkg.push({ id: match.id, name: match.name, fee: match.fee });
+    } else {
+      pkg.push({ id: 'custom-' + Date.now(), name: incomingLevelName, fee: incomingFee ? parseFloat(incomingFee) : 0 });
+    }
+  })();
+
+  const session = getSession();
+
+  if (!session) {
+    document.getElementById('redirectState').style.display = 'block';
+    document.getElementById('manualLink').href = 'signup.html?next=' + encodeURIComponent(location.href);
+    setTimeout(() => { window.location.href = 'signup.html?next=' + encodeURIComponent(location.href); }, 900);
+  } else {
+    const profile = getCachedProfile() || {};
+    document.getElementById('formState').style.display = 'block';
+    document.getElementById('fullName').value = profile['Full Name'] || '';
+    document.getElementById('phone').value = profile['Phone'] || '';
+    document.getElementById('email').value = profile['Email'] || session || '';
+
+    function setInvalid(id, invalid){ document.getElementById(id).classList.toggle('invalid', invalid); }
+
+    // ---------- Level picker (only offers levels not already in the package) ----------
+    const levelSelect = document.getElementById('levelSelect');
+    const addLevelBtn = document.getElementById('addLevelBtn');
+
+    function refreshLevelSelect(){
+      const available = LEVELS.filter(l => !pkg.some(p => p.id === l.id));
+      levelSelect.innerHTML = '';
+      if (available.length === 0) {
+        const opt = document.createElement('option');
+        opt.textContent = 'All levels added';
+        levelSelect.appendChild(opt);
+        levelSelect.disabled = true;
+        addLevelBtn.disabled = true;
+      } else {
+        levelSelect.disabled = false;
+        addLevelBtn.disabled = false;
+        available.forEach(l => {
+          const opt = document.createElement('option');
+          opt.value = l.id;
+          opt.textContent = l.name + ' — $' + l.fee + '/term';
+          levelSelect.appendChild(opt);
+        });
+      }
+    }
+
+    addLevelBtn.addEventListener('click', function(){
+      const chosen = LEVELS.find(l => l.id === levelSelect.value);
+      if (!chosen) return;
+      pkg.push({ id: chosen.id, name: chosen.name, fee: chosen.fee });
+      renderPackage();
+    });
+
+    // ---------- Enrichment bundle rendering (single package, not per-subject) ----------
+    const enrCard = document.getElementById('enrCard');
+
+    function renderEnrichment(){
+      const b = ENRICHMENT_BUNDLE;
+      const inPkg = pkg.some(p => p.id === b.id);
+
+      const subjectsHtml = b.subjects.map(s =>
+        '<li>' + s.name + '<span class="st">' + s.tag + '</span></li>'
+      ).join('');
+
+      enrCard.innerHTML =
+        '<div class="enr-card' + (inPkg ? ' added' : '') + '">' +
+          '<div class="enr-card-head">' +
+            '<span class="enr-name">' + b.name + '</span>' +
+            '<span class="enr-fee">$' + b.fee + '/term<span class="sample-badge" style="margin-left:6px;">sample</span></span>' +
+          '</div>' +
+          '<ul class="enr-subjects">' + subjectsHtml + '</ul>' +
+          '<button type="button" class="enr-card-btn' + (inPkg ? ' added' : '') + '" id="enrBtn">' +
+            (inPkg ? '✓ Added to your package' : '+ Add this package') +
+          '</button>' +
+        '</div>';
+
+      if (!inPkg) {
+        document.getElementById('enrBtn').addEventListener('click', function(){
+          pkg.push({ id: b.id, name: b.name, fee: b.fee });
+          renderPackage();
+        });
+      }
+    }
+
+    // ---------- Package rendering ----------
+    const pkgRows = document.getElementById('pkgRows');
+    const pkgEmpty = document.getElementById('pkgEmpty');
+    const pkgTotalEl = document.getElementById('pkgTotal');
+
+    function currentTotal(){
+      return pkg.reduce((sum, item) => sum + (parseFloat(item.fee) || 0), 0);
+    }
+
+    function renderPackage(){
+      pkgRows.innerHTML = '';
+      pkgEmpty.style.display = pkg.length === 0 ? 'block' : 'none';
+
+      pkg.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'pkg-row';
+        row.innerHTML =
+          '<div><div class="pr-name">' + item.name + '</div>' +
+          '<div class="pr-fee">$' + Number(item.fee).toFixed(0) + ' / term</div></div>' +
+          '<button type="button" class="pr-remove" aria-label="Remove">✕</button>';
+        row.querySelector('.pr-remove').addEventListener('click', function(){
+          pkg.splice(idx, 1);
+          renderPackage();
+        });
+        pkgRows.appendChild(row);
+      });
+
+      const total = currentTotal();
+      pkgTotalEl.textContent = '$' + total.toFixed(2).replace(/\.00$/, '');
+
+      refreshLevelSelect();
+      renderEnrichment();
+      updatePaymentGate();
+    }
+
+    // ============================================
+    // PayPal payment gate — rebuilt whenever the package total changes
+    // ============================================
+    const payBlock = document.getElementById('payBlock');
+    const payStatus = document.getElementById('payStatus');
+    const submitBtn = document.getElementById('submitBtn');
+    let paymentVerified = false;
+    let paypalOrderId = null;
+    let paypalButtonsInstance = null;
+    let lastRenderedTotal = null;
+
+    function setPayStatus(state, text){
+      payStatus.className = 'p-pay-status ' + state;
+      const icon = state === 'ok' ? '✓' : (state === 'fail' ? '⚠' : '🔒');
+      payStatus.innerHTML = '<span>' + icon + '</span><span>' + text + '</span>';
+    }
+
+    function lockSubmit(text){
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('pay-success', 'pay-error');
+      submitBtn.classList.add('locked');
+      submitBtn.innerHTML = '<span>' + (text || '🔒 Complete Payment to Register') + '</span>';
+    }
+    function failSubmit(){
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('pay-success', 'locked');
+      submitBtn.classList.add('pay-error');
+      submitBtn.innerHTML = '<span>⚠ Payment Failed — Try Again</span>';
+    }
+    function unlockSubmit(){
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('locked', 'pay-error');
+      submitBtn.classList.add('pay-success');
+      submitBtn.innerHTML = '<span>Confirm Registration</span>';
+    }
+
+    function updatePaymentGate(){
+      const total = currentTotal();
+
+      if (pkg.length === 0) {
+        // Nothing selected yet — nothing to pay for or submit.
+        payBlock.style.display = 'none';
+        paymentVerified = false;
+        lockSubmit('🔒 Add a Level to Continue');
+        lastRenderedTotal = null;
+        return;
+      }
+
+      if (total <= 0) {
+        // Selected items are free — skip the payment gate entirely.
+        payBlock.style.display = 'none';
+        paymentVerified = true;
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('locked', 'pay-error');
+        submitBtn.classList.add('pay-success');
+        submitBtn.innerHTML = '<span>Confirm Registration</span>';
+        lastRenderedTotal = total;
+        return;
+      }
+
+      // A paid total is required. If the total changed since the last
+      // successful payment (e.g. the user added/removed a level), the
+      // payment must be redone against the new amount.
+      if (lastRenderedTotal !== total) {
+        paymentVerified = false;
+        paypalOrderId = null;
+        payBlock.style.display = 'block';
+        lockSubmit('🔒 Complete Payment to Register');
+        setPayStatus('idle', 'Waiting for payment…');
+
+        document.getElementById('paypal-button-container').innerHTML = '';
+
+        if (typeof paypal === 'undefined') {
+          setPayStatus('fail', 'Could not load PayPal. Please refresh the page.');
+        } else {
+          paypal.Buttons({
+            style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'paypal', height: 42 },
+            createOrder: function (data, actions) {
+              const desc = pkg.map(i => i.name).join(', ') + ' — Amjad Homeschooling Program';
+              return actions.order.create({
+                purchase_units: [{
+                  description: desc.slice(0, 120),
+                  amount: { value: currentTotal().toFixed(2), currency_code: 'USD' }
+                }]
+              });
+            },
+            onApprove: function (data, actions) {
+              return actions.order.capture().then(function (details) {
+                paymentVerified = true;
+                paypalOrderId = data.orderID;
+                lastRenderedTotal = currentTotal();
+                setPayStatus('ok', 'Payment received — thank you!');
+                unlockSubmit();
+              }).catch(function (err) {
+                console.error(err);
+                paymentVerified = false;
+                setPayStatus('fail', 'A payment problem occurred. Please try again.');
+                failSubmit();
+              });
+            },
+            onError: function (err) {
+              console.error(err);
+              paymentVerified = false;
+              setPayStatus('fail', 'A payment problem occurred. Please try again.');
+              failSubmit();
+            },
+            onCancel: function () {
+              paymentVerified = false;
+              setPayStatus('fail', 'Payment was cancelled. Please complete payment to register.');
+              failSubmit();
+            }
+          }).render('#paypal-button-container');
+        }
+      }
+    }
+
+    renderPackage();
+
+    document.getElementById('registerForm').addEventListener('submit', async function(ev){
+      ev.preventDefault();
+
+      if (pkg.length === 0) {
+        const errEl = document.getElementById('formError');
+        errEl.textContent = 'Please add at least one level to your package first.';
+        errEl.classList.add('show');
+        return;
+      }
+
+      // Safety net: even though the button is disabled until payment
+      // succeeds, never let this submit through without a verified payment.
+      if (!paymentVerified) {
+        setPayStatus('fail', 'A payment problem occurred. Please complete payment first.');
+        failSubmit();
+        return;
+      }
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const errEl = document.getElementById('formError');
+      errEl.classList.remove('show');
+
+      const nameOk = fullName.length >= 3;
+      setInvalid('f-name', !nameOk);
+      const phoneOk = /^01[0-9]{9}$/.test(phone);
+      setInvalid('f-phone', !phoneOk);
+      if (!nameOk || !phoneOk) return;
+
+      const btn = submitBtn;
+      btn.disabled = true; btn.innerHTML = '<span class="p-spin"></span><span>Submitting…</span>';
+
+      const total = currentTotal();
+      const itemNames = pkg.map(i => i.name).join('; ');
+
+      try {
+        const res = await fetch(SHEET_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // avoids CORS preflight on Apps Script
+          body: JSON.stringify({
+            formType: 'registration',
+            fullName, phone, email,
+            category: 'Homeschooling Package',
+            item: itemNames,
+            fee: total.toFixed(2),
+            paid: total > 0 ? 'Yes' : 'N/A',
+            paypalOrderId: paypalOrderId || ''
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('formState').style.display = 'none';
+          const list = document.getElementById('successItems');
+          list.innerHTML = '';
+          pkg.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = '<span>' + item.name + '</span><span>$' + Number(item.fee).toFixed(0) + '</span>';
+            list.appendChild(li);
+          });
+          const totalLi = document.createElement('li');
+          totalLi.style.fontWeight = '700';
+          totalLi.style.borderTop = '1px dashed var(--p-line)';
+          totalLi.style.marginTop = '4px';
+          totalLi.style.paddingTop = '8px';
+          totalLi.innerHTML = '<span>Total</span><span>$' + total.toFixed(2).replace(/\.00$/, '') + '</span>';
+          list.appendChild(totalLi);
+          document.getElementById('successState').style.display = 'block';
+        } else {
+          errEl.textContent = 'Something went wrong. Please try again.';
+          errEl.classList.add('show');
+          unlockSubmit();
+        }
+      } catch (err) {
+        errEl.textContent = 'Could not reach the server. Please check your connection and try again.';
+        errEl.classList.add('show');
+        unlockSubmit();
+      }
+    });
+  }
+</script>
+
+
+<script>
+  // ============================================
+  // Front-end tamper deterrents
+  // ============================================
+  // These raise the bar for casual snooping (right-click, F12, view-source,
+  // opening devtools, shrinking the window to undock devtools). They do
+  // NOT make the page truly secure — any determined, technical visitor can
+  // still bypass all of this (disable JS, use curl, use a proxy, etc).
+  // Real protection for the payment step has to happen on the server —
+  // see the note in chat.
+  (function(){
+    const BACK_URL = 'homeschooling-programs.html';
+    let kicked = false;
+
+    function kickOut(){
+      if (kicked) return;
+      kicked = true;
+      alert('For security reasons, please reselect your level or program.');
+      window.location.href = BACK_URL;
+    }
+
+    // Block right-click context menu
+    document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+    // Block common devtools / view-source / save-page keyboard shortcuts
+    document.addEventListener('keydown', function(e){
+      const k = (e.key || '').toUpperCase();
+      if (k === 'F12') { e.preventDefault(); return; }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J','C','K'].includes(k)) { e.preventDefault(); return; }
+      if ((e.ctrlKey || e.metaKey) && ['U','S'].includes(k)) { e.preventDefault(); return; }
+    });
+
+    // Devtools detection #1: viewport vs. window size gap.
+    // Triggers when devtools is docked to a side or the bottom on desktop.
+    // Skipped on touch devices: opening the on-screen keyboard or the
+    // address bar hiding/showing on mobile changes this gap by itself and
+    // would otherwise kick people out while they're typing in the form.
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    const THRESHOLD = 160;
+    function checkSize(){
+      if (isTouchDevice) return;
+      const wDiff = window.outerWidth - window.innerWidth;
+      const hDiff = window.outerHeight - window.innerHeight;
+      if (wDiff > THRESHOLD || hDiff > THRESHOLD) kickOut();
+    }
+    if (!isTouchDevice) {
+      setInterval(checkSize, 700);
+      window.addEventListener('resize', checkSize);
+    }
+
+    // Devtools detection #2: debugger-pause timing.
+    // Catches devtools opened in its own separate window, which the size
+    // check above can miss.
+    setInterval(function(){
+      const t0 = performance.now();
+      debugger;
+      if (performance.now() - t0 > 100) kickOut();
+    }, 1000);
+  })();
+</script>
+</body>
+</html>
