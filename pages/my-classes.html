@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Classes — Amjad Islamic School</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --p-indigo-950:#1F0E17;
+  --p-indigo-900:#341527;
+  --p-gold-600:#A8752A;
+  --p-gold-500:#E3B049;
+  --p-gold-100:#FCEFD3;
+  --p-paper-50:#FDFBF5;
+  --p-ink-900:#231320;
+  --p-ink-600:#6E4C5E;
+  --p-line:#E6D6DE;
+  --p-gold-foil: linear-gradient(100deg, var(--p-gold-600) 0%, var(--p-gold-500) 22%, #FFEFC2 45%, var(--p-gold-500) 68%, var(--p-gold-600) 100%);
+  --p-danger:#B4405A;
+  --p-ok:#3D8F63;
+  --p-radius:16px;
+  --p-ease: cubic-bezier(.22,.9,.32,1.1);
+  --p-shadow: 0 1px 2px rgba(31,14,23,.06), 0 18px 40px rgba(31,14,23,.12), 0 4px 16px rgba(168,117,42,.10);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;font-family:'Cairo', sans-serif;background:var(--p-paper-50);color:var(--p-ink-900);
+  min-height:100vh;
+}
+h1,h2,h3{font-family:'Amiri', serif;font-weight:700;margin:0;color:var(--p-indigo-900);}
+a{color:inherit;}
+.gold-foil{
+  background:var(--p-gold-foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:foil-sheen 7s ease-in-out infinite;
+}
+@keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+@keyframes p-fade-down{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-card-rise{from{opacity:0;transform:translateY(26px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes p-spin{to{transform:rotate(360deg);}}
+@keyframes p-fade-in{from{opacity:0;}to{opacity:1;}}
+
+header.p-topbar{
+  background:var(--p-indigo-950);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;
+  animation:p-fade-down .6s var(--p-ease) both;
+}
+.p-brand{display:flex;align-items:center;gap:12px;}
+.p-brand img{width:40px;height:40px;object-fit:contain;}
+.p-brand span{color:#fff;font-family:'Amiri',serif;font-size:17px;font-weight:700;}
+.p-home-link{color:#F0E2DE;font-size:13.5px;font-weight:600;text-decoration:none;opacity:.9;transition:opacity .2s ease, gap .2s ease;display:inline-flex;gap:7px;align-items:center;}
+.p-home-link:hover{opacity:1;gap:11px;color:var(--p-gold-500);}
+.p-logout{background:none;border:1.5px solid var(--p-gold-500);color:var(--p-gold-500);border-radius:20px;padding:7px 18px;font-family:inherit;font-weight:600;font-size:13.5px;cursor:pointer;transition:all .2s var(--p-ease);}
+.p-logout:hover{background:var(--p-gold-500);color:var(--p-indigo-950);transform:translateY(-2px);}
+
+.p-wrap{max-width:960px;margin:0 auto;padding:56px 24px 80px;}
+.p-loading{text-align:center;padding:80px 20px;color:var(--p-ink-600);animation:p-fade-in .4s ease both;}
+.p-spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--p-line);border-top-color:var(--p-gold-500);animation:p-spin 0.8s linear infinite;margin:0 auto 18px;}
+
+.p-header-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:8px;animation:p-fade-down .5s var(--p-ease) both;flex-wrap:wrap;}
+.p-header-row h1{font-size:30px;}
+.p-header-row p{color:var(--p-ink-600);font-size:14.5px;margin:6px 0 0;}
+
+.p-stat-pill{
+  flex:none;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--p-line);
+  border-radius:999px;padding:10px 20px;box-shadow:var(--p-shadow);
+}
+.p-stat-pill b{font-family:'Amiri',serif;font-size:22px;color:var(--p-gold-600);}
+.p-stat-pill span{font-size:12.5px;color:var(--p-ink-600);}
+
+.p-classes-grid{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.p-class-card{
+  background:#fff;border:1px solid var(--p-line);border-radius:var(--p-radius);
+  padding:26px 24px;box-shadow:var(--p-shadow);
+  animation:p-card-rise .6s var(--p-ease) both;
+  display:flex;flex-direction:column;gap:16px;
+}
+.p-class-card .p-badge{
+  align-self:flex-start;font-size:11.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+  background:var(--p-gold-100);color:var(--p-gold-600);border:1px solid var(--p-gold-500);
+  padding:4px 12px;border-radius:20px;
+}
+.p-class-card h3{font-size:19px;}
+.p-class-card .p-fee{font-size:13px;color:var(--p-ink-600);}
+
+.p-student-box{
+  border:1px dashed var(--p-gold-500);border-radius:12px;padding:14px 16px;background:var(--p-gold-100);
+  display:flex;flex-direction:column;gap:4px;
+}
+.p-student-box label{font-size:11px;color:var(--p-gold-600);font-weight:700;letter-spacing:.03em;text-transform:uppercase;}
+.p-student-box .p-student-name{
+  font-family:'Amiri',serif;font-size:18px;font-weight:700;color:var(--p-indigo-950);
+  animation:p-glow 2.4s ease-in-out infinite;
+}
+.p-student-box .p-student-phone{font-size:14.5px;font-weight:600;color:var(--p-ink-900);letter-spacing:.02em;}
+@keyframes p-glow{
+  0%,100%{ text-shadow:0 0 0 rgba(227,176,73,0); }
+  50%{ text-shadow:0 0 14px rgba(227,176,73,.55); }
+}
+
+.p-open-btn{
+  margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+  padding:12px 20px;border-radius:26px;border:none;cursor:pointer;
+  font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;
+  background:var(--p-gold-500);color:var(--p-indigo-950);
+  transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease;
+}
+.p-open-btn:hover{transform:translateY(-3px);box-shadow:var(--p-shadow);}
+
+.p-empty{
+  text-align:center;padding:60px 24px;background:#fff;border:1px dashed var(--p-line);
+  border-radius:var(--p-radius);color:var(--p-ink-600);margin-top:28px;
+}
+.p-empty h3{margin-bottom:8px;font-size:20px;}
+.p-empty a{color:var(--p-gold-600);font-weight:700;text-decoration:none;border-bottom:1.5px solid rgba(168,117,42,.4);}
+.p-empty a:hover{border-color:var(--p-gold-600);}
+
+.p-modal-overlay{
+  position:fixed;inset:0;background:rgba(31,14,23,.55);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000;
+  opacity:0;pointer-events:none;transition:opacity .28s var(--p-ease);
+}
+.p-modal-overlay.p-modal-open{opacity:1;pointer-events:auto;}
+.p-modal-overlay.p-modal-closing{opacity:0;}
+
+.p-modal{
+  background:var(--p-paper-50);border:1px solid var(--p-line);border-radius:var(--p-radius);
+  box-shadow:var(--p-shadow);max-width:400px;width:100%;padding:30px 28px 26px;
+  transform:translateY(22px) scale(.96);opacity:0;
+  transition:transform .32s var(--p-ease), opacity .32s var(--p-ease);
+  text-align:center;
+}
+.p-modal-overlay.p-modal-open .p-modal{transform:translateY(0) scale(1);opacity:1;}
+.p-modal-overlay.p-modal-closing .p-modal{transform:translateY(14px) scale(.97);opacity:0;}
+
+.p-modal-icon{
+  width:52px;height:52px;border-radius:50%;background:var(--p-gold-100);border:1px solid var(--p-gold-500);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+}
+.p-modal-icon svg{width:24px;height:24px;stroke:var(--p-gold-600);}
+
+.p-modal h3{font-size:19px;margin-bottom:10px;}
+.p-modal p{font-size:14px;color:var(--p-ink-600);line-height:1.55;margin:0 0 24px;font-family:'Cairo',sans-serif;}
+.p-modal p b{color:var(--p-ink-900);}
+
+.p-modal-actions{display:flex;gap:10px;}
+.p-modal-actions button{
+  flex:1;padding:12px 16px;border-radius:26px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;
+  cursor:pointer;border:none;transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease;
+}
+.p-modal-cancel{background:#fff;border:1.5px solid var(--p-line) !important;color:var(--p-ink-900);}
+.p-modal-cancel:hover{border-color:var(--p-ink-600) !important;transform:translateY(-2px);}
+.p-modal-confirm{background:var(--p-danger);color:#fff;}
+.p-modal-confirm:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(180,64,90,.35);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+@media (max-width: 700px){ .p-classes-grid{grid-template-columns:1fr;} .p-header-row{flex-direction:column;align-items:flex-start;} }
+</style>
+</head>
+<body>
+
+<header class="p-topbar">
+  <a class="p-home-link" href="../index.html">← Home Page</a>
+  <div class="p-brand">
+    <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="Amjad Islamic School logo">
+    <span>Amjad Islamic School</span>
+  </div>
+  <button class="p-logout" id="logoutBtn">Log Out</button>
+</header>
+
+<div class="p-wrap">
+
+  <div class="p-loading" id="loadingState">
+    <div class="p-spin"></div>
+    <div>Loading your classes...</div>
+  </div>
+
+  <div id="dashboardState" style="display:none;">
+    <div class="p-header-row">
+      <div>
+        <h1 class="gold-foil">My Classes</h1>
+        <p>Every class you're enrolled in, in one place.</p>
+      </div>
+      <div class="p-stat-pill">
+        <b id="classCount">0</b>
+        <span>Classes<br>Enrolled</span>
+      </div>
+    </div>
+
+    <div class="p-classes-grid" id="classesGrid"></div>
+
+    <div class="p-empty" id="emptyState" style="display:none;">
+      <h3>You're not enrolled in any classes yet</h3>
+      <p>Browse our programs under <a href="../index.html">Academics</a> and register for a class to see it here.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="p-modal-overlay" id="logoutOverlay">
+  <div class="p-modal">
+    <div class="p-modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+    </div>
+    <h3>Log out of your account?</h3>
+    <p>Signing out will <b>remove your class enrollment data</b> stored on this device. You'll need to re-register to see your classes again.</p>
+    <div class="p-modal-actions">
+      <button class="p-modal-cancel" id="logoutCancelBtn">Cancel</button>
+      <button class="p-modal-confirm" id="logoutConfirmBtn">Log Out</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+  const AMJAD_CLASSES_KEY = 'amjad_my_classes';
+
+  function getSession(){ return localStorage.getItem(AMJAD_SESSION_KEY); }
+  function getMyClasses(){
+    try{
+      const raw = localStorage.getItem(AMJAD_CLASSES_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(err){ return []; }
+  }
+
+  function escapeHtml(str){
+    return String(str || '').replace(/[&<>"']/g, ch => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[ch]));
+  }
+
+  function renderClasses(classes){
+    const grid = document.getElementById('classesGrid');
+    const empty = document.getElementById('emptyState');
+    document.getElementById('classCount').textContent = classes.length;
+
+    if(classes.length === 0){
+      grid.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+
+    grid.style.display = 'grid';
+    empty.style.display = 'none';
+    grid.innerHTML = classes.map((cls, i) => {
+      const link = cls.classroomLink && cls.classroomLink !== '#' ? cls.classroomLink : '#';
+      const feeText = cls.fee ? ('$' + cls.fee + ' / term') : '';
+      return `
+        <div class="p-class-card" style="animation-delay:${(i * 0.06).toFixed(2)}s;">
+          <span class="p-badge">${escapeHtml(cls.category || 'Class')}</span>
+          <div>
+            <h3>${escapeHtml(cls.name || 'Class')}</h3>
+            ${feeText ? `<div class="p-fee">${escapeHtml(feeText)}</div>` : ''}
+          </div>
+          <div class="p-student-box">
+            <label>Enrolled Student</label>
+            <div class="p-student-name">${escapeHtml(cls.studentName || '—')}</div>
+            <div class="p-student-phone">📞 ${escapeHtml(cls.studentPhone || '—')}</div>
+          </div>
+          <a class="p-open-btn" href="${escapeHtml(link)}" target="${link === '#' ? '_self' : '_blank'}" rel="noopener" data-classid="${escapeHtml(cls.id || '')}">
+            <span>Open Classroom</span>
+          </a>
+        </div>
+      `;
+    }).join('');
+  }
+
+  (function init(){
+    const session = getSession();
+    if(!session){
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const classes = getMyClasses();
+    renderClasses(classes);
+
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('dashboardState').style.display = 'block';
+  })();
+
+  // Placeholder click guard: until real classroom links are added per class,
+  // clicking "Open Classroom" just lets the site owner know it's not wired up yet.
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.p-open-btn');
+    if(!btn) return;
+    if(btn.getAttribute('href') === '#'){
+      e.preventDefault();
+      alert('The classroom link for this class hasn\'t been added yet. Please check back soon.');
+    }
+  });
+
+  const logoutOverlay = document.getElementById('logoutOverlay');
+
+  function openLogoutModal(){
+    logoutOverlay.classList.remove('p-modal-closing');
+    logoutOverlay.classList.add('p-modal-open');
+  }
+
+  function closeLogoutModal(){
+    logoutOverlay.classList.add('p-modal-closing');
+    logoutOverlay.classList.remove('p-modal-open');
+    setTimeout(()=> logoutOverlay.classList.remove('p-modal-closing'), 280);
+  }
+
+  function performLogout(){
+    localStorage.removeItem(AMJAD_SESSION_KEY);
+    localStorage.removeItem('amjad_profile');
+    localStorage.removeItem(AMJAD_CLASSES_KEY);
+    window.location.href = 'login.html';
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', openLogoutModal);
+  document.getElementById('logoutCancelBtn').addEventListener('click', closeLogoutModal);
+  document.getElementById('logoutConfirmBtn').addEventListener('click', performLogout);
+
+  logoutOverlay.addEventListener('click', (e)=>{
+    if(e.target === logoutOverlay) closeLogoutModal();
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && logoutOverlay.classList.contains('p-modal-open')) closeLogoutModal();
+  });
+</script>
+
+</body>
+</html>

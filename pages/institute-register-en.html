@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration — Amjad Institute for Islamic Studies for Women</title>
+<!--
+  PayPal JS SDK.
+  'sb' is PayPal's public sandbox client-id, used here so the button renders
+  and can be tested immediately. For real, live payments you MUST replace
+  'sb' with your own live Client ID from https://developer.paypal.com/dashboard/applications
+  (My Apps & Credentials -> your app -> Client ID, "Live" tab, not "Sandbox").
+-->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --p-indigo-950:#1F0E17;
+  --p-indigo-900:#341527;
+  --p-gold-600:#A8752A;
+  --p-gold-500:#E3B049;
+  --p-gold-100:#FCEFD3;
+  --p-paper-50:#FDFBF5;
+  --p-ink-900:#231320;
+  --p-ink-600:#6E4C5E;
+  --p-line:#E6D6DE;
+  --p-gold-foil: linear-gradient(100deg, var(--p-gold-600) 0%, var(--p-gold-500) 22%, #FFEFC2 45%, var(--p-gold-500) 68%, var(--p-gold-600) 100%);
+  --p-danger:#B4405A;
+  --p-radius:16px;
+  --p-ease: cubic-bezier(.22,.9,.32,1.1);
+  --p-shadow: 0 1px 2px rgba(31,14,23,.06), 0 18px 40px rgba(31,14,23,.12), 0 4px 16px rgba(168,117,42,.10);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body.premium-page{margin:0;font-family:'Cairo', sans-serif;background:var(--p-paper-50);color:var(--p-ink-900);min-height:100vh;position:relative;overflow-x:hidden;}
+.premium-page h1,.premium-page h2,.premium-page h3{font-family:'Amiri', serif;font-weight:700;margin:0;line-height:1.3;color:var(--p-indigo-900);}
+.premium-page a{color:inherit;}
+.gold-foil{background:var(--p-gold-foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil-sheen 7s ease-in-out infinite;}
+@keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+@keyframes p-fade-down{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-fade-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-card-in{from{opacity:0;transform:translateY(28px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes p-zoom-bg{from{transform:scale(1.08);}to{transform:scale(1);}}
+@keyframes p-pop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+@keyframes p-spin{to{transform:rotate(360deg);}}
+
+.premium-visual{animation:p-zoom-bg 1.4s var(--p-ease) both;}
+.p-home-link{animation:p-fade-down .6s var(--p-ease) both;}
+.p-brand{animation:p-fade-down .6s var(--p-ease) .08s both;}
+.p-visual-quote .kicker{animation:p-fade-up .6s var(--p-ease) .18s both;}
+.p-visual-quote h1{animation:p-fade-up .6s var(--p-ease) .28s both;}
+.p-visual-quote p{animation:p-fade-up .6s var(--p-ease) .36s both;}
+.premium-card{animation:p-card-in .7s var(--p-ease) .15s both;}
+.p-anim-in{animation:p-fade-up .5s var(--p-ease) both;}
+
+.p-home-link{display:inline-flex;align-items:center;gap:7px;color:#F0E2DE;font-size:13.5px;font-weight:600;text-decoration:none;opacity:.9;transition:opacity .2s ease, gap .2s ease;}
+.p-home-link:hover{opacity:1;gap:11px;color:var(--p-gold-500);}
+
+.p-dust{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.p-dust span{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--p-gold-500);opacity:.3;filter:blur(.3px);animation:p-float 14s ease-in-out infinite;}
+@keyframes p-float{0%,100%{transform:translateY(0) translateX(0);opacity:.12;}50%{transform:translateY(-40px) translateX(14px);opacity:.4;}}
+
+.premium-shell{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr;}
+.premium-visual{position:relative;min-height:100vh;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:space-between;padding:48px 52px;background-color:var(--p-indigo-950);}
+.premium-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg, rgba(31,14,23,.62) 0%, rgba(31,14,23,.78) 45%, rgba(31,14,23,.95) 100%);}
+.premium-visual > *{position:relative;z-index:1;}
+.p-brand{display:flex;align-items:center;gap:14px;}
+.p-brand img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5));}
+.p-brand .name{color:#fff;font-family:'Amiri',serif;font-size:19px;font-weight:700;}
+.p-brand .tag{display:block;font-family:'Cairo',sans-serif;font-size:11px;letter-spacing:.02em;color:var(--p-gold-500);margin-top:2px;}
+.p-visual-quote{max-width:460px;}
+.p-visual-quote .kicker{display:inline-flex;align-items:center;gap:9px;color:var(--p-gold-500);font-size:13px;font-weight:700;letter-spacing:.01em;margin-bottom:18px;}
+.p-visual-quote .kicker::before{content:"";width:26px;height:1px;background:var(--p-gold-500);}
+.p-visual-quote h1{color:#fff;font-size:32px;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.4);}
+.p-visual-quote p{color:#E7D6DC;font-size:15px;line-height:1.85;margin:0;}
+
+.premium-form-panel{position:relative;display:flex;align-items:center;justify-content:center;padding:56px 48px;background:radial-gradient(1100px 560px at 0% 0%, rgba(168,69,107,.06), transparent 55%), var(--p-paper-50);}
+.premium-card{width:100%;max-width:460px;background:#fff;border:1px solid var(--p-line);border-radius:var(--p-radius);padding:38px 36px 32px;box-shadow:var(--p-shadow);}
+.premium-card h2{font-size:23px;margin-bottom:6px;}
+.premium-card .p-sub{color:var(--p-ink-600);font-size:14px;margin:0 0 22px;line-height:1.75;}
+
+.p-item-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--p-gold-100);border:1px solid var(--p-gold-500);border-radius:12px;padding:14px 16px;margin-bottom:24px;opacity:0;animation:p-card-in .6s var(--p-ease) .1s both;}
+.p-item-summary .cat{font-size:11px;letter-spacing:.02em;color:var(--p-gold-600);font-weight:700;margin-bottom:3px;}
+.p-item-summary h3{font-size:16.5px;color:var(--p-indigo-900);}
+.p-item-summary .fee{font-size:14.5px;font-weight:700;color:var(--p-indigo-900);white-space:nowrap;}
+
+.p-field{margin-bottom:18px;position:relative;opacity:0;animation:p-fade-up .5s var(--p-ease) both;}
+#formState #f-name{animation-delay:.42s;}
+#formState #f-phone{animation-delay:.5s;}
+#formState .p-field:nth-of-type(3){animation-delay:.58s;}
+#submitBtn{opacity:0;animation:p-fade-up .5s var(--p-ease) .66s both;}
+.p-field label{display:block;font-size:13px;color:var(--p-ink-600);margin-bottom:7px;font-weight:600;}
+.p-field input{width:100%;padding:12px 15px;border-radius:10px;border:1.5px solid var(--p-line);background:var(--p-paper-50);color:var(--p-ink-900);font-family:inherit;font-size:14.5px;transition:border-color .2s ease, background .2s ease;}
+.p-field input:focus{outline:none;border-color:var(--p-gold-500);background:#fff;}
+.p-field input[disabled]{color:var(--p-ink-600);}
+.p-field .p-err{display:none;color:var(--p-danger);font-size:12.5px;margin-top:6px;}
+.p-field.invalid input{border-color:var(--p-danger);}
+.p-field.invalid .p-err{display:block;}
+
+.p-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:26px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;background:var(--p-gold-500);color:var(--p-indigo-950);transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease, color .2s ease;}
+.p-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:var(--p-shadow);background:#fff;}
+.p-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+/* Payment-gated submit button states */
+.p-btn.locked{background:#E7E1D8;color:#9A8B90;}
+.p-btn.locked:hover{transform:none;box-shadow:none;background:#E7E1D8;}
+.p-btn.pay-error{background:var(--p-danger);color:#fff;opacity:1;}
+.p-btn.pay-error:hover{background:#9A2E45;transform:none;box-shadow:none;}
+.p-btn.pay-success{background:#3D8F63;color:#fff;}
+.p-btn.pay-success:hover{background:#2C6B48;color:#fff;}
+
+/* ---------- PayPal payment block ---------- */
+.p-pay-block{margin-bottom:22px;padding:18px 16px;border:1.5px solid var(--p-line);border-radius:12px;background:var(--p-paper-50);}
+.p-pay-block .p-pay-label{font-size:13px;font-weight:700;color:var(--p-ink-900);margin-bottom:4px;display:flex;align-items:center;gap:7px;}
+.p-pay-block .p-pay-sub{font-size:12.5px;color:var(--p-ink-600);margin:0 0 14px;line-height:1.7;}
+#paypal-button-container{min-height:45px;}
+.p-pay-status{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;margin-top:12px;padding:9px 12px;border-radius:8px;}
+.p-pay-status.idle{background:#F5EED9;color:var(--p-ink-600);}
+.p-pay-status.ok{background:#E9F5EE;color:#2C6B48;border:1px solid #BFE2CC;}
+.p-pay-status.fail{background:#FBEAEE;color:#8F2D45;border:1px solid #EFC3CD;}
+
+.p-alert{border-radius:10px;padding:12px 15px;font-size:13.5px;margin-bottom:18px;display:none;align-items:flex-start;gap:8px;line-height:1.7;}
+.p-alert.show{display:flex;}
+.p-alert.warn{background:#FBEAEE;border:1px solid #EFC3CD;color:#8F2D45;}
+
+.p-success{text-align:center;padding:10px 4px 4px;}
+.p-success .p-check{width:74px;height:74px;border-radius:50%;margin:0 auto 20px;background:#E9F5EE;border:1.5px solid #BFE2CC;display:flex;align-items:center;justify-content:center;animation:p-pop .5s var(--p-ease);}
+.p-success h2{font-size:21px;margin-bottom:10px;}
+.p-success p{color:var(--p-ink-600);font-size:14px;line-height:1.75;margin:0 0 22px;}
+
+.p-spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(31,14,23,.25);border-top-color:var(--p-indigo-950);animation:p-spin 0.7s linear infinite;}
+
+.p-redirecting{max-width:420px;margin:0 auto;text-align:center;color:var(--p-ink-600);font-size:14.5px;}
+.p-redirecting a{color:var(--p-gold-600);font-weight:700;}
+
+@media (max-width: 900px){
+  .premium-shell{grid-template-columns:1fr;}
+  .premium-visual{min-height:220px;padding:32px 28px;}
+  .p-visual-quote h1{font-size:23px;}
+  .premium-form-panel{padding:36px 20px 60px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+
+/* ---------- Basic front-end tamper deterrents ---------- */
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+input, textarea{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+img{-webkit-user-drag:none;pointer-events:auto;}
+</style>
+</head>
+<body class="premium-page">
+
+<div class="p-dust" id="pDust"></div>
+
+<div class="premium-shell">
+
+  <!-- ---------- Visual side ---------- -->
+  <div class="premium-visual" style="background-image:url('https://images.pexels.com/photos/4521944/pexels-photo-4521944.jpeg?auto=compress&cs=tinysrgb&w=1400');">
+    <div>
+      <a class="p-home-link" href="Islamic Studies Institute.html">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Institute Program
+      </a>
+      <div class="p-brand" style="margin-top:16px;">
+        <img src="https://www.image2url.com/r2/default/images/1788601982534-00c9afa9-bac1-4150-abc8-6f3fd0393401.png" alt="Amjad Islamic School logo">
+        <span class="name">Amjad Institute for Islamic Studies<span class="tag">for Women</span></span>
+      </div>
+    </div>
+
+    <div class="p-visual-quote">
+      <span class="kicker">Final Step</span>
+      <h1 class="gold-foil">Complete Your Registration</h1>
+      <p>We'll use the name and phone number below to contact you directly regarding this academic year or program.</p>
+    </div>
+
+    <div style="font-size:12.5px;color:#C9A8AE;">© 2026 Amjad Islamic School</div>
+  </div>
+
+  <!-- ---------- Form side ---------- -->
+  <div class="premium-form-panel">
+    <div class="premium-card" id="premiumCard">
+
+      <!-- Shown briefly if no one is signed in, before the redirect fires -->
+      <div class="p-redirecting" id="redirectState" style="display:none;">
+        Please create an account or sign in to complete registration — you will be redirected now.
+        <br><br><a id="manualLink" href="signup.html">Continue to Create an Account →</a>
+      </div>
+
+      <!-- ============ Confirmation form ============ -->
+      <div id="formState" style="display:none;">
+        <div class="p-item-summary">
+          <div>
+            <div class="cat" id="itemCategory">Program</div>
+            <h3 id="itemName">—</h3>
+          </div>
+          <div class="fee" id="itemFee">—</div>
+        </div>
+
+        <h2>Confirm Your Details</h2>
+        <p class="p-sub">Please review the name and phone number we'll use to contact you.</p>
+
+        <div class="p-alert warn" id="formError"></div>
+
+        <div class="p-pay-block" id="payBlock" style="display:none;">
+          <div class="p-pay-label">💳 Payment via PayPal</div>
+          <p class="p-pay-sub">Payment is required before your registration is confirmed.</p>
+          <div id="paypal-button-container"></div>
+          <div class="p-pay-status idle" id="payStatus">
+            <span>🔒</span><span>Awaiting payment…</span>
+          </div>
+        </div>
+
+        <form id="registerForm" novalidate>
+          <div class="p-field" id="f-name">
+            <label>Full Name</label>
+            <input type="text" id="fullName">
+            <div class="p-err">Please enter your full name</div>
+          </div>
+          <div class="p-field" id="f-phone">
+            <label>Phone Number</label>
+            <input type="tel" id="phone">
+            <div class="p-err">Please enter your phone number</div>
+          </div>
+          <div class="p-field">
+            <label>Email</label>
+            <input type="email" id="email" disabled>
+          </div>
+          <button type="submit" class="p-btn locked" id="submitBtn" disabled>
+            <span>🔒 Complete Payment to Register</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- ============ SUCCESS ============ -->
+      <div id="successState" style="display:none;">
+        <div class="p-success">
+          <div class="p-check">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#6FCF97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2>Your Registration Has Been Received 🎉</h2>
+          <p>We've recorded your request for <strong id="successItem">this program</strong>. Our team will contact you via WhatsApp or phone to follow up on the next steps.</p>
+          <a class="p-btn" href="institute.html" style="text-decoration:none;">← Back to Institute Program</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================
+  // Google Sheets backend (Google Apps Script Web App)
+  // ============================================
+  // Same deployment URL used across the Amjad site (signup.html / login.html
+  // / profile.html / weekend-school-register.html) so every registration
+  // lands in the same Google Sheet.
+  const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzkRyW_9qkxZ4G1arBoq4e07TSW7bMHvlS_5M5_E84dwvAqeQBHZ2miOvXj_fxXrBue9A/exec';
+
+  const AMJAD_PROFILE_KEY = 'amjad_profile';
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+
+  function getSession(){ return localStorage.getItem(AMJAD_SESSION_KEY); }
+  function getCachedProfile(){
+    try{ const raw = localStorage.getItem(AMJAD_PROFILE_KEY); return raw ? JSON.parse(raw) : null; }
+    catch(err){ return null; }
+  }
+
+  // gold dust particles (matches the rest of the site)
+  (function(){
+    const wrap = document.getElementById('pDust');
+    for(let i=0;i<26;i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.animationDelay = (Math.random()*10) + 's';
+      s.style.animationDuration = (10 + Math.random()*10) + 's';
+      wrap.appendChild(s);
+    }
+  })();
+
+  const params = new URLSearchParams(location.search);
+  const level = params.get('level');
+  const program = params.get('program');
+  const fee = params.get('fee');
+  const itemName = level || program || 'Amjad Institute for Islamic Studies for Women';
+  const category = level ? 'Academic Year' : (program ? 'Program' : 'General Registration');
+
+  const session = getSession();
+
+  if (!session) {
+    document.getElementById('redirectState').style.display = 'block';
+    document.getElementById('manualLink').href = 'signup.html?next=' + encodeURIComponent(location.href);
+    setTimeout(() => { window.location.href = 'signup.html?next=' + encodeURIComponent(location.href); }, 900);
+  } else {
+    const profile = getCachedProfile() || {};
+    document.getElementById('formState').style.display = 'block';
+    document.getElementById('itemCategory').textContent = category;
+    document.getElementById('itemName').textContent = itemName;
+    document.getElementById('itemFee').textContent = fee ? ('$' + fee + ' / year') : '';
+    document.getElementById('fullName').value = profile['Full Name'] || '';
+    document.getElementById('phone').value = profile['Phone'] || '';
+    document.getElementById('email').value = profile['Email'] || session || '';
+
+    function setInvalid(id, invalid){ document.getElementById(id).classList.toggle('invalid', invalid); }
+
+    // ============================================
+    // PayPal payment gate
+    // ============================================
+    // The "Confirm Registration" button stays locked (grey, disabled) until
+    // a PayPal payment for this item's fee is captured successfully.
+    // On failure/cancel: the button turns red and stays locked.
+    // On success: the button turns green and unlocks.
+    const submitBtn = document.getElementById('submitBtn');
+    const payBlock = document.getElementById('payBlock');
+    const payStatus = document.getElementById('payStatus');
+    let paymentVerified = false;
+    let paypalOrderId = null;
+
+    function setPayStatus(state, text){
+      payStatus.className = 'p-pay-status ' + state;
+      const icon = state === 'ok' ? '✓' : (state === 'fail' ? '⚠' : '🔒');
+      payStatus.innerHTML = '<span>' + icon + '</span><span>' + text + '</span>';
+    }
+
+    function lockSubmit(){
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('pay-success', 'pay-error');
+      submitBtn.classList.add('locked');
+      submitBtn.innerHTML = '<span>🔒 Complete Payment to Register</span>';
+    }
+    function failSubmit(){
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('pay-success', 'locked');
+      submitBtn.classList.add('pay-error');
+      submitBtn.innerHTML = '<span>⚠ Payment Failed — Try Again</span>';
+    }
+    function unlockSubmit(){
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('locked', 'pay-error');
+      submitBtn.classList.add('pay-success');
+      submitBtn.innerHTML = '<span>Confirm Registration</span>';
+    }
+
+    const feeAmount = parseFloat(fee);
+    const paymentRequired = !!fee && !isNaN(feeAmount) && feeAmount > 0;
+    const noItemSelected = !level && !program;
+
+    if (noItemSelected) {
+      // No level or program was passed in the URL — there is nothing to
+      // register for, so the button must stay genuinely disabled (not just
+      // visually locked) until the person picks a level/program.
+      payBlock.style.display = 'none';
+      paymentVerified = false;
+      submitBtn.disabled = true;
+      submitBtn.classList.remove('pay-success', 'pay-error');
+      submitBtn.classList.add('locked');
+      submitBtn.innerHTML = '<span>🔒 Select a Level or Program First</span>';
+    } else if (!paymentRequired) {
+      // Nothing to charge for (e.g. a free program) — skip the payment
+      // gate entirely, and make sure the button actually looks unlocked.
+      payBlock.style.display = 'none';
+      paymentVerified = true;
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('locked', 'pay-error');
+      submitBtn.classList.add('pay-success');
+      submitBtn.innerHTML = '<span>Confirm Registration</span>';
+    } else {
+      payBlock.style.display = 'block';
+      lockSubmit();
+
+      if (typeof paypal === 'undefined') {
+        setPayStatus('fail', 'Unable to load PayPal. Please refresh the page.');
+      } else {
+        paypal.Buttons({
+          style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'paypal', height: 42 },
+          createOrder: function (data, actions) {
+            return actions.order.create({
+              purchase_units: [{
+                description: itemName + ' — Amjad Institute for Islamic Studies for Women',
+                amount: { value: feeAmount.toFixed(2), currency_code: 'USD' }
+              }]
+            });
+          },
+          onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+              paymentVerified = true;
+              paypalOrderId = data.orderID;
+              setPayStatus('ok', 'Payment received — thank you!');
+              unlockSubmit();
+            }).catch(function (err) {
+              console.error(err);
+              paymentVerified = false;
+              setPayStatus('fail', 'A payment issue occurred. Please try again.');
+              failSubmit();
+            });
+          },
+          onError: function (err) {
+            console.error(err);
+            paymentVerified = false;
+            setPayStatus('fail', 'A payment issue occurred. Please try again.');
+            failSubmit();
+          },
+          onCancel: function () {
+            paymentVerified = false;
+            setPayStatus('fail', 'Payment was cancelled. Please complete payment to register.');
+            failSubmit();
+          }
+        }).render('#paypal-button-container');
+      }
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', async function(ev){
+      ev.preventDefault();
+
+      // Safety net: even though the button is disabled until payment
+      // succeeds, never let this submit through without a verified payment.
+      if (!paymentVerified) {
+        setPayStatus('fail', 'A payment issue occurred. Please complete payment first.');
+        failSubmit();
+        return;
+      }
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const errEl = document.getElementById('formError');
+      errEl.classList.remove('show');
+
+      const nameOk = fullName.length >= 3;
+      setInvalid('f-name', !nameOk);
+      const phoneOk = /^01[0-9]{9}$/.test(phone);
+      setInvalid('f-phone', !phoneOk);
+      if (!nameOk || !phoneOk) return;
+
+      const btn = submitBtn;
+      btn.disabled = true; btn.innerHTML = '<span class="p-spin"></span><span>Submitting…</span>';
+
+      try {
+        const res = await fetch(SHEET_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // avoids CORS preflight on Apps Script
+          body: JSON.stringify({
+            formType: 'registration',
+            fullName, phone, email,
+            category: level ? 'Level' : (program ? 'Program' : 'General'),
+            item: itemName,
+            fee: fee || '',
+            paid: paymentRequired ? 'Yes' : 'N/A',
+            paypalOrderId: paypalOrderId || ''
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('formState').style.display = 'none';
+          document.getElementById('successItem').textContent = itemName;
+          document.getElementById('successState').style.display = 'block';
+        } else {
+          errEl.textContent = 'Something went wrong. Please try again.';
+          errEl.classList.add('show');
+          unlockSubmit();
+        }
+      } catch (err) {
+        errEl.textContent = 'Unable to reach the server. Please check your connection and try again.';
+        errEl.classList.add('show');
+        unlockSubmit();
+      }
+    });
+  }
+</script>
+
+
+<script>
+  // ============================================
+  // Front-end tamper deterrents
+  // ============================================
+  // These raise the bar for casual snooping (right-click, F12, view-source,
+  // opening devtools, shrinking the window to undock devtools). They do
+  // NOT make the page truly secure — any determined, technical visitor can
+  // still bypass all of this (disable JS, use curl, use a proxy, etc).
+  // Real protection for the payment step has to happen on the server —
+  // see the note in chat.
+  (function(){
+    const BACK_URL = 'institute.html';
+    let kicked = false;
+
+    function kickOut(){
+      if (kicked) return;
+      kicked = true;
+      alert('For security reasons, please reselect your level or program.');
+      window.location.href = BACK_URL;
+    }
+
+    // Block right-click context menu
+    document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+    // Block common devtools / view-source / save-page keyboard shortcuts
+    document.addEventListener('keydown', function(e){
+      const k = (e.key || '').toUpperCase();
+      if (k === 'F12') { e.preventDefault(); return; }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J','C','K'].includes(k)) { e.preventDefault(); return; }
+      if ((e.ctrlKey || e.metaKey) && ['U','S'].includes(k)) { e.preventDefault(); return; }
+    });
+
+    // Devtools detection #1: viewport vs. window size gap.
+    // Triggers when devtools is docked to a side or the bottom on desktop.
+    // Skipped on touch devices: opening the on-screen keyboard or the
+    // address bar hiding/showing on mobile changes this gap by itself and
+    // would otherwise kick people out while they're typing in the form.
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    const THRESHOLD = 160;
+    function checkSize(){
+      if (isTouchDevice) return;
+      const wDiff = window.outerWidth - window.innerWidth;
+      const hDiff = window.outerHeight - window.innerHeight;
+      if (wDiff > THRESHOLD || hDiff > THRESHOLD) kickOut();
+    }
+    if (!isTouchDevice) {
+      setInterval(checkSize, 700);
+      window.addEventListener('resize', checkSize);
+    }
+
+    // Devtools detection #2: debugger-pause timing.
+    // Catches devtools opened in its own separate window, which the size
+    // check above can miss.
+    setInterval(function(){
+      const t0 = performance.now();
+      debugger;
+      if (performance.now() - t0 > 100) kickOut();
+    }, 1000);
+  })();
+</script>
+</body>
+</html>
