@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Classes — Amjad Islamic School</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --p-indigo-950:#1F0E17;
+  --p-indigo-900:#341527;
+  --p-gold-600:#A8752A;
+  --p-gold-500:#E3B049;
+  --p-gold-100:#FCEFD3;
+  --p-paper-50:#FDFBF5;
+  --p-ink-900:#231320;
+  --p-ink-600:#6E4C5E;
+  --p-line:#E6D6DE;
+  --p-danger:#B4405A;
+  --p-danger-bg:#FBE9ED;
+  --p-ok:#3D8F63;
+  --p-radius:14px;
+  --p-ease: cubic-bezier(.22,.9,.32,1.1);
+  --p-shadow: 0 1px 2px rgba(31,14,23,.06), 0 18px 40px rgba(31,14,23,.10), 0 4px 16px rgba(168,117,42,.08);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;font-family:'Cairo', sans-serif;background:var(--p-paper-50);color:var(--p-ink-900);
+  min-height:100vh;
+}
+h1,h2,h3{font-family:'Amiri', serif;font-weight:700;margin:0;color:var(--p-indigo-900);}
+a{color:inherit;}
+[dir="rtl"]{font-family:'Cairo', sans-serif;}
+
+@keyframes p-fade-down{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes p-spin{to{transform:rotate(360deg);}}
+@keyframes p-fade-in{from{opacity:0;}to{opacity:1;}}
+
+/* ---------- Topbar ---------- */
+header.p-topbar{
+  position:relative;background:var(--p-indigo-950);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;
+  animation:p-fade-down .5s var(--p-ease) both;overflow:hidden;
+}
+header.p-topbar::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:radial-gradient(var(--p-gold-500) .6px, transparent .6px);
+  background-size:14px 14px;background-position:center;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+}
+.p-brand{display:flex;align-items:center;gap:12px;position:relative;z-index:1;}
+.p-brand img{width:38px;height:38px;object-fit:contain;}
+.p-brand span{color:#fff;font-family:'Amiri',serif;font-size:17px;font-weight:700;}
+.p-home-link{position:relative;z-index:1;color:#F0E2DE;font-size:13.5px;font-weight:600;text-decoration:none;opacity:.9;transition:opacity .2s ease, gap .2s ease;display:inline-flex;gap:7px;align-items:center;}
+.p-home-link:hover{opacity:1;gap:11px;color:var(--p-gold-500);}
+.p-logout{position:relative;z-index:1;background:none;border:1.5px solid var(--p-gold-500);color:var(--p-gold-500);border-radius:20px;padding:7px 18px;font-family:inherit;font-weight:600;font-size:13.5px;cursor:pointer;transition:all .2s var(--p-ease);}
+.p-logout:hover{background:var(--p-gold-500);color:var(--p-indigo-950);transform:translateY(-2px);}
+
+.p-wrap{max-width:840px;margin:0 auto;padding:0 24px 80px;}
+.p-loading{text-align:center;padding:80px 20px;color:var(--p-ink-600);animation:p-fade-in .4s ease both;}
+.p-spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--p-line);border-top-color:var(--p-gold-500);animation:p-spin 0.8s linear infinite;margin:0 auto 18px;}
+
+/* ---------- Hero ---------- */
+.p-hero{
+  background:var(--p-indigo-950);margin:0 -24px 0;padding:44px 24px 58px;position:relative;overflow:hidden;
+  animation:p-fade-down .55s var(--p-ease) both;
+}
+.p-hero::before{
+  content:"";position:absolute;top:-40%;right:-8%;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle, rgba(227,176,73,.20) 0%, transparent 70%);
+}
+.p-hero-inner{max-width:840px;margin:0 auto;position:relative;z-index:1;}
+.p-hero-eyebrow{color:var(--p-gold-500);font-size:13px;font-weight:600;letter-spacing:.02em;margin:0 0 8px;}
+.p-hero h1{font-size:32px;color:#fff;line-height:1.25;}
+.p-hero p{color:#D8C2CE;font-size:14.5px;margin:10px 0 0;max-width:52ch;line-height:1.6;}
+
+.p-stat-row{
+  max-width:840px;margin:-30px auto 0;position:relative;z-index:2;display:flex;gap:14px;flex-wrap:wrap;
+  animation:p-rise .5s var(--p-ease) .1s both;
+}
+.p-stat-card{
+  flex:1;min-width:150px;background:#fff;border:1px solid var(--p-line);border-radius:var(--p-radius);
+  padding:16px 20px;box-shadow:var(--p-shadow);
+}
+.p-stat-card b{display:block;font-family:'Amiri',serif;font-size:26px;color:var(--p-gold-600);line-height:1;}
+.p-stat-card span{font-size:12.5px;color:var(--p-ink-600);}
+
+/* ---------- Explainer panel (Arabic, plain language) ---------- */
+.p-explainer{
+  margin-top:28px;background:var(--p-gold-100);border:1px solid var(--p-gold-500);border-radius:var(--p-radius);
+  padding:18px 20px;display:flex;gap:14px;align-items:flex-start;direction:rtl;text-align:right;
+}
+.p-explainer .p-icon-badge{
+  flex:none;width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid var(--p-gold-500);
+  display:flex;align-items:center;justify-content:center;
+}
+.p-explainer .p-icon-badge svg{width:18px;height:18px;stroke:var(--p-gold-600);}
+.p-explainer h4{font-family:'Cairo',sans-serif;font-size:14.5px;font-weight:700;color:var(--p-indigo-950);margin:0 0 4px;}
+.p-explainer p{font-size:13.5px;color:var(--p-ink-600);line-height:1.75;margin:0;}
+
+/* ---------- Warning panel ---------- */
+.p-warning{
+  margin-top:14px;background:var(--p-danger-bg);border:1px solid rgba(180,64,90,.35);border-radius:var(--p-radius);
+  padding:18px 20px;display:flex;gap:14px;align-items:flex-start;direction:rtl;text-align:right;
+}
+.p-warning .p-icon-badge{
+  flex:none;width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid rgba(180,64,90,.4);
+  display:flex;align-items:center;justify-content:center;
+}
+.p-warning .p-icon-badge svg{width:18px;height:18px;stroke:var(--p-danger);}
+.p-warning h4{font-family:'Cairo',sans-serif;font-size:14.5px;font-weight:700;color:var(--p-danger);margin:0 0 4px;}
+.p-warning p{font-size:13.5px;color:#7A2E3E;line-height:1.75;margin:0;}
+.p-warning p b{color:var(--p-danger);}
+
+/* ---------- Section divider ---------- */
+.p-section-label{
+  margin:40px 0 16px;font-size:14px;font-weight:700;color:var(--p-ink-900);
+  display:flex;align-items:center;gap:10px;
+}
+.p-section-label::before{
+  content:"";flex:none;width:7px;height:7px;transform:rotate(45deg);background:var(--p-gold-500);
+}
+.p-section-label::after{content:"";flex:1;height:1px;background:var(--p-line);}
+
+/* ---------- Class list ---------- */
+.p-classes-list{display:flex;flex-direction:column;gap:14px;}
+.p-class-card{
+  background:#fff;border:1px solid var(--p-line);border-radius:var(--p-radius);
+  padding:22px 24px;box-shadow:var(--p-shadow);
+  animation:p-rise .5s var(--p-ease) both;
+  display:grid;grid-template-columns:1.4fr 1fr auto;gap:20px;align-items:center;
+  border-inline-start:3px solid var(--p-gold-500);
+}
+.p-class-main .p-badge{
+  font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--p-gold-600);
+  margin-bottom:6px;display:block;
+}
+.p-class-main h3{font-size:18.5px;margin-bottom:4px;}
+.p-class-main .p-fee{font-size:13px;color:var(--p-ink-600);}
+
+.p-student-box{
+  border-inline-start:1.5px dashed var(--p-gold-500);padding-inline-start:16px;
+  display:flex;flex-direction:column;gap:3px;
+}
+.p-student-box label{font-size:10.5px;color:var(--p-gold-600);font-weight:700;letter-spacing:.03em;text-transform:uppercase;}
+.p-student-box .p-student-name{font-family:'Amiri',serif;font-size:16.5px;font-weight:700;color:var(--p-indigo-950);}
+.p-student-box .p-student-phone{font-size:13.5px;font-weight:500;color:var(--p-ink-600);}
+
+.p-open-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;white-space:nowrap;
+  padding:11px 20px;border-radius:24px;border:none;cursor:pointer;
+  font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;
+  background:var(--p-gold-500);color:var(--p-indigo-950);
+  transition:transform .18s var(--p-ease), box-shadow .18s ease;
+}
+.p-open-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(168,117,42,.28);}
+.p-open-btn svg{width:14px;height:14px;}
+
+.p-empty{
+  text-align:center;padding:56px 24px;background:#fff;border:1px dashed var(--p-line);
+  border-radius:var(--p-radius);color:var(--p-ink-600);margin-top:20px;
+}
+.p-empty h3{margin-bottom:8px;font-size:19px;}
+.p-empty a{color:var(--p-gold-600);font-weight:700;text-decoration:none;border-bottom:1.5px solid rgba(168,117,42,.4);}
+.p-empty a:hover{border-color:var(--p-gold-600);}
+
+/* ---------- Modal ---------- */
+.p-modal-overlay{
+  position:fixed;inset:0;background:rgba(31,14,23,.55);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000;
+  opacity:0;pointer-events:none;transition:opacity .28s var(--p-ease);
+}
+.p-modal-overlay.p-modal-open{opacity:1;pointer-events:auto;}
+.p-modal-overlay.p-modal-closing{opacity:0;}
+
+.p-modal{
+  background:var(--p-paper-50);border:1px solid var(--p-line);border-radius:var(--p-radius);
+  box-shadow:var(--p-shadow);max-width:400px;width:100%;padding:30px 28px 26px;
+  transform:translateY(22px) scale(.96);opacity:0;
+  transition:transform .32s var(--p-ease), opacity .32s var(--p-ease);
+  text-align:center;
+}
+.p-modal-overlay.p-modal-open .p-modal{transform:translateY(0) scale(1);opacity:1;}
+.p-modal-overlay.p-modal-closing .p-modal{transform:translateY(14px) scale(.97);opacity:0;}
+
+.p-modal-icon{
+  width:52px;height:52px;border-radius:50%;background:var(--p-gold-100);border:1px solid var(--p-gold-500);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+}
+.p-modal-icon svg{width:24px;height:24px;stroke:var(--p-gold-600);}
+
+.p-modal h3{font-size:19px;margin-bottom:10px;}
+.p-modal p{font-size:14px;color:var(--p-ink-600);line-height:1.55;margin:0 0 24px;font-family:'Cairo',sans-serif;}
+.p-modal p b{color:var(--p-ink-900);}
+
+.p-modal-actions{display:flex;gap:10px;}
+.p-modal-actions button{
+  flex:1;padding:12px 16px;border-radius:26px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;
+  cursor:pointer;border:none;transition:transform .2s var(--p-ease), box-shadow .2s ease, background .2s ease;
+}
+.p-modal-cancel{background:#fff;border:1.5px solid var(--p-line) !important;color:var(--p-ink-900);}
+.p-modal-cancel:hover{border-color:var(--p-ink-600) !important;transform:translateY(-2px);}
+.p-modal-confirm{background:var(--p-danger);color:#fff;}
+.p-modal-confirm:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(180,64,90,.35);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+@media (max-width: 640px){
+  .p-class-card{grid-template-columns:1fr;text-align:start;}
+  .p-student-box{border-inline-start:none;border-top:1.5px dashed var(--p-gold-500);padding-inline-start:0;padding-top:12px;}
+  .p-open-btn{width:100%;}
+  .p-hero h1{font-size:26px;}
+  .p-explainer,.p-warning{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<header class="p-topbar">
+  <a class="p-home-link" href="../index.html">← Home Page</a>
+  <div class="p-brand">
+    <img src="https://cdn.phototourl.com/free/2026-09-10-76f22a95-a83e-469b-b00b-f9d405e3ab72.png" alt="Amjad Islamic School logo">
+    <span>Amjad Islamic School</span>
+  </div>
+  <button class="p-logout" id="logoutBtn">Log Out</button>
+</header>
+
+<div class="p-loading" id="loadingState">
+  <div class="p-spin"></div>
+  <div>Loading your classes...</div>
+</div>
+
+<div id="dashboardState" style="display:none;">
+
+  <div class="p-hero">
+    <div class="p-hero-inner">
+      <p class="p-hero-eyebrow">Student Dashboard</p>
+      <h1>My Classes</h1>
+      <p>Every class you're enrolled in, with your student's details and a direct link to each classroom.</p>
+    </div>
+  </div>
+
+  <div class="p-wrap">
+    <div class="p-stat-row">
+      <div class="p-stat-card">
+        <b id="classCount">0</b>
+        <span>Classes enrolled</span>
+      </div>
+      <div class="p-stat-card">
+        <b id="studentCount">0</b>
+        <span>Students registered</span>
+      </div>
+    </div>
+
+    <div class="p-explainer">
+      <div class="p-icon-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      </div>
+      <div>
+        <h4>What does this page do?
+</h4>
+        <p>Here, you will find all the classes you are enrolled in. Each class has a card displaying the class name, effects, the investing student's details, and an "Open Classroom" button that takes you directly to the class page. If the button isn't working, it means the class link hasn't been added by the administration</p>
+      </div>
+    </div>
+
+    <div class="p-warning">
+      <div class="p-icon-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+      </div>
+      <div>
+        <h4>Important Notice</h4>
+        <p>Your account and its data are confidential and exclusive to you. Sharing login details, or leaking the class link or its content to anyone outside the school, will result in the immediate cancellation of the student's enrollment without a refund. Safeguarding this information protects the rights of all registered students.</p>
+      </div>
+    </div>
+
+    <div class="p-section-label" id="sectionLabel" style="display:none;">Your classes</div>
+
+    <div class="p-classes-list" id="classesGrid"></div>
+
+    <div class="p-empty" id="emptyState" style="display:none;">
+      <h3>You're not enrolled in any classes yet</h3>
+      <p>Browse our programs under <a href="../index.html">Academics</a> and register for a class to see it here.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="p-modal-overlay" id="logoutOverlay">
+  <div class="p-modal">
+    <div class="p-modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+    </div>
+    <h3>Log out of your account?</h3>
+    <p>Signing out will <b>remove your class enrollment data</b> stored on this device. You'll need to re-register to see your classes again.</p>
+    <div class="p-modal-actions">
+      <button class="p-modal-cancel" id="logoutCancelBtn">Cancel</button>
+      <button class="p-modal-confirm" id="logoutConfirmBtn">Log Out</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+  const AMJAD_CLASSES_KEY = 'amjad_my_classes';
+
+  function getSession(){ return localStorage.getItem(AMJAD_SESSION_KEY); }
+  function getMyClasses(){
+    try{
+      const raw = localStorage.getItem(AMJAD_CLASSES_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(err){ return []; }
+  }
+
+  function escapeHtml(str){
+    return String(str || '').replace(/[&<>"']/g, ch => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[ch]));
+  }
+
+  function renderClasses(classes){
+    const grid = document.getElementById('classesGrid');
+    const empty = document.getElementById('emptyState');
+    const sectionLabel = document.getElementById('sectionLabel');
+    document.getElementById('classCount').textContent = classes.length;
+
+    const uniqueStudents = new Set(classes.map(c => (c.studentName || '').trim().toLowerCase()).filter(Boolean));
+    document.getElementById('studentCount').textContent = uniqueStudents.size;
+
+    if(classes.length === 0){
+      grid.style.display = 'none';
+      sectionLabel.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+
+    grid.style.display = 'flex';
+    sectionLabel.style.display = 'flex';
+    empty.style.display = 'none';
+    grid.innerHTML = classes.map((cls, i) => {
+      const link = cls.classroomLink && cls.classroomLink !== '#' ? cls.classroomLink : '#';
+      const feeText = cls.fee ? ('$' + cls.fee + ' / term') : '';
+      return `
+        <div class="p-class-card" style="animation-delay:${(i * 0.05).toFixed(2)}s;">
+          <div class="p-class-main">
+            <span class="p-badge">${escapeHtml(cls.category || 'Class')}</span>
+            <h3>${escapeHtml(cls.name || 'Class')}</h3>
+            ${feeText ? `<div class="p-fee">${escapeHtml(feeText)}</div>` : ''}
+          </div>
+          <div class="p-student-box">
+            <label>Enrolled Student</label>
+            <div class="p-student-name">${escapeHtml(cls.studentName || '—')}</div>
+            <div class="p-student-phone">${escapeHtml(cls.studentPhone || '—')}</div>
+          </div>
+          <a class="p-open-btn" href="${escapeHtml(link)}" target="${link === '#' ? '_self' : '_blank'}" rel="noopener" data-classid="${escapeHtml(cls.id || '')}">
+            <span>Open Classroom</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      `;
+    }).join('');
+  }
+
+  (function init(){
+    const session = getSession();
+    if(!session){
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const classes = getMyClasses();
+    renderClasses(classes);
+
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('dashboardState').style.display = 'block';
+  })();
+
+  // Placeholder click guard: until real classroom links are added per class,
+  // clicking "Open Classroom" just lets the site owner know it's not wired up yet.
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.p-open-btn');
+    if(!btn) return;
+    if(btn.getAttribute('href') === '#'){
+      e.preventDefault();
+      alert('The classroom link for this class hasn\'t been added yet. Please check back soon.');
+    }
+  });
+
+  const logoutOverlay = document.getElementById('logoutOverlay');
+
+  function openLogoutModal(){
+    logoutOverlay.classList.remove('p-modal-closing');
+    logoutOverlay.classList.add('p-modal-open');
+  }
+
+  function closeLogoutModal(){
+    logoutOverlay.classList.add('p-modal-closing');
+    logoutOverlay.classList.remove('p-modal-open');
+    setTimeout(()=> logoutOverlay.classList.remove('p-modal-closing'), 280);
+  }
+
+  function performLogout(){
+    localStorage.removeItem(AMJAD_SESSION_KEY);
+    localStorage.removeItem('amjad_profile');
+    localStorage.removeItem(AMJAD_CLASSES_KEY);
+    window.location.href = 'login.html';
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', openLogoutModal);
+  document.getElementById('logoutCancelBtn').addEventListener('click', closeLogoutModal);
+  document.getElementById('logoutConfirmBtn').addEventListener('click', performLogout);
+
+  logoutOverlay.addEventListener('click', (e)=>{
+    if(e.target === logoutOverlay) closeLogoutModal();
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && logoutOverlay.classList.contains('p-modal-open')) closeLogoutModal();
+  });
+</script>
+
+</body>
+</html>
