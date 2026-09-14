@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amjad Institute of Islamic Studies for Women</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-950:#1F0E17;
+    --indigo-900:#341527;
+    --indigo-800:#4F1F38;
+    --azure-600:#6B2A45;
+    --turq-500:#A8456B;
+    --turq-100:#F6E3EC;
+    --gold-600:#A8752A;
+    --gold-500:#E3B049;
+    --gold-100:#FCEFD3;
+    --paper-50:#FDFBF5;
+    --stone-100:#F5EED9;
+    --ink-900:#231320;
+    --ink-600:#6E4C5E;
+    --line:#E6D6DE;
+    --radius-md:14px;
+    --shadow-1: 0 1px 2px rgba(31,14,23,0.06), 0 10px 24px rgba(31,14,23,0.10), 0 2px 10px rgba(168,117,42,0.08);
+    --shadow-2: 0 2px 6px rgba(31,14,23,0.10), 0 22px 48px rgba(31,14,23,0.22), 0 6px 20px rgba(168,117,42,0.12);
+    --ease: cubic-bezier(.22,.9,.32,1.1);
+    --gold-foil: linear-gradient(100deg, var(--gold-600) 0%, var(--gold-500) 22%, #FFEFC2 45%, var(--gold-500) 68%, var(--gold-600) 100%);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:'Work Sans', sans-serif;color:var(--ink-900);
+    background:var(--paper-50);line-height:1.55;overflow-x:hidden;position:relative;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:998;opacity:.035;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .gold-foil{
+    background:var(--gold-foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:foil-sheen 7s ease-in-out infinite;
+  }
+  @keyframes foil-sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+  h1,h2,h3,.display{font-family:'Amiri', serif;font-weight:700;line-height:1.22;margin:0;color:var(--indigo-900);}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .sample-badge{
+    display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;
+    background:var(--gold-100);color:var(--gold-600);border:1px solid var(--gold-500);
+    font-weight:600;margin-left:8px;vertical-align:middle;
+  }
+  .btn-gold{
+    display:inline-flex;align-items:center;gap:8px;background:var(--gold-500);color:var(--indigo-950);
+    font-weight:700;font-size:14px;padding:11px 22px;border-radius:26px;border:none;cursor:pointer;
+    transition:transform .2s var(--ease), box-shadow .2s ease, background .2s ease;
+  }
+  .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:var(--shadow-2);background:#fff;}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--gold-500);color:var(--gold-600);
+    font-weight:600;font-size:14px;padding:10px 21px;border-radius:26px;transition:all .2s var(--ease);
+  }
+  .btn-outline:hover{background:var(--gold-500);color:var(--indigo-950);transform:translateY(-3px);}
+  .btn-outline.on-dark{color:var(--gold-500);border-color:rgba(227,176,73,.6);}
+  .btn-outline.on-dark:hover{background:var(--gold-500);color:var(--indigo-950);}
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .year-grid.reveal .year-card{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease), transform .55s var(--ease);}
+  .year-grid.reveal.in .year-card{opacity:1;transform:translateY(0);}
+  .year-grid.reveal.in .year-card:nth-child(1){transition-delay:.05s;}
+  .year-grid.reveal.in .year-card:nth-child(2){transition-delay:.15s;}
+  .year-grid.reveal.in .year-card:nth-child(3){transition-delay:.25s;}
+  .year-grid.reveal.in .year-card:nth-child(4){transition-delay:.35s;}
+  .subject-grid.reveal .subject-chip{opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease), transform .45s var(--ease);}
+  .subject-grid.reveal.in .subject-chip{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .year-card, .subject-chip{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
+
+  /* ---------- Hero ---------- */
+  @keyframes hero-in{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes hero-bg-in{from{transform:scale(1.06);}to{transform:scale(1);}}
+  .hero{
+    position:relative;color:#fff;padding:110px 0 90px;overflow:hidden;animation:hero-bg-in 1.6s var(--ease) both;
+    background:
+      linear-gradient(100deg, rgba(23,10,17,.94) 0%, rgba(31,14,23,.88) 38%, rgba(31,14,23,.55) 68%, rgba(31,14,23,.25) 100%),
+      url('https://images.pexels.com/photos/8164747/pexels-photo-8164747.jpeg?auto=compress&cs=tinysrgb&w=1600') center 30%/cover no-repeat;
+  }
+  .hero .eyebrow-line{display:flex;align-items:center;gap:12px;margin-bottom:22px;opacity:0;animation:hero-in .6s var(--ease) .1s both;}
+  .hero .eyebrow-line .pill{
+    font-size:12px;letter-spacing:.05em;font-weight:600;color:var(--indigo-950);
+    background:var(--gold-500);padding:5px 14px;border-radius:20px;
+  }
+  .hero .eyebrow-line .meta{color:#E3C9CE;font-size:13.5px;}
+  .hero h1{font-size:clamp(34px,4.8vw,56px);max-width:16ch;opacity:0;animation:hero-in .6s var(--ease) .22s both;}
+  .hero .lede{max-width:56ch;color:#EAD9DE;font-size:17px;margin-top:20px;opacity:0;animation:hero-in .6s var(--ease) .34s both;}
+  .fact-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;opacity:0;animation:hero-in .6s var(--ease) .46s both;}
+  .fact-chip{
+    display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:11px 16px;font-size:14px;color:#F3E7DF;
+  }
+  .fact-chip svg{flex:none;color:var(--gold-500);}
+  .hero-cta{display:flex;align-items:center;gap:16px;margin-top:38px;flex-wrap:wrap;opacity:0;animation:hero-in .6s var(--ease) .58s both;}
+  @media (prefers-reduced-motion: reduce){
+    .hero, .hero *{animation:none !important;opacity:1 !important;transform:none !important;}
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{background:var(--indigo-950);position:sticky;top:0;z-index:80;border-bottom:1px solid rgba(255,255,255,.08);}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;height:76px;gap:14px;}
+  .topbar-left{display:flex;align-items:center;gap:14px;min-width:0;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;}
+  .brand .mark{
+    width:80px;height:80px;border-radius:10px;background:var(--indigo-950);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;
+  }
+  .brand .mark img{width:100%;height:100%;object-fit:contain;display:block;transform:scale(2);}
+  .brand-text{line-height:1.2;}
+  .brand-text strong{display:block;font-size:15px;font-weight:600;}
+  .brand-text span{display:block;font-size:11px;letter-spacing:.06em;color:var(--gold-500);}
+  .actions{display:flex;align-items:center;gap:14px;}
+  .hamburger{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:42px;height:42px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;cursor:pointer;flex:none;
+  }
+  .hamburger span{display:block;width:19px;height:2px;background:#fff;border-radius:2px;}
+  .back-home{display:flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:24px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#F0E2DE;font-size:13.5px;font-weight:600;flex:none;transition:background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;}
+  .back-home svg{flex:none;transition:transform .2s ease;}
+  .back-home:hover{background:var(--gold-500);border-color:var(--gold-500);color:var(--indigo-950);}
+  .back-home:hover svg{transform:translateX(-2px);}
+  @media(max-width:560px){
+    .back-home span{display:none;}
+    .back-home{padding:9px;}
+  }
+
+  /* ---------- Intro ---------- */
+  .intro{padding:76px 0 20px;}
+  .intro .container{max-width:820px;text-align:center;}
+  .intro p{font-size:18px;color:var(--ink-600);line-height:1.75;}
+
+  /* ---------- Section headers ---------- */
+  .section{padding:64px 0;}
+  .section-head{max-width:680px;margin:0 auto 44px;text-align:center;}
+  .section-head h2{font-size:clamp(26px,3.2vw,36px);}
+  .section-head p{color:var(--ink-600);margin-top:12px;font-size:15.5px;}
+  .rule-flourish{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 18px;width:fit-content;}
+  .rule-flourish .ln{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+  .rule-flourish .ln.r{background:linear-gradient(90deg,var(--gold-500),transparent);}
+
+  /* ---------- Core subjects grid ---------- */
+  .subject-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .subject-chip{
+    display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-1);transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s ease;
+  }
+  .subject-chip:hover{transform:translateY(-3px);box-shadow:var(--shadow-2);border-color:var(--gold-500);}
+  .subject-chip .num{
+    flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold-100);color:var(--gold-600);
+    display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:14px;
+  }
+  .subject-chip .txt strong{display:block;font-size:14.5px;color:var(--indigo-900);}
+  .subject-chip .txt span{display:block;font-size:12.5px;color:var(--ink-600);margin-top:2px;direction:rtl;text-align:left;}
+  @media(max-width:900px){.subject-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.subject-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Year cards ---------- */
+  .year-grid{display:grid;grid-template-columns:1fr;gap:26px;}
+  .year-card{
+    background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px 36px;box-shadow:var(--shadow-1);
+    transition:box-shadow .3s var(--ease);
+  }
+  .year-card:hover{box-shadow:var(--shadow-2);}
+  .year-head{display:flex;align-items:center;gap:16px;margin-bottom:22px;flex-wrap:wrap;}
+  .year-badge{
+    flex:none;width:56px;height:56px;border-radius:50%;background:var(--gold-foil);background-size:220% 100%;
+    color:var(--indigo-950);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:22px;
+    box-shadow:0 4px 14px rgba(168,117,42,.28);
+  }
+  .year-head h3{font-size:21px;}
+  .year-head .ar{display:block;font-family:'Cairo',sans-serif;font-size:12.5px;color:var(--ink-600);font-weight:600;margin-top:3px;letter-spacing:0;direction:rtl;}
+  .semester-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+  .semester-block{background:var(--paper-50);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .semester-block h4{font-family:'Work Sans',sans-serif;font-size:13px;font-weight:700;color:var(--gold-600);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .semester-block h4::before{content:"";width:18px;height:1px;background:var(--gold-500);}
+  .semester-block ul li{
+    position:relative;padding-left:18px;font-size:14px;color:var(--ink-900);padding-block:5px;line-height:1.6;
+  }
+  .semester-block ul li::before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--gold-500);}
+  .year-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:18px;border-top:1px dashed var(--line);}
+  .year-fee{font-size:14px;color:var(--ink-600);}
+  .year-fee strong{color:var(--indigo-900);font-size:16px;}
+  @media(max-width:760px){
+    .semester-grid{grid-template-columns:1fr;}
+    .year-card{padding:26px 20px;}
+  }
+
+  /* ---------- CTA strip ---------- */
+  .cta-strip{background:var(--indigo-950);color:#fff;padding:70px 0;text-align:center;position:relative;overflow:hidden;}
+  .cta-strip h2{color:#fff;font-size:clamp(24px,3vw,34px);max-width:22ch;margin:0 auto 16px;}
+  .cta-strip p{color:#E3C9CE;max-width:56ch;margin:0 auto 30px;font-size:15.5px;}
+
+  /* ---------- Footer ---------- */
+  footer.mini{background:var(--stone-100);padding:30px 0;text-align:center;font-size:13px;color:var(--ink-600);}
+  footer.mini a{color:var(--gold-600);font-weight:600;}
+
+  @media(max-width:560px){
+    .hero{padding:80px 0 60px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container row">
+    <div class="topbar-left">
+      <a class="back-home" href="../index.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Back Home</span>
+      </a>
+      <a class="brand" href="institute-en.html">
+        <span class="mark"><img src="https://cdn.phototourl.com/free/2026-09-10-76f22a95-a83e-469b-b00b-f9d405e3ab72.png" alt="Amjad Islamic School logo"></span>
+        <span class="brand-text"><strong>Amjad Institute of Islamic Studies</strong><span>FOR WOMEN</span></span>
+      </a>
+    </div>
+    <div class="actions">
+      <a class="btn-gold" data-register href="institute-register-en.html">Register Now</a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow-line">
+      <span class="pill">ENROLLING FOR 2026–2027</span>
+      <span class="meta">Curriculum &amp; program guide</span>
+    </div>
+    <h1 class="gold-foil">Amjad Institute of Islamic Studies for Women</h1>
+    <p class="lede">Advanced Islamic education for women after high school — a comprehensive four-year program combining Qur'an, Hadith, Fiqh, Arabic Language, and Da'wah, preparing every student academically, spiritually, and as a future leader.</p>
+    <div class="fact-row">
+      <span class="fact-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" stroke-width="1.6"/><path d="M5 10.5V16c0 1.5 3 3.5 7 3.5s7-2 7-3.5v-5.5" stroke="currentColor" stroke-width="1.6"/></svg> Four-Year Program</span>
+      <span class="fact-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> 8 Semesters</span>
+      <span class="fact-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Monday to Friday</span>
+      <span class="fact-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 21c1.5-4 4.5-6 7-6s5.5 2 7 6" stroke="currentColor" stroke-width="1.6"/></svg> Women-Only Program</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn-gold" data-register href="institute-register-en.html">Register Now →</a>
+      <a class="btn-outline on-dark" href="#years">See the curriculum</a>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="container reveal">
+    <p>The Institute offers a complete four-year academic journey — beginning with the Islamic foundations, deepening into Qur'an, Hadith, and Arabic sciences, advancing into the higher Islamic sciences, and concluding with leadership, da'wah, and contemporary Islamic thought.</p>
+  </div>
+</section>
+
+<section class="section" id="subjects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="rule-flourish"><span class="ln"></span><span class="ln r"></span></div>
+      <h2>Core Subjects in the Program</h2>
+      <p>The Islamic, linguistic, and da'wah sciences that the entire program is built upon.</p>
+    </div>
+    <div class="subject-grid reveal">
+      <div class="subject-chip"><span class="num">1</span><div class="txt"><strong>Qur'an Studies</strong><span>علوم القرآن</span></div></div>
+      <div class="subject-chip"><span class="num">2</span><div class="txt"><strong>Tajweed &amp; Qur'an Recitation</strong><span>التجويد والقراءات</span></div></div>
+      <div class="subject-chip"><span class="num">3</span><div class="txt"><strong>Tafsir</strong><span>التفسير</span></div></div>
+      <div class="subject-chip"><span class="num">4</span><div class="txt"><strong>Hadith</strong><span>الحديث الشريف</span></div></div>
+      <div class="subject-chip"><span class="num">5</span><div class="txt"><strong>Mustalah al-Hadith</strong><span>مصطلح الحديث وعلومه</span></div></div>
+      <div class="subject-chip"><span class="num">6</span><div class="txt"><strong>Aqeedah</strong><span>العقيدة الإسلامية</span></div></div>
+      <div class="subject-chip"><span class="num">7</span><div class="txt"><strong>Fiqh</strong><span>الفقه الإسلامي</span></div></div>
+      <div class="subject-chip"><span class="num">8</span><div class="txt"><strong>Usul al-Fiqh</strong><span>أصول الفقه</span></div></div>
+      <div class="subject-chip"><span class="num">9</span><div class="txt"><strong>Seerah</strong><span>السيرة النبوية</span></div></div>
+      <div class="subject-chip"><span class="num">10</span><div class="txt"><strong>Islamic History &amp; Civilization</strong><span>التاريخ والحضارة الإسلامية</span></div></div>
+      <div class="subject-chip"><span class="num">11</span><div class="txt"><strong>Khilafah &amp; Islamic Governance</strong><span>الخلافة والنظام السياسي في الإسلام</span></div></div>
+      <div class="subject-chip"><span class="num">12</span><div class="txt"><strong>Arabic Language</strong><span>اللغة العربية</span></div></div>
+      <div class="subject-chip"><span class="num">13</span><div class="txt"><strong>Nahw</strong><span>النحو</span></div></div>
+      <div class="subject-chip"><span class="num">14</span><div class="txt"><strong>Sarf</strong><span>الصرف</span></div></div>
+      <div class="subject-chip"><span class="num">15</span><div class="txt"><strong>Islamic Ethics &amp; Character</strong><span>الأخلاق والتربية الإسلامية</span></div></div>
+      <div class="subject-chip"><span class="num">16</span><div class="txt"><strong>Da'wah &amp; Islamic Communication</strong><span>الدعوة والاتصال الإسلامي</span></div></div>
+      <div class="subject-chip"><span class="num">17</span><div class="txt"><strong>Women in Islam</strong><span>المرأة في الإسلام</span></div></div>
+      <div class="subject-chip"><span class="num">18</span><div class="txt"><strong>Contemporary Islamic Issues</strong><span>القضايا الإسلامية المعاصرة</span></div></div>
+      <div class="subject-chip"><span class="num">19</span><div class="txt"><strong>Islamic Research Methods</strong><span>مناهج البحث الإسلامي</span></div></div>
+      <div class="subject-chip"><span class="num">20</span><div class="txt"><strong>Public Speaking &amp; Khutbah</strong><span>فن الخطابة وإعداد الخطب</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="years" style="background:var(--gold-100);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="rule-flourish"><span class="ln"></span><span class="ln r"></span></div>
+      <h2>The Program — Years &amp; Semesters</h2>
+      <p>Four academic years, each split into two semesters. You can register for each year individually.</p>
+    </div>
+
+    <div class="year-grid reveal">
+
+      <!-- Year 1 -->
+      <div class="year-card">
+        <div class="year-head">
+          <span class="year-badge">1</span>
+          <div>
+            <h3>Year 1 — Islamic Foundations<span class="ar">السنة الأولى — الأسس الإسلامية</span></h3>
+          </div>
+        </div>
+        <div class="semester-grid">
+          <div class="semester-block">
+            <h4>Semester 1</h4>
+            <ul>
+              <li>Aqeedah I</li>
+              <li>Qur'an Studies I</li>
+              <li>Tajweed &amp; Recitation I</li>
+              <li>Fiqh I</li>
+              <li>Hadith I</li>
+              <li>Arabic Language I</li>
+              <li>Seerah I</li>
+            </ul>
+          </div>
+          <div class="semester-block">
+            <h4>Semester 2</h4>
+            <ul>
+              <li>Aqeedah II</li>
+              <li>Qur'an Studies II</li>
+              <li>Tajweed &amp; Recitation II</li>
+              <li>Fiqh II</li>
+              <li>Hadith II</li>
+              <li>Arabic Language II</li>
+              <li>Seerah II</li>
+            </ul>
+          </div>
+        </div>
+        <div class="year-footer">
+          <div class="year-fee">Tuition: <strong>$300 / year</strong> <span class="sample-badge">sample</span></div>
+          <a class="btn-outline" data-register href="institute-register-en.html?level=Year%201%20%E2%80%94%20Islamic%20Foundations&fee=300">Register for Year 1</a>
+        </div>
+      </div>
+
+      <!-- Year 2 -->
+      <div class="year-card">
+        <div class="year-head">
+          <span class="year-badge">2</span>
+          <div>
+            <h3>Year 2 — Qur'an, Hadith &amp; Arabic Sciences<span class="ar">السنة الثانية — علوم القرآن والحديث والعربية</span></h3>
+          </div>
+        </div>
+        <div class="semester-grid">
+          <div class="semester-block">
+            <h4>Semester 3</h4>
+            <ul>
+              <li>Ulum al-Qur'an I</li>
+              <li>Tafsir I</li>
+              <li>Hadith III</li>
+              <li>Mustalah al-Hadith I</li>
+              <li>Fiqh III</li>
+              <li>Nahw I</li>
+              <li>Sarf I</li>
+            </ul>
+          </div>
+          <div class="semester-block">
+            <h4>Semester 4</h4>
+            <ul>
+              <li>Ulum al-Qur'an II</li>
+              <li>Tafsir II</li>
+              <li>Hadith IV</li>
+              <li>Mustalah al-Hadith II</li>
+              <li>Fiqh IV</li>
+              <li>Nahw II</li>
+              <li>Sarf II</li>
+            </ul>
+          </div>
+        </div>
+        <div class="year-footer">
+          <div class="year-fee">Tuition: <strong>$300 / year</strong> <span class="sample-badge">sample</span></div>
+          <a class="btn-outline" data-register href="institute-register-en.html?level=Year%202%20%E2%80%94%20Qur%27an%2C%20Hadith%20%26%20Arabic%20Sciences&fee=300">Register for Year 2</a>
+        </div>
+      </div>
+
+      <!-- Year 3 -->
+      <div class="year-card">
+        <div class="year-head">
+          <span class="year-badge">3</span>
+          <div>
+            <h3>Year 3 — Advanced Islamic Sciences<span class="ar">السنة الثالثة — العلوم الإسلامية المتقدمة</span></h3>
+          </div>
+        </div>
+        <div class="semester-grid">
+          <div class="semester-block">
+            <h4>Semester 5</h4>
+            <ul>
+              <li>Advanced Tafsir I</li>
+              <li>Advanced Hadith I</li>
+              <li>Usul al-Fiqh I</li>
+              <li>Comparative Fiqh I</li>
+              <li>Islamic History &amp; Civilization I</li>
+              <li>Arabic for Islamic Studies</li>
+              <li>Islamic Ethics &amp; Character</li>
+            </ul>
+          </div>
+          <div class="semester-block">
+            <h4>Semester 6</h4>
+            <ul>
+              <li>Advanced Tafsir II</li>
+              <li>Advanced Hadith II</li>
+              <li>Usul al-Fiqh II</li>
+              <li>Comparative Fiqh II</li>
+              <li>Islamic History &amp; Civilization II</li>
+              <li>Women in Islam</li>
+              <li>Contemporary Islamic Issues</li>
+            </ul>
+          </div>
+        </div>
+        <div class="year-footer">
+          <div class="year-fee">Tuition: <strong>$350 / year</strong> <span class="sample-badge">sample</span></div>
+          <a class="btn-outline" data-register href="institute-register-en.html?level=Year%203%20%E2%80%94%20Advanced%20Islamic%20Sciences&fee=350">Register for Year 3</a>
+        </div>
+      </div>
+
+      <!-- Year 4 -->
+      <div class="year-card">
+        <div class="year-head">
+          <span class="year-badge">4</span>
+          <div>
+            <h3>Year 4 — Leadership, Da'wah &amp; Islamic Thought<span class="ar">السنة الرابعة — القيادة والدعوة والفكر الإسلامي</span></h3>
+          </div>
+        </div>
+        <div class="semester-grid">
+          <div class="semester-block">
+            <h4>Semester 7</h4>
+            <ul>
+              <li>Khilafah, Islamic Governance &amp; Political Thought I</li>
+              <li>Islamic Political Thought</li>
+              <li>Da'wah &amp; Islamic Communication</li>
+              <li>Public Speaking &amp; Khutbah</li>
+              <li>Islamic Research Methods</li>
+              <li>Contemporary Fiqh</li>
+              <li>Advanced Arabic</li>
+            </ul>
+          </div>
+          <div class="semester-block">
+            <h4>Semester 8</h4>
+            <ul>
+              <li>Khilafah, Islamic Governance &amp; Political Thought II</li>
+              <li>Contemporary Islamic Issues</li>
+              <li>Islamic Leadership &amp; Community Service</li>
+              <li>Teaching Methods in Islamic Education</li>
+              <li>Research Project</li>
+              <li>Graduation Presentation</li>
+              <li>Comprehensive Final Examination</li>
+            </ul>
+          </div>
+        </div>
+        <div class="year-footer">
+          <div class="year-fee">Tuition: <strong>$350 / year</strong> <span class="sample-badge">sample</span></div>
+          <a class="btn-outline" data-register href="institute-register-en.html?level=Year%204%20%E2%80%94%20Leadership%2C%20Da%27wah%20%26%20Islamic%20Thought&fee=350">Register for Year 4</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container reveal">
+    <h2 class="gold-foil">Ready to begin your journey?</h2>
+    <p>Registration takes less than five minutes — pick the year that fits above, or start with the form directly.</p>
+    <a class="btn-gold" data-register href="institute-register-en.html">Start Registration →</a>
+  </div>
+</section>
+
+<footer class="mini">
+  <div class="container">
+    Amjad Institute of Islamic Studies for Women is part of <a href="../index.html">Amjad Islamic School</a>. Preview page — sample fees, photography, and content shown for design review only.
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- Registration auth-guard ----------
+  // Same session mechanism used across the Amjad site (signup.html /
+  // login.html / profile.html): signed in -> straight to the registration
+  // form; not signed in -> create an account first, then bounce back.
+  const AMJAD_SESSION_KEY = 'amjad_member_email';
+  function amjadSession(){
+    return localStorage.getItem(AMJAD_SESSION_KEY);
+  }
+  document.querySelectorAll('[data-register]').forEach(function(el){
+    el.addEventListener('click', function(ev){
+      ev.preventDefault();
+      const target = this.getAttribute('href');
+      if (amjadSession()) {
+        window.location.href = target;
+      } else {
+        window.location.href = 'signup.html?next=' + encodeURIComponent(target);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
